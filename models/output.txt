@@ -1,0 +1,193 @@
+fl0Client4 Test Accuracy  10.714285714285714 %
+fl0Client2 Test Accuracy  18.21428571428571 %
+fl0Client3 Test Accuracy  14.285714285714285 %
+fl0Client0 Test Accuracy  27.142857142857142 %
+fl0Client1 Test Accuracy  10.714285714285714 %
+get all clients models ready
+model prunning done
+fl1Client2 Test Accuracy  17.142857142857142 %
+fl1Client0 Test Accuracy  25.71428571428571 %
+fl1Client4 Test Accuracy  11.428571428571429 %
+fl1Client1 Test Accuracy  11.071428571428571 %
+fl1Client3 Test Accuracy  13.928571428571429 %
+get all clients models ready
+model prunning done
+fl2Client4 Test Accuracy  13.214285714285715 %
+fl2Client2 Test Accuracy  20.357142857142858 %
+fl2Client3 Test Accuracy  12.142857142857142 %
+fl2Client0 Test Accuracy  21.785714285714285 %
+fl2Client1 Test Accuracy  12.142857142857142 %
+get all clients models ready
+model prunning done
+fl3Client1 Test Accuracy  11.071428571428571 %
+fl3Client0 Test Accuracy  22.5 %
+fl3Client3 Test Accuracy  13.214285714285715 %
+fl3Client4 Test Accuracy  12.857142857142856 %
+fl3Client2 Test Accuracy  16.785714285714285 %
+get all clients models ready
+model prunning done
+fl4Client1 Test Accuracy  10.714285714285714 %
+fl4Client3 Test Accuracy  15.714285714285714 %
+fl4Client2 Test Accuracy  17.857142857142858 %
+fl4Client0 Test Accuracy  22.142857142857142 %
+fl4Client4 Test Accuracy  13.214285714285715 %
+get all clients models ready
+model prunning done
+fl0Client1 Test Accuracy  39.64285714285714 %
+fl0Client0 Test Accuracy  49.0 %
+fl0Client4 Test Accuracy  53.035714285714285 %
+fl0Client2 Test Accuracy  54.82142857142858 %
+fl0Client3 Test Accuracy  48.67857142857142 %
+get all clients models ready
+model prunning done
+fl1Client2 Test Accuracy  55.00000000000001 %
+fl1Client3 Test Accuracy  48.857142857142854 %
+fl1Client0 Test Accuracy  48.892857142857146 %
+fl1Client4 Test Accuracy  52.714285714285715 %
+fl1Client1 Test Accuracy  39.0 %
+get all clients models ready
+model prunning done
+fl2Client0 Test Accuracy  49.142857142857146 %
+fl2Client1 Test Accuracy  39.535714285714285 %
+fl2Client4 Test Accuracy  52.92857142857142 %
+fl2Client3 Test Accuracy  49.392857142857146 %
+fl2Client2 Test Accuracy  54.535714285714285 %
+get all clients models ready
+model prunning done
+fl3Client4 Test Accuracy  53.0 %
+fl3Client1 Test Accuracy  39.85714285714286 %
+fl3Client2 Test Accuracy  54.285714285714285 %
+fl3Client0 Test Accuracy  49.964285714285715 %
+fl3Client3 Test Accuracy  49.392857142857146 %
+get all clients models ready
+model prunning done
+fl4Client4 Test Accuracy  52.75 %
+fl4Client0 Test Accuracy  49.0 %
+fl4Client3 Test Accuracy  48.964285714285715 %
+fl4Client1 Test Accuracy  40.14285714285714 %
+fl4Client2 Test Accuracy  55.035714285714285 %
+get all clients models ready
+model prunning done
+fl5Client4 Test Accuracy  52.607142857142854 %
+fl5Client2 Test Accuracy  54.92857142857142 %
+fl5Client0 Test Accuracy  49.53571428571429 %
+fl5Client3 Test Accuracy  48.92857142857142 %
+fl5Client1 Test Accuracy  39.57142857142858 %
+get all clients models ready
+model prunning done
+fl6Client4 Test Accuracy  52.85714285714286 %
+fl6Client1 Test Accuracy  39.214285714285715 %
+fl6Client3 Test Accuracy  48.92857142857142 %
+fl6Client2 Test Accuracy  54.82142857142858 %
+fl6Client0 Test Accuracy  48.964285714285715 %
+get all clients models ready
+model prunning done
+fl7Client0 Test Accuracy  49.17857142857143 %
+fl7Client1 Test Accuracy  39.82142857142857 %
+fl7Client3 Test Accuracy  49.035714285714285 %
+fl7Client2 Test Accuracy  54.785714285714285 %
+fl7Client4 Test Accuracy  52.96428571428572 %
+get all clients models ready
+model prunning done
+fl8Client1 Test Accuracy  39.535714285714285 %
+fl8Client0 Test Accuracy  49.785714285714285 %
+fl8Client2 Test Accuracy  54.535714285714285 %
+fl8Client4 Test Accuracy  52.85714285714286 %
+fl8Client3 Test Accuracy  49.107142857142854 %
+get all clients models ready
+model prunning done
+fl9Client2 Test Accuracy  54.96428571428571 %
+fl9Client1 Test Accuracy  40.07142857142857 %
+fl9Client4 Test Accuracy  52.535714285714285 %
+fl9Client0 Test Accuracy  49.464285714285715 %
+fl9Client3 Test Accuracy  49.642857142857146 %
+get all clients models ready
+model prunning done
+fl10Client0 Test Accuracy  49.25 %
+fl10Client2 Test Accuracy  54.57142857142857 %
+fl10Client1 Test Accuracy  40.07142857142857 %
+fl10Client4 Test Accuracy  52.82142857142858 %
+fl10Client3 Test Accuracy  48.892857142857146 %
+get all clients models ready
+model prunning done
+fl11Client3 Test Accuracy  49.57142857142857 %
+fl11Client2 Test Accuracy  55.17857142857143 %
+fl11Client4 Test Accuracy  52.57142857142857 %
+fl11Client1 Test Accuracy  40.0 %
+fl11Client0 Test Accuracy  48.892857142857146 %
+get all clients models ready
+model prunning done
+fl12Client3 Test Accuracy  49.0 %
+fl12Client1 Test Accuracy  39.82142857142857 %
+fl12Client0 Test Accuracy  49.214285714285715 %
+fl12Client4 Test Accuracy  53.0 %
+fl12Client2 Test Accuracy  54.535714285714285 %
+get all clients models ready
+model prunning done
+fl13Client3 Test Accuracy  49.25 %
+fl13Client1 Test Accuracy  39.64285714285714 %
+fl13Client4 Test Accuracy  52.85714285714286 %
+fl13Client0 Test Accuracy  49.53571428571429 %
+fl13Client2 Test Accuracy  54.85714285714286 %
+get all clients models ready
+model prunning done
+fl14Client1 Test Accuracy  39.357142857142854 %
+fl14Client2 Test Accuracy  54.92857142857142 %
+fl14Client4 Test Accuracy  52.535714285714285 %
+fl14Client0 Test Accuracy  49.28571428571429 %
+fl14Client3 Test Accuracy  49.357142857142854 %
+get all clients models ready
+model prunning done
+fl15Client4 Test Accuracy  52.5 %
+fl15Client3 Test Accuracy  49.42857142857143 %
+fl15Client2 Test Accuracy  54.892857142857146 %
+fl15Client0 Test Accuracy  49.28571428571429 %
+fl15Client1 Test Accuracy  39.64285714285714 %
+get all clients models ready
+model prunning done
+fl16Client0 Test Accuracy  49.214285714285715 %
+fl16Client2 Test Accuracy  54.035714285714285 %
+fl16Client1 Test Accuracy  39.964285714285715 %
+fl16Client4 Test Accuracy  52.78571428571428 %
+fl16Client3 Test Accuracy  49.42857142857143 %
+get all clients models ready
+model prunning done
+fl17Client2 Test Accuracy  54.85714285714286 %
+fl17Client4 Test Accuracy  53.32142857142858 %
+fl17Client1 Test Accuracy  39.57142857142858 %
+fl17Client3 Test Accuracy  49.214285714285715 %
+fl17Client0 Test Accuracy  48.92857142857142 %
+get all clients models ready
+model prunning done
+fl18Client3 Test Accuracy  48.142857142857146 %
+fl18Client2 Test Accuracy  55.035714285714285 %
+fl18Client4 Test Accuracy  52.92857142857142 %
+fl18Client1 Test Accuracy  39.75 %
+fl18Client0 Test Accuracy  48.67857142857142 %
+get all clients models ready
+model prunning done
+fl19Client1 Test Accuracy  39.57142857142858 %
+fl19Client3 Test Accuracy  49.07142857142857 %
+fl19Client4 Test Accuracy  52.32142857142858 %
+fl19Client0 Test Accuracy  49.392857142857146 %
+fl19Client2 Test Accuracy  54.75 %
+get all clients models ready
+model prunning done
+fl20Client3 Test Accuracy  48.714285714285715 %
+fl20Client4 Test Accuracy  52.57142857142857 %
+fl20Client1 Test Accuracy  39.75 %
+fl20Client0 Test Accuracy  49.42857142857143 %
+fl20Client2 Test Accuracy  54.035714285714285 %
+get all clients models ready
+model prunning done
+fl21Client0 Test Accuracy  49.357142857142854 %
+fl21Client4 Test Accuracy  53.107142857142854 %
+fl21Client1 Test Accuracy  40.32142857142857 %
+fl21Client2 Test Accuracy  54.35714285714286 %
+fl21Client3 Test Accuracy  49.214285714285715 %
+get all clients models ready
+model prunning done
+fl22Client3 Test Accuracy  48.785714285714285 %
+fl22Client1 Test Accuracy  40.214285714285715 %
+fl22Client0 Test Accuracy  49.785714285714285 %
+fl22Client2 Test Accuracy  54.50000000000001 %

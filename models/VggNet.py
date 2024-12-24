@@ -13,7 +13,42 @@ import numpy as np
 from torch.utils.data import random_split
 import copy
 import logging
-logging.basicConfig(filename='output.txt', level=logging.INFO, format='%(message)s')
+#大型数据目录 
+dataset_root = "/data1/xxx/ComFL"
+import os
+def set_seed(seed):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(seed)
+        torch.cuda.manual_seed_all(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+set_seed(73)
+models_dir = "models"
+current_model_path = None
+print(models_dir)
+for i in range(100):  
+    model_path = os.path.join(dataset_root,models_dir, f"model{i}")
+    if not os.path.exists(model_path):
+        current_model_path = model_path  # 更新变量
+        os.makedirs(model_path)
+        print(f"Created: {model_path}")
+        break  # 找到并创建后退出循环
+else:
+    print("All model folders from model0 to model99 already exist.")
+
+if current_model_path:
+    print(f"The created folder is: {current_model_path}")
+
+logging.basicConfig(
+    filename=f'{current_model_path}/output.txt',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    filemode='w'
+)
+logging.info(f"location: {current_model_path}")
 
 
 class GetData(Dataset):
@@ -219,7 +254,7 @@ def update_gNB_model(gNB_model_state_dict, sum_module_state_dict):
 class VGGnet(nn.Module):
     def __init__(self,feature_extract=True,num_classes=3):
         super(VGGnet, self).__init__()
-        model = models.vgg16(pretrained=True)
+        model = models.vgg16(weights=models.VGG16_Weights.DEFAULT)
         self.features = model.features
         set_parameter_requires_grad(self.features, feature_extract)#固定特征提取层参数
         #自适应输出宽高尺寸为7×7
@@ -248,17 +283,23 @@ def FedAvg(w):
     return w_avg
 
 def main():
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
     model=VGGnet().to(device)
 
     #设置参数 
     learning_rate=0.01 #设置学习率
-    num_epochs=5   #本地训练次数
+    num_epochs=50   #本地训练次数
     train_batch_size=16
-    test_batch_size=16
-    fl_epochs=5 #联邦学习次数
+    test_batch_size=16 #16
+    fl_epochs=20 #联邦学习次数
     clients_num=5
-    
+    logging.info(f"learning_rate = {learning_rate}")
+    logging.info(f"num_epochs = {num_epochs}")
+    logging.info(f"train_batch_size = {train_batch_size}")
+    logging.info(f"test_batch_size = {test_batch_size}")
+    logging.info(f"fl_epochs = {fl_epochs}")
+    logging.info(f"clients_num = {clients_num}")
+    logging.info(f"clients_num = {clients_num}")
     #设置优化器，使用CrossEntropyLoss函数
     loss_fn=nn.CrossEntropyLoss()
     optimizer=torch.optim.Adam(model.classifier.parameters(),lr=learning_rate)
@@ -287,8 +328,10 @@ def main():
         selected_clients=random.sample(range(0,clients_num),min(5, clients_num))
         for client in selected_clients: #每轮设置随机5个用户进行训练
             #每次最多设置10个用户进行训练
-            pruned_model,pruned_layers = layer_pruning(gNB_model,random.uniform(0.1,0.5))
+            pruned_model,pruned_layers = layer_pruning(gNB_model,0.2)#random.uniform(0.1,0.5)
             pruned_arr.append(pruned_layers)
+            print(pruned_layers,'----------------')
+            # pruned_model = copy.deepcopy(gNB_model)
             # torch.save(pruned_model.state_dict(),f'model/fl{fl}gNB_Prun.pth')
             correct = 0
             total = 0
@@ -329,14 +372,14 @@ def main():
                         correct += (predicted == labels).sum().item()
             
             print('fl{}Client{} Test Accuracy  {} %'.format(fl,client,100*(correct/total)))
-            logging.info('fl{}Client{} Test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
+            logging.info('fl{}Client{} Test Accuracy  {} %, pruned_layers{}'.format(fl, client, 100 * (correct / total),pruned_layers))
             model_name="fl{}client{}.pth".format(fl,client)
-            torch.save(obj = pruned_model.state_dict(), f='model/{}'.format(model_name))
+            torch.save(obj=pruned_model.state_dict(), f=f'{current_model_path}/{model_name}')
         
         client_models=[]
         for client in selected_clients:
-            model_path=f'model/fl{fl}client{client}.pth'
-            temp_model = torch.load(model_path)
+            model_path=f'{current_model_path}/fl{fl}client{client}.pth'
+            temp_model = torch.load(model_path,weight_only = False)
             updated_gNB_model_state_dict = update_gNB_model(gNB_model.state_dict(), temp_model)
             client_models.append(updated_gNB_model_state_dict)
         print("get all clients models ready")
@@ -345,12 +388,27 @@ def main():
 
         sum_module=FedAvg(client_models)
         gNB_model.load_state_dict(sum_module)
-        torch.save(gNB_model.state_dict(),f'model/fl{fl}gNB.pth')
+        torch.save(gNB_model.state_dict(),f'{current_model_path}/fl{fl}gNB.pth')
         # print("FegAvg is done")
         # print("Fl Module prunning")
         
         print("model prunning done")
         logging.info("model prunning done")
+         # 测试 gNB_model 的准确率
+        gNB_model.eval()
+        correct = 0
+        total = 0
+        with torch.no_grad():
+            for images, labels in DataLoader(test_data, batch_size=test_batch_size, shuffle=True):
+                images = images.to(device)
+                labels = labels.to(device)
+                output = gNB_model(images)
+                _, predicted = torch.max(output.data, 1)
+                total += labels.size(0)
+                correct += (predicted == labels).sum().item()
+        
+        print('gNB Model Test Accuracy: {} %'.format(100 * correct / total))
+        logging.info('gNB Model Test Accuracy: {} %'.format(100 * correct / total))
 
 
     
