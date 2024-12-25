@@ -1,0 +1,48 @@
+Before train, fl0Client8 gNB_test Accuracy  100.0 %
+Before train, fl0Client8 client_test Accuracy  100.0 %
+fl0Client8 Test Accuracy  100.0 %
+Before train, fl0Client3 gNB_test Accuracy  100.0 %
+Before train, fl0Client3 client_test Accuracy  100.0 %
+fl0Client3 Test Accuracy  100.0 %
+Before train, fl0Client16 gNB_test Accuracy  100.0 %
+Before train, fl0Client16 client_test Accuracy  100.0 %
+fl0Client16 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl0merged_model Test Accuracy  100.0 %
+Before train, fl1Client15 gNB_test Accuracy  100.0 %
+Before train, fl1Client15 client_test Accuracy  100.0 %
+fl1Client15 Test Accuracy  100.0 %
+Before train, fl1Client18 gNB_test Accuracy  100.0 %
+Before train, fl1Client18 client_test Accuracy  100.0 %
+fl1Client18 Test Accuracy  100.0 %
+Before train, fl1Client5 gNB_test Accuracy  100.0 %
+Before train, fl1Client5 client_test Accuracy  100.0 %
+fl1Client5 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl1merged_model Test Accuracy  100.0 %
+Before train, fl2Client14 gNB_test Accuracy  100.0 %
+Before train, fl2Client14 client_test Accuracy  100.0 %
+fl2Client14 Test Accuracy  100.0 %
+Before train, fl2Client9 gNB_test Accuracy  100.0 %
+Before train, fl2Client9 client_test Accuracy  100.0 %
+fl2Client9 Test Accuracy  100.0 %
+Before train, fl2Client2 gNB_test Accuracy  100.0 %
+Before train, fl2Client2 client_test Accuracy  100.0 %
+fl2Client2 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl2merged_model Test Accuracy  100.0 %
+Before train, fl3Client15 gNB_test Accuracy  100.0 %
+Before train, fl3Client15 client_test Accuracy  100.0 %
+fl3Client15 Test Accuracy  100.0 %
+Before train, fl3Client12 gNB_test Accuracy  100.0 %
+Before train, fl3Client12 client_test Accuracy  100.0 %
+fl3Client12 Test Accuracy  100.0 %
+Before train, fl3Client16 gNB_test Accuracy  100.0 %
+Before train, fl3Client16 client_test Accuracy  100.0 %
+fl3Client16 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl3merged_model Test Accuracy  100.0 %

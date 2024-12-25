@@ -21,9 +21,9 @@ from model_merge import update_gNB_model, FedAvg
 from model import VGGnet,SimpleCNN,ComplexCNN
 
 # ---------------------设置自定义文件---------------------
-logging.basicConfig(filename='output.txt', level=logging.INFO, format='%(message)s', filemode='w')
+logging.basicConfig(filename='output_ComplexCNN.txt', level=logging.INFO, format='%(message)s', filemode='w')
 save_path = Path('/home/data1/xxx/dataset/COMFL')
-models_dir= save_path / 'models'
+models_dir= save_path / 'models_COMCNN'
 dataset_path = save_path / 'datasets'/'PetImages'
 
 # -----------------------------------------------------
@@ -32,27 +32,20 @@ seed_everything()
 
 # "/home/data1/xxx/dataset/COMFL/datasets/PetImages/"
 
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 # model=VGGnet().to(device)
 
 #设置参数 
-# learning_rate=0.01 #设置学习率
-# num_epochs=5   #本地训练次数
-# train_batch_size=16
-# test_batch_size=16
-# fl_epochs=10 #联邦学习次数
-# clients_num=50
-learning_rate=0.001 #设置学习率
-num_epochs=20   #本地训练次数
-train_batch_size=32
-test_batch_size=32
-fl_epochs=100 #联邦学习次数
-clients_num=50
-
+learning_rate=0.01 #设置学习率
+num_epochs=5   #本地训练次数
+train_batch_size=16
+test_batch_size=16
+fl_epochs=10 #联邦学习次数
+clients_num=20
 
 #在这里设置德是用户存储模型德文件夹，每个用户一个文件夹，用来存储模型
 #大家最开始模型都是一样的VggNet.py
-model=VGGnet(num_classes=2)
+model=ComplexCNN(num_classes=2)
 for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
     model_path = models_dir / f'model{i}'
     if not os.path.exists(model_path):
@@ -65,7 +58,7 @@ for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
 
 #设置优化器，使用CrossEntropyLoss函数
 loss_fn=nn.CrossEntropyLoss()
-optimizer=torch.optim.Adam(model.classifier.parameters(),lr=learning_rate)
+optimizer=torch.optim.Adam(model.parameters(),lr=learning_rate)
 
 #加载数据集和Dataloader
 train_data=GetData(dataset_path,224,'train')
