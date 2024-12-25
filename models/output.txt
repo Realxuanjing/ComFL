@@ -191,3 +191,76 @@ fl22Client3 Test Accuracy  48.785714285714285 %
 fl22Client1 Test Accuracy  40.214285714285715 %
 fl22Client0 Test Accuracy  49.785714285714285 %
 fl22Client2 Test Accuracy  54.50000000000001 %
+fl0Client39 Test Accuracy  100.0 %
+fl0Client8 Test Accuracy  100.0 %
+fl0Client12 Test Accuracy  100.0 %
+fl0Client5 Test Accuracy  100.0 %
+fl0Client28 Test Accuracy  100.0 %
+fl0Client32 Test Accuracy  100.0 %
+fl0Client29 Test Accuracy  100.0 %
+fl0Client42 Test Accuracy  100.0 %
+fl0Client0 Test Accuracy  100.0 %
+fl0Client15 Test Accuracy  100.0 %
+fl0Client43 Test Accuracy  100.0 %
+fl0Client12 Test Accuracy  100.0 %
+get all clients models ready
+fl0Client39 Test Accuracy  100.0 %
+fl0Client0 Test Accuracy  100.0 %
+fl0Client1 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl0gNB_model Test Accuracy  1 %
+fl1Client44 Test Accuracy  100.0 %
+fl1Client36 Test Accuracy  100.0 %
+fl1Client23 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl1gNB_model Test Accuracy  23 %
+fl2Client9 Test Accuracy  100.0 %
+fl2Client15 Test Accuracy  100.0 %
+fl2Client41 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl2gNB_model Test Accuracy  41 %
+fl3Client49 Test Accuracy  100.0 %
+fl3Client22 Test Accuracy  100.0 %
+fl3Client17 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl3gNB_model Test Accuracy  17 %
+fl4Client39 Test Accuracy  100.0 %
+fl4Client11 Test Accuracy  100.0 %
+fl4Client14 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl4gNB_model Test Accuracy  14 %
+fl5Client21 Test Accuracy  100.0 %
+fl5Client36 Test Accuracy  100.0 %
+fl5Client11 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl5gNB_model Test Accuracy  11 %
+fl6Client48 Test Accuracy  100.0 %
+fl6Client11 Test Accuracy  100.0 %
+fl6Client35 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl6gNB_model Test Accuracy  35 %
+fl7Client9 Test Accuracy  100.0 %
+fl7Client20 Test Accuracy  100.0 %
+fl7Client11 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl7gNB_model Test Accuracy  11 %
+fl8Client2 Test Accuracy  100.0 %
+fl8Client27 Test Accuracy  100.0 %
+fl8Client15 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl8gNB_model Test Accuracy  15 %
+fl9Client25 Test Accuracy  100.0 %
+fl9Client20 Test Accuracy  100.0 %
+fl9Client39 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl9gNB_model Test Accuracy  39 %
