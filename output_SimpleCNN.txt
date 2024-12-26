@@ -111,3 +111,12 @@ Before train, fl9Client35 client_test Accuracy  56.00000000000001 %
 fl9Client35 Test Accuracy  60.0 %
 Before train, fl9Client27 gNB_test Accuracy  62.96000000000001 %
 Before train, fl9Client27 client_test Accuracy  70.0 %
+fl9Client27 Test Accuracy  76.0 %
+Before train, fl9Client11 gNB_test Accuracy  64.0 %
+Before train, fl9Client11 client_test Accuracy  60.0 %
+fl9Client11 Test Accuracy  68.0 %
+get all clients models ready
+model prunning done
+fl9merged_model Test Accuracy  61.96 %
+Before train, fl10Client3 gNB_test Accuracy  63.0 %
+Before train, fl10Client3 client_test Accuracy  60.0 %

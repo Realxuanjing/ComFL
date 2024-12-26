@@ -130,3 +130,140 @@ fl10Client36 Test Accuracy  100.0 %
 get all clients models ready
 model prunning done
 fl10merged_model Test Accuracy  100.0 %
+Before train, fl11Client38 gNB_test Accuracy  100.0 %
+Before train, fl11Client38 client_test Accuracy  100.0 %
+fl11Client38 Test Accuracy  100.0 %
+Before train, fl11Client12 gNB_test Accuracy  100.0 %
+Before train, fl11Client12 client_test Accuracy  100.0 %
+fl11Client12 Test Accuracy  100.0 %
+Before train, fl11Client45 gNB_test Accuracy  100.0 %
+Before train, fl11Client45 client_test Accuracy  100.0 %
+fl11Client45 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl11merged_model Test Accuracy  100.0 %
+Before train, fl12Client5 gNB_test Accuracy  100.0 %
+Before train, fl12Client5 client_test Accuracy  100.0 %
+fl12Client5 Test Accuracy  100.0 %
+Before train, fl12Client29 gNB_test Accuracy  100.0 %
+Before train, fl12Client29 client_test Accuracy  100.0 %
+fl12Client29 Test Accuracy  100.0 %
+Before train, fl12Client45 gNB_test Accuracy  100.0 %
+Before train, fl12Client45 client_test Accuracy  100.0 %
+fl12Client45 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl12merged_model Test Accuracy  100.0 %
+Before train, fl13Client22 gNB_test Accuracy  100.0 %
+Before train, fl13Client22 client_test Accuracy  100.0 %
+fl13Client22 Test Accuracy  100.0 %
+Before train, fl13Client18 gNB_test Accuracy  100.0 %
+Before train, fl13Client18 client_test Accuracy  100.0 %
+fl13Client18 Test Accuracy  100.0 %
+Before train, fl13Client8 gNB_test Accuracy  100.0 %
+Before train, fl13Client8 client_test Accuracy  100.0 %
+fl13Client8 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl13merged_model Test Accuracy  100.0 %
+Before train, fl14Client14 gNB_test Accuracy  100.0 %
+Before train, fl14Client14 client_test Accuracy  100.0 %
+fl14Client14 Test Accuracy  100.0 %
+Before train, fl14Client1 gNB_test Accuracy  100.0 %
+Before train, fl14Client1 client_test Accuracy  100.0 %
+fl14Client1 Test Accuracy  100.0 %
+Before train, fl14Client13 gNB_test Accuracy  100.0 %
+Before train, fl14Client13 client_test Accuracy  100.0 %
+fl14Client13 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl14merged_model Test Accuracy  100.0 %
+Before train, fl15Client17 gNB_test Accuracy  100.0 %
+Before train, fl15Client17 client_test Accuracy  100.0 %
+fl15Client17 Test Accuracy  100.0 %
+Before train, fl15Client45 gNB_test Accuracy  100.0 %
+Before train, fl15Client45 client_test Accuracy  100.0 %
+fl15Client45 Test Accuracy  100.0 %
+Before train, fl15Client3 gNB_test Accuracy  100.0 %
+Before train, fl15Client3 client_test Accuracy  100.0 %
+fl15Client3 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl15merged_model Test Accuracy  100.0 %
+Before train, fl16Client48 gNB_test Accuracy  100.0 %
+Before train, fl16Client48 client_test Accuracy  100.0 %
+fl16Client48 Test Accuracy  100.0 %
+Before train, fl16Client15 gNB_test Accuracy  100.0 %
+Before train, fl16Client15 client_test Accuracy  100.0 %
+fl16Client15 Test Accuracy  100.0 %
+Before train, fl16Client32 gNB_test Accuracy  100.0 %
+Before train, fl16Client32 client_test Accuracy  100.0 %
+fl16Client32 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl16merged_model Test Accuracy  100.0 %
+Before train, fl17Client10 gNB_test Accuracy  100.0 %
+Before train, fl17Client10 client_test Accuracy  100.0 %
+fl17Client10 Test Accuracy  100.0 %
+Before train, fl17Client39 gNB_test Accuracy  100.0 %
+Before train, fl17Client39 client_test Accuracy  100.0 %
+fl17Client39 Test Accuracy  100.0 %
+Before train, fl17Client27 gNB_test Accuracy  100.0 %
+Before train, fl17Client27 client_test Accuracy  100.0 %
+fl17Client27 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl17merged_model Test Accuracy  100.0 %
+Before train, fl18Client5 gNB_test Accuracy  100.0 %
+Before train, fl18Client5 client_test Accuracy  100.0 %
+fl18Client5 Test Accuracy  100.0 %
+Before train, fl18Client43 gNB_test Accuracy  100.0 %
+Before train, fl18Client43 client_test Accuracy  100.0 %
+fl18Client43 Test Accuracy  100.0 %
+Before train, fl18Client41 gNB_test Accuracy  100.0 %
+Before train, fl18Client41 client_test Accuracy  100.0 %
+fl18Client41 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl18merged_model Test Accuracy  100.0 %
+Before train, fl19Client12 gNB_test Accuracy  100.0 %
+Before train, fl19Client12 client_test Accuracy  100.0 %
+fl19Client12 Test Accuracy  100.0 %
+Before train, fl19Client8 gNB_test Accuracy  100.0 %
+Before train, fl19Client8 client_test Accuracy  100.0 %
+fl19Client8 Test Accuracy  100.0 %
+Before train, fl19Client35 gNB_test Accuracy  100.0 %
+Before train, fl19Client35 client_test Accuracy  100.0 %
+fl19Client35 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl19merged_model Test Accuracy  100.0 %
+Before train, fl20Client9 gNB_test Accuracy  100.0 %
+Before train, fl20Client9 client_test Accuracy  100.0 %
+fl20Client9 Test Accuracy  100.0 %
+Before train, fl20Client28 gNB_test Accuracy  100.0 %
+Before train, fl20Client28 client_test Accuracy  100.0 %
+fl20Client28 Test Accuracy  100.0 %
+Before train, fl20Client29 gNB_test Accuracy  100.0 %
+Before train, fl20Client29 client_test Accuracy  100.0 %
+fl20Client29 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl20merged_model Test Accuracy  100.0 %
+Before train, fl21Client49 gNB_test Accuracy  100.0 %
+Before train, fl21Client49 client_test Accuracy  100.0 %
+fl21Client49 Test Accuracy  100.0 %
+Before train, fl21Client31 gNB_test Accuracy  100.0 %
+Before train, fl21Client31 client_test Accuracy  100.0 %
+fl21Client31 Test Accuracy  100.0 %
+Before train, fl21Client45 gNB_test Accuracy  100.0 %
+Before train, fl21Client45 client_test Accuracy  100.0 %
+fl21Client45 Test Accuracy  100.0 %
+get all clients models ready
+model prunning done
+fl21merged_model Test Accuracy  100.0 %
+Before train, fl22Client35 gNB_test Accuracy  100.0 %
+Before train, fl22Client35 client_test Accuracy  100.0 %
+fl22Client35 Test Accuracy  100.0 %
+Before train, fl22Client15 gNB_test Accuracy  100.0 %
+Before train, fl22Client15 client_test Accuracy  100.0 %
