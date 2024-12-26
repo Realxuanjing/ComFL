@@ -43,7 +43,7 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 # fl_epochs=10 #联邦学习次数
 # clients_num=20
 learning_rate=0.001 #设置学习率
-num_epochs=20   #本地训练次数
+num_epochs=10   #本地训练次数
 train_batch_size=32
 test_batch_size=32
 fl_epochs=100 #联邦学习次数
@@ -166,8 +166,8 @@ for fl in range(fl_epochs):
                 loss_sum+=loss.item()
 
                 #print("running Epoch:{}, client_idx:{}, client_round:{},loss is {}".format(epoch,client,i,loss.item()))
-                print("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
-                logging.info("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
+                # print("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
+                # logging.info("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
 
         correct = 0
         total = 0

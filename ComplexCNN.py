@@ -36,12 +36,19 @@ device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
 # model=VGGnet().to(device)
 
 #设置参数 
-learning_rate=0.01 #设置学习率
-num_epochs=5   #本地训练次数
-train_batch_size=16
-test_batch_size=16
-fl_epochs=10 #联邦学习次数
-clients_num=20
+# learning_rate=0.01 #设置学习率
+# num_epochs=5   #本地训练次数
+# train_batch_size=16
+# test_batch_size=16
+# fl_epochs=10 #联邦学习次数
+# clients_num=20
+
+learning_rate=0.001 #设置学习率
+num_epochs=10   #本地训练次数
+train_batch_size=32
+test_batch_size=32
+fl_epochs=100 #联邦学习次数
+clients_num=50
 
 #在这里设置德是用户存储模型德文件夹，每个用户一个文件夹，用来存储模型
 #大家最开始模型都是一样的VggNet.py
