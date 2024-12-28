@@ -111,5 +111,5 @@ class LocalUpdate(object):
         self.local_bs=local_bs
         
     def return_data(self,shuffle=True):                
-        return DataLoader(DatasetSplit(self.dataset, self.idxs), batch_size=self.local_bs, shuffle=shuffle)
+        return DataLoader(DatasetSplit(self.dataset, self.idxs), batch_size=self.local_bs, shuffle=shuffle,pin_memory= True,num_workers=24)
    

@@ -267,3 +267,21 @@ Before train, fl22Client35 client_test Accuracy  80.0 %
 fl22Client35 Test Accuracy  78.0 %
 Before train, fl22Client15 gNB_test Accuracy  70.84 %
 Before train, fl22Client15 client_test Accuracy  70.0 %
+fl22Client15 Test Accuracy  72.0 %
+Before train, fl22Client22 gNB_test Accuracy  71.67999999999999 %
+Before train, fl22Client22 client_test Accuracy  72.0 %
+fl22Client22 Test Accuracy  60.0 %
+get all clients models ready
+model prunning done
+fl22merged_model Test Accuracy  70.32000000000001 %
+Before train, fl23Client19 gNB_test Accuracy  71.8 %
+Before train, fl23Client19 client_test Accuracy  68.0 %
+fl23Client19 Test Accuracy  72.0 %
+Before train, fl23Client12 gNB_test Accuracy  70.76 %
+Before train, fl23Client12 client_test Accuracy  78.0 %
+fl23Client12 Test Accuracy  74.0 %
+Before train, fl23Client3 gNB_test Accuracy  69.84 %
+Before train, fl23Client3 client_test Accuracy  76.0 %
+fl23Client3 Test Accuracy  76.0 %
+get all clients models ready
+model prunning done

@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
 import matplotlib.pyplot as plt
 from torchvision.transforms import transforms
@@ -21,19 +22,36 @@ from model_merge import update_gNB_model, FedAvg
 from model import VGGnet,SimpleCNN,ComplexCNN
 
 # ---------------------设置自定义文件---------------------
-logging.basicConfig(filename='output_SimpleCNN.txt', level=logging.INFO, format='%(message)s', filemode='w')
+model_name = 'SimpleCNN_1228_com'
+logging.basicConfig(filename=f'output_{model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
 save_path = Path('/home/data1/xxx/dataset/COMFL')
-models_dir= save_path / 'models_SimpleCNN'
+models_dir= save_path / 'models_{}'.format(model_name)
 dataset_path = save_path / 'datasets'/'PetImages'
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+model=SimpleCNN(num_classes=2)
+
+
+learning_rate=0.001 #设置学习率
+num_epochs=64   #本地训练次数
+train_batch_size=64
+test_batch_size=64
+fl_epochs=100 #联邦学习次数
+clients_num=10
 
 # -----------------------------------------------------
 
 seed_everything()
-
 # "/home/data1/xxx/dataset/COMFL/datasets/PetImages/"
+loss_fn=nn.CrossEntropyLoss()
 
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 # model=VGGnet().to(device)
+logging.info(f"Model: {model_name}")
+logging.info(f"Learning rate: {learning_rate}")
+logging.info(f"Number of epochs: {num_epochs}")
+logging.info(f"Train batch size: {train_batch_size}")
+logging.info(f"Test batch size: {test_batch_size}")
+logging.info(f"Federated learning epochs: {fl_epochs}")
+logging.info(f"Number of clients: {clients_num}")
 
 #设置参数 
 # learning_rate=0.01 #设置学习率
@@ -42,16 +60,10 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 # test_batch_size=16
 # fl_epochs=10 #联邦学习次数
 # clients_num=20
-learning_rate=0.001 #设置学习率
-num_epochs=100   #本地训练次数
-train_batch_size=64
-test_batch_size=64
-fl_epochs=100 #联邦学习次数
-clients_num=50
+
 
 #在这里设置德是用户存储模型德文件夹，每个用户一个文件夹，用来存储模型
 #大家最开始模型都是一样的VggNet.py
-model=SimpleCNN(num_classes=2)
 for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
     model_path = models_dir / f'model{i}'
     if not os.path.exists(model_path):
@@ -63,8 +75,7 @@ for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
     # tqdm.write(f"client{i} model initialize complete")
 
 #设置优化器，使用CrossEntropyLoss函数
-loss_fn=nn.CrossEntropyLoss()
-optimizer=torch.optim.Adam(model.parameters(),lr=learning_rate)
+
 
 #加载数据集和Dataloader
 train_data=GetData(dataset_path,224,'train')
@@ -83,7 +94,7 @@ for i in range(clients_num):
 #client_each_epoch=random.sample(1,clients_num/10)
 gNB_model=model
 
-gNB_test_dataloader=DataLoader(test_data,batch_size=test_batch_size, shuffle=False)
+gNB_test_dataloader=DataLoader(test_data,batch_size=test_batch_size, shuffle=False,pin_memory=True,num_workers=24)
 # pruned_arr = list()
 #进行模型聚合
 for fl in range(fl_epochs):
@@ -139,11 +150,15 @@ for fl in range(fl_epochs):
                 output = model_to_train(images)
                 _, predicted = torch.max(output.data, 1)
                 total += labels.size(0)
+                # print("predicted and labels",predicted,labels)
                 correct += (predicted == labels).sum().item()
         print('Before train, fl{}Client{} client_test Accuracy  {} %'.format(fl,client,100*(correct/total)))
         logging.info('Before train, fl{}Client{} client_test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
 
-        for epoch in range(num_epochs):# 每个用户训练num_epochs次
+        optimizer=torch.optim.Adam(model_to_train.parameters(),lr=learning_rate)
+        lr_schdeule = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs//8, eta_min=0)
+        # for epoch in range(num_epochs):# 每个用户训练num_epochs次
+        for epoch in tqdm(range(num_epochs), desc=f"Training client {client}", unit="epoch"):
             total_step=len(client_train_dataloader[client])
             loss_sum=0
             model_to_train.train()
@@ -162,7 +177,7 @@ for fl in range(fl_epochs):
                 #进行优化
                 loss.backward()
                 optimizer.step()
-
+                lr_schdeule.step()
                 loss_sum+=loss.item()
 
                 #print("running Epoch:{}, client_idx:{}, client_round:{},loss is {}".format(epoch,client,i,loss.item()))
@@ -180,7 +195,7 @@ for fl in range(fl_epochs):
                 _, predicted = torch.max(output.data, 1)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
-        print('fl{}Client{} Test Accuracy  {} %'.format(fl,client,100*(correct/total)))
+        # print('fl{}Client{} Test Accuracy  {} %'.format(fl,client,100*(correct/total)))
         logging.info('fl{}Client{} Test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
         model_name="fl{}client{}.pth".format(fl,client)
         torch.save(obj = model_to_train.state_dict(), f=models_dir / f'model{client}' / model_name)
@@ -226,8 +241,8 @@ for fl in range(fl_epochs):
             _,predicted=torch.max(output.data,1)
             gNB_total+=labels.size(0)
             gNB_correct+=(predicted==labels).sum().item()
-    print('fl{}merged_model Test Accuracy  {} %'.format(fl,100*(gNB_correct/gNB_total)))
-    logging.info('fl{}merged_model Test Accuracy  {} %'.format(fl, 100 * (gNB_correct / gNB_total)))
+    print('-----fl{}merged_model Test Accuracy  {} %-----'.format(fl,100*(gNB_correct/gNB_total)))
+    logging.info('-----fl{}merged_model Test Accuracy  {} %-----'.format(fl, 100 * (gNB_correct / gNB_total)))
     # print("gnb correct and total",gNB_correct,gNB_total,100 * (gNB_correct / gNB_total),gNB_correct / gNB_total)
     # correct = 0
     # total = 0

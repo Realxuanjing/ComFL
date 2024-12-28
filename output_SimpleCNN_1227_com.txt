@@ -1,0 +1,1207 @@
+2024-12-27 14:11:35 - Model: SimpleCNN_1227_com
+2024-12-27 14:11:35 - Learning rate: 0.01
+2024-12-27 14:11:35 - Number of epochs: 64
+2024-12-27 14:11:35 - Train batch size: 64
+2024-12-27 14:11:35 - Test batch size: 64
+2024-12-27 14:11:35 - Federated learning epochs: 100
+2024-12-27 14:11:35 - Number of clients: 10
+2024-12-27 14:13:26 - Before train, fl0Client4 gNB_test Accuracy  39.92 %
+2024-12-27 14:13:27 - Before train, fl0Client4 client_test Accuracy  32.4 %
+2024-12-27 14:16:27 - fl0Client4 Test Accuracy  36.4 %
+2024-12-27 14:16:42 - Before train, fl0Client1 gNB_test Accuracy  39.72 %
+2024-12-27 14:16:43 - Before train, fl0Client1 client_test Accuracy  45.6 %
+2024-12-27 14:19:41 - fl0Client1 Test Accuracy  40.8 %
+2024-12-27 14:19:56 - Before train, fl0Client7 gNB_test Accuracy  40.08 %
+2024-12-27 14:19:58 - Before train, fl0Client7 client_test Accuracy  38.0 %
+2024-12-27 14:22:55 - fl0Client7 Test Accuracy  37.6 %
+2024-12-27 14:23:09 - get all clients models ready
+2024-12-27 14:23:09 - model prunning done
+2024-12-27 14:23:13 - -----fl0merged_model Test Accuracy  40.08 %-----
+2024-12-27 14:23:28 - Before train, fl1Client9 gNB_test Accuracy  39.96 %
+2024-12-27 14:23:29 - Before train, fl1Client9 client_test Accuracy  40.8 %
+2024-12-27 14:26:26 - fl1Client9 Test Accuracy  43.6 %
+2024-12-27 14:26:41 - Before train, fl1Client2 gNB_test Accuracy  39.879999999999995 %
+2024-12-27 14:26:43 - Before train, fl1Client2 client_test Accuracy  38.4 %
+2024-12-27 14:29:41 - fl1Client2 Test Accuracy  38.800000000000004 %
+2024-12-27 14:29:56 - Before train, fl1Client7 gNB_test Accuracy  39.6 %
+2024-12-27 14:29:57 - Before train, fl1Client7 client_test Accuracy  39.2 %
+2024-12-27 14:32:57 - fl1Client7 Test Accuracy  37.6 %
+2024-12-27 14:33:05 - get all clients models ready
+2024-12-27 14:33:06 - model prunning done
+2024-12-27 14:33:09 - -----fl1merged_model Test Accuracy  39.92 %-----
+2024-12-27 14:33:17 - Before train, fl2Client4 gNB_test Accuracy  40.28 %
+2024-12-27 14:33:18 - Before train, fl2Client4 client_test Accuracy  40.0 %
+2024-12-27 14:36:17 - fl2Client4 Test Accuracy  40.400000000000006 %
+2024-12-27 14:36:24 - Before train, fl2Client1 gNB_test Accuracy  39.68 %
+2024-12-27 14:36:26 - Before train, fl2Client1 client_test Accuracy  40.400000000000006 %
+2024-12-27 14:39:25 - fl2Client1 Test Accuracy  42.8 %
+2024-12-27 14:39:32 - Before train, fl2Client7 gNB_test Accuracy  40.839999999999996 %
+2024-12-27 14:39:34 - Before train, fl2Client7 client_test Accuracy  36.8 %
+2024-12-27 14:42:33 - fl2Client7 Test Accuracy  38.4 %
+2024-12-27 14:42:42 - get all clients models ready
+2024-12-27 14:42:42 - model prunning done
+2024-12-27 14:42:46 - -----fl2merged_model Test Accuracy  40.2 %-----
+2024-12-27 14:42:53 - Before train, fl3Client6 gNB_test Accuracy  39.839999999999996 %
+2024-12-27 14:42:54 - Before train, fl3Client6 client_test Accuracy  40.8 %
+2024-12-27 14:45:58 - fl3Client6 Test Accuracy  39.2 %
+2024-12-27 14:46:06 - Before train, fl3Client8 gNB_test Accuracy  40.28 %
+2024-12-27 14:46:07 - Before train, fl3Client8 client_test Accuracy  39.2 %
+2024-12-27 14:49:08 - fl3Client8 Test Accuracy  33.6 %
+2024-12-27 14:49:15 - Before train, fl3Client3 gNB_test Accuracy  40.88 %
+2024-12-27 14:49:17 - Before train, fl3Client3 client_test Accuracy  42.8 %
+2024-12-27 14:52:17 - fl3Client3 Test Accuracy  42.0 %
+2024-12-27 14:52:25 - get all clients models ready
+2024-12-27 14:52:26 - model prunning done
+2024-12-27 14:52:30 - -----fl3merged_model Test Accuracy  40.96 %-----
+2024-12-27 14:52:37 - Before train, fl4Client7 gNB_test Accuracy  39.879999999999995 %
+2024-12-27 14:52:39 - Before train, fl4Client7 client_test Accuracy  38.4 %
+2024-12-27 14:55:38 - fl4Client7 Test Accuracy  43.2 %
+2024-12-27 14:55:46 - Before train, fl4Client1 gNB_test Accuracy  40.6 %
+2024-12-27 14:55:47 - Before train, fl4Client1 client_test Accuracy  44.4 %
+2024-12-27 14:58:46 - fl4Client1 Test Accuracy  38.800000000000004 %
+2024-12-27 14:58:54 - Before train, fl4Client0 gNB_test Accuracy  40.64 %
+2024-12-27 14:58:55 - Before train, fl4Client0 client_test Accuracy  42.8 %
+2024-12-27 15:01:57 - fl4Client0 Test Accuracy  40.0 %
+2024-12-27 15:02:05 - get all clients models ready
+2024-12-27 15:02:05 - model prunning done
+2024-12-27 15:02:09 - -----fl4merged_model Test Accuracy  39.76 %-----
+2024-12-27 15:02:17 - Before train, fl5Client4 gNB_test Accuracy  41.28 %
+2024-12-27 15:02:18 - Before train, fl5Client4 client_test Accuracy  42.4 %
+2024-12-27 15:05:20 - fl5Client4 Test Accuracy  37.6 %
+2024-12-27 15:05:30 - Before train, fl5Client6 gNB_test Accuracy  40.28 %
+2024-12-27 15:05:31 - Before train, fl5Client6 client_test Accuracy  38.4 %
+2024-12-27 15:08:34 - fl5Client6 Test Accuracy  39.2 %
+2024-12-27 15:08:41 - Before train, fl5Client0 gNB_test Accuracy  40.68 %
+2024-12-27 15:08:43 - Before train, fl5Client0 client_test Accuracy  41.6 %
+2024-12-27 15:11:41 - fl5Client0 Test Accuracy  40.0 %
+2024-12-27 15:11:49 - get all clients models ready
+2024-12-27 15:11:49 - model prunning done
+2024-12-27 15:11:54 - -----fl5merged_model Test Accuracy  40.6 %-----
+2024-12-27 15:12:02 - Before train, fl6Client6 gNB_test Accuracy  39.519999999999996 %
+2024-12-27 15:12:04 - Before train, fl6Client6 client_test Accuracy  38.4 %
+2024-12-27 15:15:04 - fl6Client6 Test Accuracy  36.4 %
+2024-12-27 15:15:14 - Before train, fl6Client5 gNB_test Accuracy  39.44 %
+2024-12-27 15:15:15 - Before train, fl6Client5 client_test Accuracy  44.4 %
+2024-12-27 15:18:23 - fl6Client5 Test Accuracy  45.2 %
+2024-12-27 15:18:30 - Before train, fl6Client9 gNB_test Accuracy  39.839999999999996 %
+2024-12-27 15:18:32 - Before train, fl6Client9 client_test Accuracy  47.199999999999996 %
+2024-12-27 15:21:36 - fl6Client9 Test Accuracy  45.2 %
+2024-12-27 15:21:45 - get all clients models ready
+2024-12-27 15:21:46 - model prunning done
+2024-12-27 15:21:49 - -----fl6merged_model Test Accuracy  39.839999999999996 %-----
+2024-12-27 15:21:57 - Before train, fl7Client7 gNB_test Accuracy  40.2 %
+2024-12-27 15:21:59 - Before train, fl7Client7 client_test Accuracy  39.2 %
+2024-12-27 15:25:02 - fl7Client7 Test Accuracy  35.199999999999996 %
+2024-12-27 15:25:10 - Before train, fl7Client8 gNB_test Accuracy  40.12 %
+2024-12-27 15:25:11 - Before train, fl7Client8 client_test Accuracy  37.2 %
+2024-12-27 15:28:13 - fl7Client8 Test Accuracy  36.0 %
+2024-12-27 15:28:21 - Before train, fl7Client6 gNB_test Accuracy  39.24 %
+2024-12-27 15:28:22 - Before train, fl7Client6 client_test Accuracy  35.6 %
+2024-12-27 15:31:24 - fl7Client6 Test Accuracy  42.0 %
+2024-12-27 15:31:32 - get all clients models ready
+2024-12-27 15:31:32 - model prunning done
+2024-12-27 15:31:36 - -----fl7merged_model Test Accuracy  38.84 %-----
+2024-12-27 15:31:43 - Before train, fl8Client2 gNB_test Accuracy  40.0 %
+2024-12-27 15:31:45 - Before train, fl8Client2 client_test Accuracy  39.6 %
+2024-12-27 15:34:46 - fl8Client2 Test Accuracy  38.0 %
+2024-12-27 15:34:53 - Before train, fl8Client0 gNB_test Accuracy  39.64 %
+2024-12-27 15:34:55 - Before train, fl8Client0 client_test Accuracy  40.8 %
+2024-12-27 15:37:53 - fl8Client0 Test Accuracy  42.8 %
+2024-12-27 15:38:01 - Before train, fl8Client4 gNB_test Accuracy  40.239999999999995 %
+2024-12-27 15:38:03 - Before train, fl8Client4 client_test Accuracy  40.400000000000006 %
+2024-12-27 15:41:04 - fl8Client4 Test Accuracy  40.0 %
+2024-12-27 15:41:12 - get all clients models ready
+2024-12-27 15:41:13 - model prunning done
+2024-12-27 15:41:17 - -----fl8merged_model Test Accuracy  40.64 %-----
+2024-12-27 15:41:25 - Before train, fl9Client9 gNB_test Accuracy  39.839999999999996 %
+2024-12-27 15:41:27 - Before train, fl9Client9 client_test Accuracy  44.4 %
+2024-12-27 15:44:26 - fl9Client9 Test Accuracy  44.800000000000004 %
+2024-12-27 15:44:34 - Before train, fl9Client3 gNB_test Accuracy  41.0 %
+2024-12-27 15:44:36 - Before train, fl9Client3 client_test Accuracy  40.400000000000006 %
+2024-12-27 15:47:44 - fl9Client3 Test Accuracy  38.800000000000004 %
+2024-12-27 15:47:52 - Before train, fl9Client1 gNB_test Accuracy  41.44 %
+2024-12-27 15:47:53 - Before train, fl9Client1 client_test Accuracy  42.0 %
+2024-12-27 15:50:54 - fl9Client1 Test Accuracy  43.6 %
+2024-12-27 15:51:02 - get all clients models ready
+2024-12-27 15:51:02 - model prunning done
+2024-12-27 15:51:06 - -----fl9merged_model Test Accuracy  38.519999999999996 %-----
+2024-12-27 15:51:16 - Before train, fl10Client7 gNB_test Accuracy  40.6 %
+2024-12-27 15:51:18 - Before train, fl10Client7 client_test Accuracy  37.2 %
+2024-12-27 15:54:21 - fl10Client7 Test Accuracy  40.0 %
+2024-12-27 15:54:28 - Before train, fl10Client5 gNB_test Accuracy  39.2 %
+2024-12-27 15:54:31 - Before train, fl10Client5 client_test Accuracy  38.4 %
+2024-12-27 15:57:41 - fl10Client5 Test Accuracy  44.0 %
+2024-12-27 15:57:49 - Before train, fl10Client4 gNB_test Accuracy  40.44 %
+2024-12-27 15:57:51 - Before train, fl10Client4 client_test Accuracy  42.0 %
+2024-12-27 16:00:59 - fl10Client4 Test Accuracy  40.8 %
+2024-12-27 16:01:08 - get all clients models ready
+2024-12-27 16:01:08 - model prunning done
+2024-12-27 16:01:12 - -----fl10merged_model Test Accuracy  39.36 %-----
+2024-12-27 16:01:19 - Before train, fl11Client2 gNB_test Accuracy  40.32 %
+2024-12-27 16:01:21 - Before train, fl11Client2 client_test Accuracy  39.2 %
+2024-12-27 16:04:26 - fl11Client2 Test Accuracy  37.6 %
+2024-12-27 16:04:33 - Before train, fl11Client3 gNB_test Accuracy  40.64 %
+2024-12-27 16:04:35 - Before train, fl11Client3 client_test Accuracy  43.6 %
+2024-12-27 16:07:35 - fl11Client3 Test Accuracy  43.2 %
+2024-12-27 16:07:42 - Before train, fl11Client0 gNB_test Accuracy  39.48 %
+2024-12-27 16:07:43 - Before train, fl11Client0 client_test Accuracy  37.6 %
+2024-12-27 16:10:43 - fl11Client0 Test Accuracy  40.400000000000006 %
+2024-12-27 16:10:51 - get all clients models ready
+2024-12-27 16:10:51 - model prunning done
+2024-12-27 16:10:55 - -----fl11merged_model Test Accuracy  39.800000000000004 %-----
+2024-12-27 16:11:02 - Before train, fl12Client3 gNB_test Accuracy  41.28 %
+2024-12-27 16:11:04 - Before train, fl12Client3 client_test Accuracy  38.800000000000004 %
+2024-12-27 16:14:30 - fl12Client3 Test Accuracy  42.0 %
+2024-12-27 16:14:38 - Before train, fl12Client4 gNB_test Accuracy  40.56 %
+2024-12-27 16:14:40 - Before train, fl12Client4 client_test Accuracy  41.6 %
+2024-12-27 16:18:00 - fl12Client4 Test Accuracy  38.0 %
+2024-12-27 16:18:07 - Before train, fl12Client8 gNB_test Accuracy  40.92 %
+2024-12-27 16:18:09 - Before train, fl12Client8 client_test Accuracy  32.800000000000004 %
+2024-12-27 16:21:38 - fl12Client8 Test Accuracy  36.4 %
+2024-12-27 16:21:54 - get all clients models ready
+2024-12-27 16:21:55 - model prunning done
+2024-12-27 16:21:59 - -----fl12merged_model Test Accuracy  41.44 %-----
+2024-12-27 16:22:07 - Before train, fl13Client0 gNB_test Accuracy  40.0 %
+2024-12-27 16:22:09 - Before train, fl13Client0 client_test Accuracy  39.6 %
+2024-12-27 16:25:27 - fl13Client0 Test Accuracy  39.2 %
+2024-12-27 16:25:35 - Before train, fl13Client3 gNB_test Accuracy  39.92 %
+2024-12-27 16:25:36 - Before train, fl13Client3 client_test Accuracy  41.199999999999996 %
+2024-12-27 16:28:49 - fl13Client3 Test Accuracy  38.4 %
+2024-12-27 16:28:57 - Before train, fl13Client2 gNB_test Accuracy  40.44 %
+2024-12-27 16:28:59 - Before train, fl13Client2 client_test Accuracy  40.400000000000006 %
+2024-12-27 16:32:24 - fl13Client2 Test Accuracy  38.0 %
+2024-12-27 16:32:32 - get all clients models ready
+2024-12-27 16:32:32 - model prunning done
+2024-12-27 16:32:40 - -----fl13merged_model Test Accuracy  40.2 %-----
+2024-12-27 16:32:50 - Before train, fl14Client9 gNB_test Accuracy  38.48 %
+2024-12-27 16:32:52 - Before train, fl14Client9 client_test Accuracy  44.0 %
+2024-12-27 16:36:13 - fl14Client9 Test Accuracy  44.4 %
+2024-12-27 16:36:27 - Before train, fl14Client6 gNB_test Accuracy  39.24 %
+2024-12-27 16:36:28 - Before train, fl14Client6 client_test Accuracy  39.6 %
+2024-12-27 16:39:56 - fl14Client6 Test Accuracy  44.4 %
+2024-12-27 16:40:08 - Before train, fl14Client1 gNB_test Accuracy  41.24 %
+2024-12-27 16:40:10 - Before train, fl14Client1 client_test Accuracy  42.0 %
+2024-12-27 16:43:41 - fl14Client1 Test Accuracy  36.0 %
+2024-12-27 16:43:51 - get all clients models ready
+2024-12-27 16:43:51 - model prunning done
+2024-12-27 16:43:57 - -----fl14merged_model Test Accuracy  39.76 %-----
+2024-12-27 16:44:05 - Before train, fl15Client1 gNB_test Accuracy  40.6 %
+2024-12-27 16:44:06 - Before train, fl15Client1 client_test Accuracy  39.2 %
+2024-12-27 16:47:26 - fl15Client1 Test Accuracy  39.6 %
+2024-12-27 16:47:34 - Before train, fl15Client9 gNB_test Accuracy  39.4 %
+2024-12-27 16:47:35 - Before train, fl15Client9 client_test Accuracy  43.2 %
+2024-12-27 16:50:55 - fl15Client9 Test Accuracy  45.2 %
+2024-12-27 16:51:03 - Before train, fl15Client3 gNB_test Accuracy  39.879999999999995 %
+2024-12-27 16:51:05 - Before train, fl15Client3 client_test Accuracy  42.0 %
+2024-12-27 16:54:30 - fl15Client3 Test Accuracy  40.0 %
+2024-12-27 16:54:39 - get all clients models ready
+2024-12-27 16:54:39 - model prunning done
+2024-12-27 16:54:46 - -----fl15merged_model Test Accuracy  39.32 %-----
+2024-12-27 16:54:53 - Before train, fl16Client2 gNB_test Accuracy  39.519999999999996 %
+2024-12-27 16:54:55 - Before train, fl16Client2 client_test Accuracy  38.800000000000004 %
+2024-12-27 16:58:19 - fl16Client2 Test Accuracy  39.2 %
+2024-12-27 16:58:27 - Before train, fl16Client8 gNB_test Accuracy  40.44 %
+2024-12-27 16:58:30 - Before train, fl16Client8 client_test Accuracy  35.199999999999996 %
+2024-12-27 17:01:57 - fl16Client8 Test Accuracy  36.0 %
+2024-12-27 17:02:07 - Before train, fl16Client9 gNB_test Accuracy  39.08 %
+2024-12-27 17:02:09 - Before train, fl16Client9 client_test Accuracy  44.0 %
+2024-12-27 17:05:35 - fl16Client9 Test Accuracy  48.0 %
+2024-12-27 17:05:45 - get all clients models ready
+2024-12-27 17:05:46 - model prunning done
+2024-12-27 17:05:50 - -----fl16merged_model Test Accuracy  39.96 %-----
+2024-12-27 17:06:01 - Before train, fl17Client7 gNB_test Accuracy  39.879999999999995 %
+2024-12-27 17:06:03 - Before train, fl17Client7 client_test Accuracy  38.800000000000004 %
+2024-12-27 17:09:26 - fl17Client7 Test Accuracy  38.4 %
+2024-12-27 17:09:34 - Before train, fl17Client9 gNB_test Accuracy  39.0 %
+2024-12-27 17:09:36 - Before train, fl17Client9 client_test Accuracy  46.800000000000004 %
+2024-12-27 17:12:55 - fl17Client9 Test Accuracy  46.800000000000004 %
+2024-12-27 17:13:03 - Before train, fl17Client8 gNB_test Accuracy  39.56 %
+2024-12-27 17:13:05 - Before train, fl17Client8 client_test Accuracy  36.8 %
+2024-12-27 17:16:25 - fl17Client8 Test Accuracy  37.6 %
+2024-12-27 17:16:35 - get all clients models ready
+2024-12-27 17:16:35 - model prunning done
+2024-12-27 17:16:45 - -----fl17merged_model Test Accuracy  40.160000000000004 %-----
+2024-12-27 17:16:54 - Before train, fl18Client8 gNB_test Accuracy  40.12 %
+2024-12-27 17:16:56 - Before train, fl18Client8 client_test Accuracy  36.8 %
+2024-12-27 17:20:14 - fl18Client8 Test Accuracy  36.0 %
+2024-12-27 17:20:22 - Before train, fl18Client3 gNB_test Accuracy  40.760000000000005 %
+2024-12-27 17:20:24 - Before train, fl18Client3 client_test Accuracy  44.0 %
+2024-12-27 17:23:41 - fl18Client3 Test Accuracy  43.2 %
+2024-12-27 17:23:49 - Before train, fl18Client5 gNB_test Accuracy  39.36 %
+2024-12-27 17:23:51 - Before train, fl18Client5 client_test Accuracy  42.8 %
+2024-12-27 17:27:19 - fl18Client5 Test Accuracy  45.6 %
+2024-12-27 17:27:28 - get all clients models ready
+2024-12-27 17:27:28 - model prunning done
+2024-12-27 17:27:32 - -----fl18merged_model Test Accuracy  39.96 %-----
+2024-12-27 17:27:41 - Before train, fl19Client4 gNB_test Accuracy  40.08 %
+2024-12-27 17:27:43 - Before train, fl19Client4 client_test Accuracy  35.199999999999996 %
+2024-12-27 17:31:01 - fl19Client4 Test Accuracy  38.800000000000004 %
+2024-12-27 17:31:10 - Before train, fl19Client3 gNB_test Accuracy  40.08 %
+2024-12-27 17:31:12 - Before train, fl19Client3 client_test Accuracy  42.0 %
+2024-12-27 17:34:31 - fl19Client3 Test Accuracy  42.0 %
+2024-12-27 17:34:39 - Before train, fl19Client0 gNB_test Accuracy  41.52 %
+2024-12-27 17:34:41 - Before train, fl19Client0 client_test Accuracy  38.0 %
+2024-12-27 17:38:07 - fl19Client0 Test Accuracy  38.800000000000004 %
+2024-12-27 17:38:20 - get all clients models ready
+2024-12-27 17:38:20 - model prunning done
+2024-12-27 17:38:24 - -----fl19merged_model Test Accuracy  39.28 %-----
+2024-12-27 17:38:33 - Before train, fl20Client6 gNB_test Accuracy  40.2 %
+2024-12-27 17:38:35 - Before train, fl20Client6 client_test Accuracy  39.2 %
+2024-12-27 17:42:02 - fl20Client6 Test Accuracy  39.2 %
+2024-12-27 17:42:12 - Before train, fl20Client1 gNB_test Accuracy  40.0 %
+2024-12-27 17:42:14 - Before train, fl20Client1 client_test Accuracy  40.0 %
+2024-12-27 17:45:30 - fl20Client1 Test Accuracy  39.2 %
+2024-12-27 17:45:38 - Before train, fl20Client9 gNB_test Accuracy  40.239999999999995 %
+2024-12-27 17:45:39 - Before train, fl20Client9 client_test Accuracy  42.8 %
+2024-12-27 17:49:08 - fl20Client9 Test Accuracy  45.6 %
+2024-12-27 17:49:18 - get all clients models ready
+2024-12-27 17:49:19 - model prunning done
+2024-12-27 17:49:24 - -----fl20merged_model Test Accuracy  40.160000000000004 %-----
+2024-12-27 17:49:32 - Before train, fl21Client6 gNB_test Accuracy  38.879999999999995 %
+2024-12-27 17:49:34 - Before train, fl21Client6 client_test Accuracy  41.199999999999996 %
+2024-12-27 17:52:56 - fl21Client6 Test Accuracy  36.0 %
+2024-12-27 17:53:04 - Before train, fl21Client0 gNB_test Accuracy  39.96 %
+2024-12-27 17:53:06 - Before train, fl21Client0 client_test Accuracy  41.199999999999996 %
+2024-12-27 17:56:28 - fl21Client0 Test Accuracy  37.6 %
+2024-12-27 17:56:36 - Before train, fl21Client1 gNB_test Accuracy  40.08 %
+2024-12-27 17:56:37 - Before train, fl21Client1 client_test Accuracy  42.0 %
+2024-12-27 18:00:01 - fl21Client1 Test Accuracy  37.6 %
+2024-12-27 18:00:12 - get all clients models ready
+2024-12-27 18:00:12 - model prunning done
+2024-12-27 18:00:19 - -----fl21merged_model Test Accuracy  39.72 %-----
+2024-12-27 18:00:30 - Before train, fl22Client5 gNB_test Accuracy  41.760000000000005 %
+2024-12-27 18:00:32 - Before train, fl22Client5 client_test Accuracy  46.400000000000006 %
+2024-12-27 18:03:54 - fl22Client5 Test Accuracy  40.8 %
+2024-12-27 18:04:03 - Before train, fl22Client6 gNB_test Accuracy  40.2 %
+2024-12-27 18:04:05 - Before train, fl22Client6 client_test Accuracy  41.6 %
+2024-12-27 18:07:26 - fl22Client6 Test Accuracy  35.6 %
+2024-12-27 18:07:37 - Before train, fl22Client2 gNB_test Accuracy  39.76 %
+2024-12-27 18:07:40 - Before train, fl22Client2 client_test Accuracy  36.8 %
+2024-12-27 18:11:04 - fl22Client2 Test Accuracy  40.400000000000006 %
+2024-12-27 18:11:14 - get all clients models ready
+2024-12-27 18:11:15 - model prunning done
+2024-12-27 18:11:20 - -----fl22merged_model Test Accuracy  39.24 %-----
+2024-12-27 18:11:28 - Before train, fl23Client5 gNB_test Accuracy  40.28 %
+2024-12-27 18:11:30 - Before train, fl23Client5 client_test Accuracy  42.0 %
+2024-12-27 18:14:57 - fl23Client5 Test Accuracy  43.6 %
+2024-12-27 18:15:07 - Before train, fl23Client7 gNB_test Accuracy  40.239999999999995 %
+2024-12-27 18:15:09 - Before train, fl23Client7 client_test Accuracy  38.0 %
+2024-12-27 18:18:31 - fl23Client7 Test Accuracy  36.4 %
+2024-12-27 18:18:40 - Before train, fl23Client1 gNB_test Accuracy  39.879999999999995 %
+2024-12-27 18:18:42 - Before train, fl23Client1 client_test Accuracy  39.2 %
+2024-12-27 18:22:06 - fl23Client1 Test Accuracy  38.800000000000004 %
+2024-12-27 18:22:14 - get all clients models ready
+2024-12-27 18:22:15 - model prunning done
+2024-12-27 18:22:19 - -----fl23merged_model Test Accuracy  40.44 %-----
+2024-12-27 18:22:27 - Before train, fl24Client2 gNB_test Accuracy  38.879999999999995 %
+2024-12-27 18:22:29 - Before train, fl24Client2 client_test Accuracy  39.2 %
+2024-12-27 18:25:48 - fl24Client2 Test Accuracy  44.0 %
+2024-12-27 18:25:56 - Before train, fl24Client3 gNB_test Accuracy  39.68 %
+2024-12-27 18:25:58 - Before train, fl24Client3 client_test Accuracy  37.6 %
+2024-12-27 18:29:22 - fl24Client3 Test Accuracy  36.0 %
+2024-12-27 18:29:31 - Before train, fl24Client1 gNB_test Accuracy  40.64 %
+2024-12-27 18:29:32 - Before train, fl24Client1 client_test Accuracy  39.6 %
+2024-12-27 18:33:05 - fl24Client1 Test Accuracy  42.0 %
+2024-12-27 18:33:14 - get all clients models ready
+2024-12-27 18:33:14 - model prunning done
+2024-12-27 18:33:20 - -----fl24merged_model Test Accuracy  39.64 %-----
+2024-12-27 18:33:28 - Before train, fl25Client8 gNB_test Accuracy  40.760000000000005 %
+2024-12-27 18:33:29 - Before train, fl25Client8 client_test Accuracy  41.6 %
+2024-12-27 18:36:51 - fl25Client8 Test Accuracy  38.4 %
+2024-12-27 18:36:59 - Before train, fl25Client4 gNB_test Accuracy  40.760000000000005 %
+2024-12-27 18:37:00 - Before train, fl25Client4 client_test Accuracy  41.6 %
+2024-12-27 18:40:23 - fl25Client4 Test Accuracy  43.2 %
+2024-12-27 18:40:31 - Before train, fl25Client6 gNB_test Accuracy  40.6 %
+2024-12-27 18:40:33 - Before train, fl25Client6 client_test Accuracy  38.4 %
+2024-12-27 18:44:02 - fl25Client6 Test Accuracy  39.6 %
+2024-12-27 18:44:13 - get all clients models ready
+2024-12-27 18:44:13 - model prunning done
+2024-12-27 18:44:18 - -----fl25merged_model Test Accuracy  41.160000000000004 %-----
+2024-12-27 18:44:28 - Before train, fl26Client6 gNB_test Accuracy  41.199999999999996 %
+2024-12-27 18:44:29 - Before train, fl26Client6 client_test Accuracy  42.8 %
+2024-12-27 18:47:49 - fl26Client6 Test Accuracy  39.2 %
+2024-12-27 18:47:57 - Before train, fl26Client4 gNB_test Accuracy  39.76 %
+2024-12-27 18:48:01 - Before train, fl26Client4 client_test Accuracy  39.6 %
+2024-12-27 18:51:22 - fl26Client4 Test Accuracy  35.6 %
+2024-12-27 18:51:34 - Before train, fl26Client9 gNB_test Accuracy  40.08 %
+2024-12-27 18:51:36 - Before train, fl26Client9 client_test Accuracy  44.800000000000004 %
+2024-12-27 18:55:06 - fl26Client9 Test Accuracy  44.800000000000004 %
+2024-12-27 18:55:20 - get all clients models ready
+2024-12-27 18:55:21 - model prunning done
+2024-12-27 18:55:26 - -----fl26merged_model Test Accuracy  39.519999999999996 %-----
+2024-12-27 18:55:37 - Before train, fl27Client1 gNB_test Accuracy  40.36 %
+2024-12-27 18:55:39 - Before train, fl27Client1 client_test Accuracy  41.6 %
+2024-12-27 18:59:03 - fl27Client1 Test Accuracy  43.2 %
+2024-12-27 18:59:11 - Before train, fl27Client7 gNB_test Accuracy  40.32 %
+2024-12-27 18:59:13 - Before train, fl27Client7 client_test Accuracy  37.2 %
+2024-12-27 19:02:36 - fl27Client7 Test Accuracy  38.0 %
+2024-12-27 19:02:47 - Before train, fl27Client0 gNB_test Accuracy  40.2 %
+2024-12-27 19:02:49 - Before train, fl27Client0 client_test Accuracy  40.8 %
+2024-12-27 19:06:08 - fl27Client0 Test Accuracy  38.0 %
+2024-12-27 19:06:17 - get all clients models ready
+2024-12-27 19:06:17 - model prunning done
+2024-12-27 19:06:24 - -----fl27merged_model Test Accuracy  40.160000000000004 %-----
+2024-12-27 19:06:32 - Before train, fl28Client1 gNB_test Accuracy  39.160000000000004 %
+2024-12-27 19:06:34 - Before train, fl28Client1 client_test Accuracy  38.800000000000004 %
+2024-12-27 19:09:55 - fl28Client1 Test Accuracy  39.2 %
+2024-12-27 19:10:05 - Before train, fl28Client9 gNB_test Accuracy  38.879999999999995 %
+2024-12-27 19:10:07 - Before train, fl28Client9 client_test Accuracy  44.4 %
+2024-12-27 19:13:27 - fl28Client9 Test Accuracy  44.4 %
+2024-12-27 19:13:35 - Before train, fl28Client4 gNB_test Accuracy  40.0 %
+2024-12-27 19:13:37 - Before train, fl28Client4 client_test Accuracy  36.0 %
+2024-12-27 19:16:53 - fl28Client4 Test Accuracy  38.4 %
+2024-12-27 19:17:02 - get all clients models ready
+2024-12-27 19:17:02 - model prunning done
+2024-12-27 19:17:06 - -----fl28merged_model Test Accuracy  38.72 %-----
+2024-12-27 19:17:18 - Before train, fl29Client8 gNB_test Accuracy  39.04 %
+2024-12-27 19:17:19 - Before train, fl29Client8 client_test Accuracy  37.2 %
+2024-12-27 19:20:43 - fl29Client8 Test Accuracy  36.8 %
+2024-12-27 19:20:52 - Before train, fl29Client7 gNB_test Accuracy  40.239999999999995 %
+2024-12-27 19:20:54 - Before train, fl29Client7 client_test Accuracy  39.2 %
+2024-12-27 19:24:17 - fl29Client7 Test Accuracy  40.0 %
+2024-12-27 19:24:25 - Before train, fl29Client1 gNB_test Accuracy  39.72 %
+2024-12-27 19:24:27 - Before train, fl29Client1 client_test Accuracy  40.400000000000006 %
+2024-12-27 19:27:44 - fl29Client1 Test Accuracy  46.0 %
+2024-12-27 19:27:52 - get all clients models ready
+2024-12-27 19:27:53 - model prunning done
+2024-12-27 19:27:57 - -----fl29merged_model Test Accuracy  40.52 %-----
+2024-12-27 19:28:09 - Before train, fl30Client3 gNB_test Accuracy  39.64 %
+2024-12-27 19:28:11 - Before train, fl30Client3 client_test Accuracy  40.400000000000006 %
+2024-12-27 19:31:41 - fl30Client3 Test Accuracy  44.0 %
+2024-12-27 19:31:50 - Before train, fl30Client5 gNB_test Accuracy  39.519999999999996 %
+2024-12-27 19:31:52 - Before train, fl30Client5 client_test Accuracy  40.400000000000006 %
+2024-12-27 19:35:20 - fl30Client5 Test Accuracy  43.6 %
+2024-12-27 19:35:27 - Before train, fl30Client0 gNB_test Accuracy  39.44 %
+2024-12-27 19:35:29 - Before train, fl30Client0 client_test Accuracy  39.6 %
+2024-12-27 19:38:47 - fl30Client0 Test Accuracy  39.6 %
+2024-12-27 19:38:55 - get all clients models ready
+2024-12-27 19:38:56 - model prunning done
+2024-12-27 19:39:00 - -----fl30merged_model Test Accuracy  40.92 %-----
+2024-12-27 19:39:08 - Before train, fl31Client3 gNB_test Accuracy  39.32 %
+2024-12-27 19:39:10 - Before train, fl31Client3 client_test Accuracy  40.400000000000006 %
+2024-12-27 19:42:33 - fl31Client3 Test Accuracy  38.0 %
+2024-12-27 19:42:41 - Before train, fl31Client1 gNB_test Accuracy  40.8 %
+2024-12-27 19:42:42 - Before train, fl31Client1 client_test Accuracy  42.4 %
+2024-12-27 19:46:01 - fl31Client1 Test Accuracy  40.8 %
+2024-12-27 19:46:12 - Before train, fl31Client0 gNB_test Accuracy  40.8 %
+2024-12-27 19:46:14 - Before train, fl31Client0 client_test Accuracy  38.800000000000004 %
+2024-12-27 19:49:29 - fl31Client0 Test Accuracy  39.6 %
+2024-12-27 19:49:38 - get all clients models ready
+2024-12-27 19:49:38 - model prunning done
+2024-12-27 19:49:42 - -----fl31merged_model Test Accuracy  40.32 %-----
+2024-12-27 19:49:50 - Before train, fl32Client4 gNB_test Accuracy  39.96 %
+2024-12-27 19:49:54 - Before train, fl32Client4 client_test Accuracy  40.0 %
+2024-12-27 19:53:17 - fl32Client4 Test Accuracy  40.0 %
+2024-12-27 19:53:25 - Before train, fl32Client3 gNB_test Accuracy  39.519999999999996 %
+2024-12-27 19:53:27 - Before train, fl32Client3 client_test Accuracy  42.0 %
+2024-12-27 19:56:47 - fl32Client3 Test Accuracy  41.199999999999996 %
+2024-12-27 19:56:56 - Before train, fl32Client2 gNB_test Accuracy  41.24 %
+2024-12-27 19:56:59 - Before train, fl32Client2 client_test Accuracy  39.6 %
+2024-12-27 20:00:20 - fl32Client2 Test Accuracy  38.0 %
+2024-12-27 20:00:29 - get all clients models ready
+2024-12-27 20:00:29 - model prunning done
+2024-12-27 20:00:33 - -----fl32merged_model Test Accuracy  39.64 %-----
+2024-12-27 20:00:41 - Before train, fl33Client6 gNB_test Accuracy  39.4 %
+2024-12-27 20:00:43 - Before train, fl33Client6 client_test Accuracy  43.6 %
+2024-12-27 20:04:05 - fl33Client6 Test Accuracy  38.0 %
+2024-12-27 20:04:17 - Before train, fl33Client0 gNB_test Accuracy  40.8 %
+2024-12-27 20:04:18 - Before train, fl33Client0 client_test Accuracy  37.2 %
+2024-12-27 20:07:41 - fl33Client0 Test Accuracy  44.800000000000004 %
+2024-12-27 20:07:53 - Before train, fl33Client9 gNB_test Accuracy  39.68 %
+2024-12-27 20:07:55 - Before train, fl33Client9 client_test Accuracy  44.800000000000004 %
+2024-12-27 20:11:12 - fl33Client9 Test Accuracy  42.4 %
+2024-12-27 20:11:20 - get all clients models ready
+2024-12-27 20:11:21 - model prunning done
+2024-12-27 20:11:29 - -----fl33merged_model Test Accuracy  40.28 %-----
+2024-12-27 20:11:36 - Before train, fl34Client9 gNB_test Accuracy  40.160000000000004 %
+2024-12-27 20:11:38 - Before train, fl34Client9 client_test Accuracy  43.6 %
+2024-12-27 20:14:57 - fl34Client9 Test Accuracy  46.400000000000006 %
+2024-12-27 20:15:07 - Before train, fl34Client2 gNB_test Accuracy  40.48 %
+2024-12-27 20:15:11 - Before train, fl34Client2 client_test Accuracy  36.4 %
+2024-12-27 20:18:32 - fl34Client2 Test Accuracy  35.6 %
+2024-12-27 20:18:40 - Before train, fl34Client0 gNB_test Accuracy  39.56 %
+2024-12-27 20:18:42 - Before train, fl34Client0 client_test Accuracy  34.0 %
+2024-12-27 20:22:00 - fl34Client0 Test Accuracy  36.8 %
+2024-12-27 20:22:09 - get all clients models ready
+2024-12-27 20:22:10 - model prunning done
+2024-12-27 20:22:19 - -----fl34merged_model Test Accuracy  39.96 %-----
+2024-12-27 20:22:26 - Before train, fl35Client3 gNB_test Accuracy  40.12 %
+2024-12-27 20:22:28 - Before train, fl35Client3 client_test Accuracy  36.8 %
+2024-12-27 20:25:53 - fl35Client3 Test Accuracy  38.4 %
+2024-12-27 20:26:03 - Before train, fl35Client2 gNB_test Accuracy  40.28 %
+2024-12-27 20:26:05 - Before train, fl35Client2 client_test Accuracy  37.6 %
+2024-12-27 20:29:26 - fl35Client2 Test Accuracy  40.0 %
+2024-12-27 20:29:35 - Before train, fl35Client9 gNB_test Accuracy  40.36 %
+2024-12-27 20:29:37 - Before train, fl35Client9 client_test Accuracy  43.6 %
+2024-12-27 20:32:53 - fl35Client9 Test Accuracy  45.2 %
+2024-12-27 20:33:03 - get all clients models ready
+2024-12-27 20:33:03 - model prunning done
+2024-12-27 20:33:10 - -----fl35merged_model Test Accuracy  39.12 %-----
+2024-12-27 20:33:18 - Before train, fl36Client6 gNB_test Accuracy  40.28 %
+2024-12-27 20:33:20 - Before train, fl36Client6 client_test Accuracy  42.0 %
+2024-12-27 20:36:42 - fl36Client6 Test Accuracy  42.8 %
+2024-12-27 20:36:50 - Before train, fl36Client2 gNB_test Accuracy  40.08 %
+2024-12-27 20:36:52 - Before train, fl36Client2 client_test Accuracy  40.8 %
+2024-12-27 20:40:14 - fl36Client2 Test Accuracy  36.0 %
+2024-12-27 20:40:21 - Before train, fl36Client9 gNB_test Accuracy  40.64 %
+2024-12-27 20:40:23 - Before train, fl36Client9 client_test Accuracy  42.4 %
+2024-12-27 20:43:40 - fl36Client9 Test Accuracy  47.599999999999994 %
+2024-12-27 20:43:50 - get all clients models ready
+2024-12-27 20:43:50 - model prunning done
+2024-12-27 20:43:55 - -----fl36merged_model Test Accuracy  40.12 %-----
+2024-12-27 20:44:04 - Before train, fl37Client1 gNB_test Accuracy  40.68 %
+2024-12-27 20:44:06 - Before train, fl37Client1 client_test Accuracy  42.8 %
+2024-12-27 20:47:27 - fl37Client1 Test Accuracy  38.800000000000004 %
+2024-12-27 20:47:35 - Before train, fl37Client9 gNB_test Accuracy  40.160000000000004 %
+2024-12-27 20:47:37 - Before train, fl37Client9 client_test Accuracy  48.0 %
+2024-12-27 20:50:56 - fl37Client9 Test Accuracy  43.6 %
+2024-12-27 20:51:04 - Before train, fl37Client6 gNB_test Accuracy  40.04 %
+2024-12-27 20:51:07 - Before train, fl37Client6 client_test Accuracy  36.8 %
+2024-12-27 20:54:28 - fl37Client6 Test Accuracy  38.4 %
+2024-12-27 20:54:37 - get all clients models ready
+2024-12-27 20:54:37 - model prunning done
+2024-12-27 20:54:41 - -----fl37merged_model Test Accuracy  40.400000000000006 %-----
+2024-12-27 20:54:49 - Before train, fl38Client4 gNB_test Accuracy  39.0 %
+2024-12-27 20:54:51 - Before train, fl38Client4 client_test Accuracy  39.2 %
+2024-12-27 20:58:17 - fl38Client4 Test Accuracy  41.6 %
+2024-12-27 20:58:27 - Before train, fl38Client6 gNB_test Accuracy  40.56 %
+2024-12-27 20:58:28 - Before train, fl38Client6 client_test Accuracy  38.4 %
+2024-12-27 21:01:50 - fl38Client6 Test Accuracy  36.4 %
+2024-12-27 21:01:59 - Before train, fl38Client9 gNB_test Accuracy  40.36 %
+2024-12-27 21:02:01 - Before train, fl38Client9 client_test Accuracy  44.0 %
+2024-12-27 21:05:20 - fl38Client9 Test Accuracy  49.2 %
+2024-12-27 21:05:30 - get all clients models ready
+2024-12-27 21:05:30 - model prunning done
+2024-12-27 21:05:35 - -----fl38merged_model Test Accuracy  39.48 %-----
+2024-12-27 21:05:44 - Before train, fl39Client3 gNB_test Accuracy  40.400000000000006 %
+2024-12-27 21:05:46 - Before train, fl39Client3 client_test Accuracy  43.6 %
+2024-12-27 21:09:06 - fl39Client3 Test Accuracy  40.0 %
+2024-12-27 21:09:14 - Before train, fl39Client4 gNB_test Accuracy  39.92 %
+2024-12-27 21:09:16 - Before train, fl39Client4 client_test Accuracy  39.2 %
+2024-12-27 21:12:37 - fl39Client4 Test Accuracy  39.2 %
+2024-12-27 21:12:46 - Before train, fl39Client7 gNB_test Accuracy  39.0 %
+2024-12-27 21:12:48 - Before train, fl39Client7 client_test Accuracy  38.4 %
+2024-12-27 21:16:07 - fl39Client7 Test Accuracy  36.4 %
+2024-12-27 21:16:15 - get all clients models ready
+2024-12-27 21:16:16 - model prunning done
+2024-12-27 21:16:20 - -----fl39merged_model Test Accuracy  38.800000000000004 %-----
+2024-12-27 21:16:28 - Before train, fl40Client5 gNB_test Accuracy  39.28 %
+2024-12-27 21:16:30 - Before train, fl40Client5 client_test Accuracy  45.2 %
+2024-12-27 21:19:51 - fl40Client5 Test Accuracy  40.0 %
+2024-12-27 21:20:00 - Before train, fl40Client2 gNB_test Accuracy  41.64 %
+2024-12-27 21:20:02 - Before train, fl40Client2 client_test Accuracy  34.8 %
+2024-12-27 21:23:23 - fl40Client2 Test Accuracy  37.6 %
+2024-12-27 21:23:31 - Before train, fl40Client7 gNB_test Accuracy  39.08 %
+2024-12-27 21:23:33 - Before train, fl40Client7 client_test Accuracy  39.6 %
+2024-12-27 21:26:53 - fl40Client7 Test Accuracy  40.400000000000006 %
+2024-12-27 21:27:02 - get all clients models ready
+2024-12-27 21:27:02 - model prunning done
+2024-12-27 21:27:06 - -----fl40merged_model Test Accuracy  40.92 %-----
+2024-12-27 21:27:15 - Before train, fl41Client6 gNB_test Accuracy  39.160000000000004 %
+2024-12-27 21:27:17 - Before train, fl41Client6 client_test Accuracy  40.400000000000006 %
+2024-12-27 21:30:37 - fl41Client6 Test Accuracy  40.8 %
+2024-12-27 21:30:46 - Before train, fl41Client7 gNB_test Accuracy  39.800000000000004 %
+2024-12-27 21:30:47 - Before train, fl41Client7 client_test Accuracy  38.0 %
+2024-12-27 21:34:05 - fl41Client7 Test Accuracy  40.400000000000006 %
+2024-12-27 21:34:14 - Before train, fl41Client9 gNB_test Accuracy  40.56 %
+2024-12-27 21:34:15 - Before train, fl41Client9 client_test Accuracy  46.400000000000006 %
+2024-12-27 21:37:33 - fl41Client9 Test Accuracy  46.0 %
+2024-12-27 21:37:41 - get all clients models ready
+2024-12-27 21:37:41 - model prunning done
+2024-12-27 21:37:46 - -----fl41merged_model Test Accuracy  39.68 %-----
+2024-12-27 21:37:55 - Before train, fl42Client2 gNB_test Accuracy  41.160000000000004 %
+2024-12-27 21:37:57 - Before train, fl42Client2 client_test Accuracy  33.6 %
+2024-12-27 21:41:15 - fl42Client2 Test Accuracy  38.0 %
+2024-12-27 21:41:24 - Before train, fl42Client7 gNB_test Accuracy  40.72 %
+2024-12-27 21:41:26 - Before train, fl42Client7 client_test Accuracy  35.199999999999996 %
+2024-12-27 21:44:46 - fl42Client7 Test Accuracy  37.6 %
+2024-12-27 21:44:56 - Before train, fl42Client4 gNB_test Accuracy  39.6 %
+2024-12-27 21:44:58 - Before train, fl42Client4 client_test Accuracy  36.0 %
+2024-12-27 21:48:17 - fl42Client4 Test Accuracy  37.2 %
+2024-12-27 21:48:29 - get all clients models ready
+2024-12-27 21:48:29 - model prunning done
+2024-12-27 21:48:33 - -----fl42merged_model Test Accuracy  40.48 %-----
+2024-12-27 21:48:41 - Before train, fl43Client5 gNB_test Accuracy  39.92 %
+2024-12-27 21:48:43 - Before train, fl43Client5 client_test Accuracy  44.0 %
+2024-12-27 21:52:02 - fl43Client5 Test Accuracy  43.6 %
+2024-12-27 21:52:11 - Before train, fl43Client8 gNB_test Accuracy  40.839999999999996 %
+2024-12-27 21:52:13 - Before train, fl43Client8 client_test Accuracy  38.0 %
+2024-12-27 21:55:31 - fl43Client8 Test Accuracy  37.2 %
+2024-12-27 21:55:40 - Before train, fl43Client1 gNB_test Accuracy  40.44 %
+2024-12-27 21:55:44 - Before train, fl43Client1 client_test Accuracy  39.2 %
+2024-12-27 21:59:06 - fl43Client1 Test Accuracy  41.6 %
+2024-12-27 21:59:14 - get all clients models ready
+2024-12-27 21:59:15 - model prunning done
+2024-12-27 21:59:21 - -----fl43merged_model Test Accuracy  39.76 %-----
+2024-12-27 21:59:30 - Before train, fl44Client4 gNB_test Accuracy  39.72 %
+2024-12-27 21:59:32 - Before train, fl44Client4 client_test Accuracy  38.4 %
+2024-12-27 22:02:54 - fl44Client4 Test Accuracy  40.400000000000006 %
+2024-12-27 22:03:03 - Before train, fl44Client5 gNB_test Accuracy  40.64 %
+2024-12-27 22:03:05 - Before train, fl44Client5 client_test Accuracy  42.8 %
+2024-12-27 22:06:24 - fl44Client5 Test Accuracy  46.0 %
+2024-12-27 22:06:33 - Before train, fl44Client1 gNB_test Accuracy  38.92 %
+2024-12-27 22:06:35 - Before train, fl44Client1 client_test Accuracy  46.400000000000006 %
+2024-12-27 22:09:52 - fl44Client1 Test Accuracy  41.6 %
+2024-12-27 22:10:00 - get all clients models ready
+2024-12-27 22:10:01 - model prunning done
+2024-12-27 22:10:08 - -----fl44merged_model Test Accuracy  41.160000000000004 %-----
+2024-12-27 22:10:20 - Before train, fl45Client1 gNB_test Accuracy  40.08 %
+2024-12-27 22:10:21 - Before train, fl45Client1 client_test Accuracy  42.0 %
+2024-12-27 22:13:41 - fl45Client1 Test Accuracy  38.4 %
+2024-12-27 22:13:49 - Before train, fl45Client8 gNB_test Accuracy  40.44 %
+2024-12-27 22:13:51 - Before train, fl45Client8 client_test Accuracy  32.4 %
+2024-12-27 22:17:11 - fl45Client8 Test Accuracy  34.8 %
+2024-12-27 22:17:19 - Before train, fl45Client7 gNB_test Accuracy  40.0 %
+2024-12-27 22:17:21 - Before train, fl45Client7 client_test Accuracy  37.6 %
+2024-12-27 22:21:09 - fl45Client7 Test Accuracy  36.4 %
+2024-12-27 22:21:21 - get all clients models ready
+2024-12-27 22:21:22 - model prunning done
+2024-12-27 22:21:27 - -----fl45merged_model Test Accuracy  40.760000000000005 %-----
+2024-12-27 22:21:37 - Before train, fl46Client8 gNB_test Accuracy  41.72 %
+2024-12-27 22:21:39 - Before train, fl46Client8 client_test Accuracy  33.6 %
+2024-12-27 22:25:08 - fl46Client8 Test Accuracy  38.4 %
+2024-12-27 22:25:21 - Before train, fl46Client5 gNB_test Accuracy  40.64 %
+2024-12-27 22:25:22 - Before train, fl46Client5 client_test Accuracy  45.6 %
+2024-12-27 22:28:45 - fl46Client5 Test Accuracy  45.2 %
+2024-12-27 22:28:53 - Before train, fl46Client1 gNB_test Accuracy  38.800000000000004 %
+2024-12-27 22:28:56 - Before train, fl46Client1 client_test Accuracy  39.6 %
+2024-12-27 22:32:14 - fl46Client1 Test Accuracy  39.2 %
+2024-12-27 22:32:22 - get all clients models ready
+2024-12-27 22:32:22 - model prunning done
+2024-12-27 22:32:27 - -----fl46merged_model Test Accuracy  39.2 %-----
+2024-12-27 22:32:37 - Before train, fl47Client5 gNB_test Accuracy  40.72 %
+2024-12-27 22:32:39 - Before train, fl47Client5 client_test Accuracy  42.0 %
+2024-12-27 22:36:01 - fl47Client5 Test Accuracy  42.4 %
+2024-12-27 22:36:09 - Before train, fl47Client8 gNB_test Accuracy  39.92 %
+2024-12-27 22:36:11 - Before train, fl47Client8 client_test Accuracy  36.8 %
+2024-12-27 22:39:33 - fl47Client8 Test Accuracy  38.4 %
+2024-12-27 22:39:40 - Before train, fl47Client6 gNB_test Accuracy  40.68 %
+2024-12-27 22:39:42 - Before train, fl47Client6 client_test Accuracy  40.400000000000006 %
+2024-12-27 22:43:01 - fl47Client6 Test Accuracy  37.2 %
+2024-12-27 22:43:12 - get all clients models ready
+2024-12-27 22:43:13 - model prunning done
+2024-12-27 22:43:16 - -----fl47merged_model Test Accuracy  39.48 %-----
+2024-12-27 22:43:25 - Before train, fl48Client7 gNB_test Accuracy  40.88 %
+2024-12-27 22:43:27 - Before train, fl48Client7 client_test Accuracy  41.6 %
+2024-12-27 22:46:46 - fl48Client7 Test Accuracy  37.2 %
+2024-12-27 22:46:55 - Before train, fl48Client9 gNB_test Accuracy  40.2 %
+2024-12-27 22:46:56 - Before train, fl48Client9 client_test Accuracy  50.4 %
+2024-12-27 22:50:21 - fl48Client9 Test Accuracy  46.400000000000006 %
+2024-12-27 22:50:33 - Before train, fl48Client6 gNB_test Accuracy  39.4 %
+2024-12-27 22:50:35 - Before train, fl48Client6 client_test Accuracy  40.0 %
+2024-12-27 22:54:00 - fl48Client6 Test Accuracy  37.2 %
+2024-12-27 22:54:08 - get all clients models ready
+2024-12-27 22:54:09 - model prunning done
+2024-12-27 22:54:14 - -----fl48merged_model Test Accuracy  40.36 %-----
+2024-12-27 22:54:22 - Before train, fl49Client0 gNB_test Accuracy  38.6 %
+2024-12-27 22:54:24 - Before train, fl49Client0 client_test Accuracy  39.2 %
+2024-12-27 22:57:48 - fl49Client0 Test Accuracy  34.8 %
+2024-12-27 22:57:56 - Before train, fl49Client9 gNB_test Accuracy  39.4 %
+2024-12-27 22:57:57 - Before train, fl49Client9 client_test Accuracy  42.4 %
+2024-12-27 23:01:13 - fl49Client9 Test Accuracy  44.0 %
+2024-12-27 23:01:22 - Before train, fl49Client3 gNB_test Accuracy  39.68 %
+2024-12-27 23:01:24 - Before train, fl49Client3 client_test Accuracy  43.6 %
+2024-12-27 23:04:43 - fl49Client3 Test Accuracy  40.0 %
+2024-12-27 23:04:52 - get all clients models ready
+2024-12-27 23:04:52 - model prunning done
+2024-12-27 23:04:56 - -----fl49merged_model Test Accuracy  39.800000000000004 %-----
+2024-12-27 23:05:04 - Before train, fl50Client9 gNB_test Accuracy  40.160000000000004 %
+2024-12-27 23:05:05 - Before train, fl50Client9 client_test Accuracy  47.599999999999994 %
+2024-12-27 23:08:26 - fl50Client9 Test Accuracy  43.6 %
+2024-12-27 23:08:34 - Before train, fl50Client1 gNB_test Accuracy  40.160000000000004 %
+2024-12-27 23:08:36 - Before train, fl50Client1 client_test Accuracy  38.4 %
+2024-12-27 23:11:55 - fl50Client1 Test Accuracy  40.8 %
+2024-12-27 23:12:06 - Before train, fl50Client0 gNB_test Accuracy  40.0 %
+2024-12-27 23:12:11 - Before train, fl50Client0 client_test Accuracy  39.6 %
+2024-12-27 23:15:29 - fl50Client0 Test Accuracy  46.800000000000004 %
+2024-12-27 23:15:40 - get all clients models ready
+2024-12-27 23:15:40 - model prunning done
+2024-12-27 23:15:45 - -----fl50merged_model Test Accuracy  40.0 %-----
+2024-12-27 23:15:53 - Before train, fl51Client5 gNB_test Accuracy  41.199999999999996 %
+2024-12-27 23:15:54 - Before train, fl51Client5 client_test Accuracy  42.8 %
+2024-12-27 23:19:15 - fl51Client5 Test Accuracy  42.4 %
+2024-12-27 23:19:23 - Before train, fl51Client3 gNB_test Accuracy  39.0 %
+2024-12-27 23:19:25 - Before train, fl51Client3 client_test Accuracy  40.0 %
+2024-12-27 23:22:45 - fl51Client3 Test Accuracy  38.800000000000004 %
+2024-12-27 23:22:53 - Before train, fl51Client4 gNB_test Accuracy  39.72 %
+2024-12-27 23:22:54 - Before train, fl51Client4 client_test Accuracy  35.6 %
+2024-12-27 23:26:21 - fl51Client4 Test Accuracy  38.0 %
+2024-12-27 23:26:29 - get all clients models ready
+2024-12-27 23:26:30 - model prunning done
+2024-12-27 23:26:36 - -----fl51merged_model Test Accuracy  40.36 %-----
+2024-12-27 23:26:47 - Before train, fl52Client7 gNB_test Accuracy  40.2 %
+2024-12-27 23:26:49 - Before train, fl52Client7 client_test Accuracy  40.400000000000006 %
+2024-12-27 23:30:09 - fl52Client7 Test Accuracy  36.4 %
+2024-12-27 23:30:17 - Before train, fl52Client8 gNB_test Accuracy  39.6 %
+2024-12-27 23:30:18 - Before train, fl52Client8 client_test Accuracy  36.8 %
+2024-12-27 23:33:43 - fl52Client8 Test Accuracy  39.6 %
+2024-12-27 23:33:53 - Before train, fl52Client5 gNB_test Accuracy  39.68 %
+2024-12-27 23:33:54 - Before train, fl52Client5 client_test Accuracy  43.2 %
+2024-12-27 23:37:12 - fl52Client5 Test Accuracy  41.6 %
+2024-12-27 23:37:21 - get all clients models ready
+2024-12-27 23:37:22 - model prunning done
+2024-12-27 23:37:26 - -----fl52merged_model Test Accuracy  39.48 %-----
+2024-12-27 23:37:35 - Before train, fl53Client1 gNB_test Accuracy  40.56 %
+2024-12-27 23:37:38 - Before train, fl53Client1 client_test Accuracy  37.2 %
+2024-12-27 23:40:59 - fl53Client1 Test Accuracy  38.0 %
+2024-12-27 23:41:07 - Before train, fl53Client0 gNB_test Accuracy  40.6 %
+2024-12-27 23:41:08 - Before train, fl53Client0 client_test Accuracy  37.6 %
+2024-12-27 23:44:28 - fl53Client0 Test Accuracy  42.4 %
+2024-12-27 23:44:37 - Before train, fl53Client7 gNB_test Accuracy  40.04 %
+2024-12-27 23:44:39 - Before train, fl53Client7 client_test Accuracy  41.199999999999996 %
+2024-12-27 23:48:01 - fl53Client7 Test Accuracy  38.4 %
+2024-12-27 23:48:09 - get all clients models ready
+2024-12-27 23:48:10 - model prunning done
+2024-12-27 23:48:14 - -----fl53merged_model Test Accuracy  39.6 %-----
+2024-12-27 23:48:23 - Before train, fl54Client5 gNB_test Accuracy  38.64 %
+2024-12-27 23:48:25 - Before train, fl54Client5 client_test Accuracy  42.8 %
+2024-12-27 23:51:47 - fl54Client5 Test Accuracy  42.0 %
+2024-12-27 23:51:55 - Before train, fl54Client7 gNB_test Accuracy  39.32 %
+2024-12-27 23:51:58 - Before train, fl54Client7 client_test Accuracy  39.2 %
+2024-12-27 23:55:20 - fl54Client7 Test Accuracy  40.0 %
+2024-12-27 23:55:30 - Before train, fl54Client9 gNB_test Accuracy  39.879999999999995 %
+2024-12-27 23:55:31 - Before train, fl54Client9 client_test Accuracy  45.6 %
+2024-12-27 23:58:52 - fl54Client9 Test Accuracy  42.8 %
+2024-12-27 23:59:01 - get all clients models ready
+2024-12-27 23:59:01 - model prunning done
+2024-12-27 23:59:06 - -----fl54merged_model Test Accuracy  41.68 %-----
+2024-12-27 23:59:15 - Before train, fl55Client0 gNB_test Accuracy  39.04 %
+2024-12-27 23:59:17 - Before train, fl55Client0 client_test Accuracy  38.4 %
+2024-12-28 00:02:43 - fl55Client0 Test Accuracy  41.199999999999996 %
+2024-12-28 00:02:53 - Before train, fl55Client9 gNB_test Accuracy  40.36 %
+2024-12-28 00:02:56 - Before train, fl55Client9 client_test Accuracy  45.2 %
+2024-12-28 00:06:17 - fl55Client9 Test Accuracy  46.400000000000006 %
+2024-12-28 00:06:25 - Before train, fl55Client5 gNB_test Accuracy  40.2 %
+2024-12-28 00:06:27 - Before train, fl55Client5 client_test Accuracy  43.6 %
+2024-12-28 00:09:47 - fl55Client5 Test Accuracy  41.6 %
+2024-12-28 00:09:59 - get all clients models ready
+2024-12-28 00:10:00 - model prunning done
+2024-12-28 00:10:04 - -----fl55merged_model Test Accuracy  39.32 %-----
+2024-12-28 00:10:13 - Before train, fl56Client8 gNB_test Accuracy  40.08 %
+2024-12-28 00:10:15 - Before train, fl56Client8 client_test Accuracy  32.4 %
+2024-12-28 00:13:37 - fl56Client8 Test Accuracy  36.0 %
+2024-12-28 00:13:45 - Before train, fl56Client1 gNB_test Accuracy  41.56 %
+2024-12-28 00:13:47 - Before train, fl56Client1 client_test Accuracy  39.2 %
+2024-12-28 00:17:10 - fl56Client1 Test Accuracy  39.6 %
+2024-12-28 00:17:18 - Before train, fl56Client3 gNB_test Accuracy  38.96 %
+2024-12-28 00:17:20 - Before train, fl56Client3 client_test Accuracy  38.800000000000004 %
+2024-12-28 00:20:41 - fl56Client3 Test Accuracy  38.800000000000004 %
+2024-12-28 00:20:49 - get all clients models ready
+2024-12-28 00:20:49 - model prunning done
+2024-12-28 00:20:54 - -----fl56merged_model Test Accuracy  40.04 %-----
+2024-12-28 00:21:02 - Before train, fl57Client7 gNB_test Accuracy  39.800000000000004 %
+2024-12-28 00:21:04 - Before train, fl57Client7 client_test Accuracy  37.2 %
+2024-12-28 00:24:26 - fl57Client7 Test Accuracy  38.800000000000004 %
+2024-12-28 00:24:34 - Before train, fl57Client6 gNB_test Accuracy  39.56 %
+2024-12-28 00:24:35 - Before train, fl57Client6 client_test Accuracy  40.8 %
+2024-12-28 00:27:56 - fl57Client6 Test Accuracy  35.199999999999996 %
+2024-12-28 00:28:04 - Before train, fl57Client2 gNB_test Accuracy  40.0 %
+2024-12-28 00:28:06 - Before train, fl57Client2 client_test Accuracy  39.2 %
+2024-12-28 00:31:28 - fl57Client2 Test Accuracy  39.6 %
+2024-12-28 00:31:38 - get all clients models ready
+2024-12-28 00:31:39 - model prunning done
+2024-12-28 00:31:42 - -----fl57merged_model Test Accuracy  39.72 %-----
+2024-12-28 00:31:53 - Before train, fl58Client2 gNB_test Accuracy  41.160000000000004 %
+2024-12-28 00:31:54 - Before train, fl58Client2 client_test Accuracy  36.4 %
+2024-12-28 00:35:16 - fl58Client2 Test Accuracy  37.2 %
+2024-12-28 00:35:27 - Before train, fl58Client0 gNB_test Accuracy  38.96 %
+2024-12-28 00:35:29 - Before train, fl58Client0 client_test Accuracy  40.8 %
+2024-12-28 00:38:49 - fl58Client0 Test Accuracy  40.8 %
+2024-12-28 00:38:58 - Before train, fl58Client8 gNB_test Accuracy  38.68 %
+2024-12-28 00:39:00 - Before train, fl58Client8 client_test Accuracy  37.2 %
+2024-12-28 00:42:27 - fl58Client8 Test Accuracy  34.8 %
+2024-12-28 00:42:36 - get all clients models ready
+2024-12-28 00:42:36 - model prunning done
+2024-12-28 00:42:40 - -----fl58merged_model Test Accuracy  40.68 %-----
+2024-12-28 00:42:49 - Before train, fl59Client5 gNB_test Accuracy  40.04 %
+2024-12-28 00:42:50 - Before train, fl59Client5 client_test Accuracy  42.0 %
+2024-12-28 00:46:18 - fl59Client5 Test Accuracy  45.2 %
+2024-12-28 00:46:26 - Before train, fl59Client1 gNB_test Accuracy  40.28 %
+2024-12-28 00:46:28 - Before train, fl59Client1 client_test Accuracy  43.2 %
+2024-12-28 00:49:50 - fl59Client1 Test Accuracy  43.2 %
+2024-12-28 00:49:59 - Before train, fl59Client6 gNB_test Accuracy  39.800000000000004 %
+2024-12-28 00:50:01 - Before train, fl59Client6 client_test Accuracy  40.400000000000006 %
+2024-12-28 00:53:34 - fl59Client6 Test Accuracy  40.8 %
+2024-12-28 00:53:43 - get all clients models ready
+2024-12-28 00:53:43 - model prunning done
+2024-12-28 00:53:49 - -----fl59merged_model Test Accuracy  40.6 %-----
+2024-12-28 00:53:57 - Before train, fl60Client3 gNB_test Accuracy  40.56 %
+2024-12-28 00:53:59 - Before train, fl60Client3 client_test Accuracy  39.2 %
+2024-12-28 00:57:25 - fl60Client3 Test Accuracy  40.8 %
+2024-12-28 00:57:34 - Before train, fl60Client1 gNB_test Accuracy  39.800000000000004 %
+2024-12-28 00:57:36 - Before train, fl60Client1 client_test Accuracy  42.0 %
+2024-12-28 01:00:55 - fl60Client1 Test Accuracy  43.2 %
+2024-12-28 01:01:05 - Before train, fl60Client7 gNB_test Accuracy  39.92 %
+2024-12-28 01:01:07 - Before train, fl60Client7 client_test Accuracy  36.8 %
+2024-12-28 01:04:30 - fl60Client7 Test Accuracy  40.400000000000006 %
+2024-12-28 01:04:41 - get all clients models ready
+2024-12-28 01:04:41 - model prunning done
+2024-12-28 01:04:47 - -----fl60merged_model Test Accuracy  40.04 %-----
+2024-12-28 01:04:55 - Before train, fl61Client1 gNB_test Accuracy  40.12 %
+2024-12-28 01:04:57 - Before train, fl61Client1 client_test Accuracy  35.6 %
+2024-12-28 01:08:21 - fl61Client1 Test Accuracy  37.6 %
+2024-12-28 01:08:29 - Before train, fl61Client7 gNB_test Accuracy  39.24 %
+2024-12-28 01:08:31 - Before train, fl61Client7 client_test Accuracy  38.4 %
+2024-12-28 01:11:55 - fl61Client7 Test Accuracy  34.0 %
+2024-12-28 01:12:03 - Before train, fl61Client5 gNB_test Accuracy  39.44 %
+2024-12-28 01:12:04 - Before train, fl61Client5 client_test Accuracy  42.4 %
+2024-12-28 01:15:28 - fl61Client5 Test Accuracy  42.8 %
+2024-12-28 01:15:36 - get all clients models ready
+2024-12-28 01:15:36 - model prunning done
+2024-12-28 01:15:41 - -----fl61merged_model Test Accuracy  40.64 %-----
+2024-12-28 01:15:52 - Before train, fl62Client7 gNB_test Accuracy  38.68 %
+2024-12-28 01:15:54 - Before train, fl62Client7 client_test Accuracy  37.6 %
+2024-12-28 01:19:24 - fl62Client7 Test Accuracy  39.6 %
+2024-12-28 01:19:32 - Before train, fl62Client3 gNB_test Accuracy  39.32 %
+2024-12-28 01:19:34 - Before train, fl62Client3 client_test Accuracy  49.6 %
+2024-12-28 01:23:00 - fl62Client3 Test Accuracy  40.400000000000006 %
+2024-12-28 01:23:09 - Before train, fl62Client2 gNB_test Accuracy  39.2 %
+2024-12-28 01:23:11 - Before train, fl62Client2 client_test Accuracy  38.800000000000004 %
+2024-12-28 01:26:39 - fl62Client2 Test Accuracy  37.6 %
+2024-12-28 01:26:47 - get all clients models ready
+2024-12-28 01:26:47 - model prunning done
+2024-12-28 01:26:55 - -----fl62merged_model Test Accuracy  39.36 %-----
+2024-12-28 01:27:04 - Before train, fl63Client5 gNB_test Accuracy  40.88 %
+2024-12-28 01:27:05 - Before train, fl63Client5 client_test Accuracy  42.4 %
+2024-12-28 01:30:26 - fl63Client5 Test Accuracy  46.0 %
+2024-12-28 01:30:38 - Before train, fl63Client3 gNB_test Accuracy  40.68 %
+2024-12-28 01:30:39 - Before train, fl63Client3 client_test Accuracy  40.0 %
+2024-12-28 01:34:09 - fl63Client3 Test Accuracy  37.2 %
+2024-12-28 01:34:17 - Before train, fl63Client4 gNB_test Accuracy  40.400000000000006 %
+2024-12-28 01:34:18 - Before train, fl63Client4 client_test Accuracy  38.800000000000004 %
+2024-12-28 01:37:50 - fl63Client4 Test Accuracy  41.199999999999996 %
+2024-12-28 01:37:59 - get all clients models ready
+2024-12-28 01:37:59 - model prunning done
+2024-12-28 01:38:05 - -----fl63merged_model Test Accuracy  39.92 %-----
+2024-12-28 01:38:13 - Before train, fl64Client3 gNB_test Accuracy  40.160000000000004 %
+2024-12-28 01:38:16 - Before train, fl64Client3 client_test Accuracy  40.0 %
+2024-12-28 01:41:58 - fl64Client3 Test Accuracy  41.6 %
+2024-12-28 01:42:06 - Before train, fl64Client9 gNB_test Accuracy  39.68 %
+2024-12-28 01:42:08 - Before train, fl64Client9 client_test Accuracy  44.800000000000004 %
+2024-12-28 01:45:41 - fl64Client9 Test Accuracy  41.6 %
+2024-12-28 01:45:50 - Before train, fl64Client4 gNB_test Accuracy  40.68 %
+2024-12-28 01:45:51 - Before train, fl64Client4 client_test Accuracy  38.4 %
+2024-12-28 01:49:21 - fl64Client4 Test Accuracy  40.400000000000006 %
+2024-12-28 01:49:31 - get all clients models ready
+2024-12-28 01:49:31 - model prunning done
+2024-12-28 01:49:35 - -----fl64merged_model Test Accuracy  40.64 %-----
+2024-12-28 01:49:43 - Before train, fl65Client0 gNB_test Accuracy  40.08 %
+2024-12-28 01:49:45 - Before train, fl65Client0 client_test Accuracy  37.2 %
+2024-12-28 01:53:06 - fl65Client0 Test Accuracy  39.2 %
+2024-12-28 01:53:14 - Before train, fl65Client8 gNB_test Accuracy  41.199999999999996 %
+2024-12-28 01:53:16 - Before train, fl65Client8 client_test Accuracy  34.0 %
+2024-12-28 01:56:36 - fl65Client8 Test Accuracy  37.2 %
+2024-12-28 01:56:44 - Before train, fl65Client6 gNB_test Accuracy  41.44 %
+2024-12-28 01:56:46 - Before train, fl65Client6 client_test Accuracy  38.800000000000004 %
+2024-12-28 02:00:21 - fl65Client6 Test Accuracy  36.8 %
+2024-12-28 02:00:30 - get all clients models ready
+2024-12-28 02:00:30 - model prunning done
+2024-12-28 02:00:36 - -----fl65merged_model Test Accuracy  40.839999999999996 %-----
+2024-12-28 02:00:43 - Before train, fl66Client3 gNB_test Accuracy  39.72 %
+2024-12-28 02:00:45 - Before train, fl66Client3 client_test Accuracy  38.4 %
+2024-12-28 02:04:06 - fl66Client3 Test Accuracy  43.2 %
+2024-12-28 02:04:17 - Before train, fl66Client6 gNB_test Accuracy  40.04 %
+2024-12-28 02:04:19 - Before train, fl66Client6 client_test Accuracy  41.199999999999996 %
+2024-12-28 02:07:44 - fl66Client6 Test Accuracy  41.199999999999996 %
+2024-12-28 02:07:52 - Before train, fl66Client9 gNB_test Accuracy  39.48 %
+2024-12-28 02:07:54 - Before train, fl66Client9 client_test Accuracy  44.0 %
+2024-12-28 02:11:25 - fl66Client9 Test Accuracy  44.4 %
+2024-12-28 02:11:33 - get all clients models ready
+2024-12-28 02:11:34 - model prunning done
+2024-12-28 02:11:39 - -----fl66merged_model Test Accuracy  40.6 %-----
+2024-12-28 02:11:51 - Before train, fl67Client2 gNB_test Accuracy  40.56 %
+2024-12-28 02:11:52 - Before train, fl67Client2 client_test Accuracy  37.6 %
+2024-12-28 02:15:29 - fl67Client2 Test Accuracy  37.6 %
+2024-12-28 02:15:40 - Before train, fl67Client7 gNB_test Accuracy  39.4 %
+2024-12-28 02:15:42 - Before train, fl67Client7 client_test Accuracy  40.8 %
+2024-12-28 02:19:14 - fl67Client7 Test Accuracy  36.4 %
+2024-12-28 02:19:23 - Before train, fl67Client6 gNB_test Accuracy  40.160000000000004 %
+2024-12-28 02:19:26 - Before train, fl67Client6 client_test Accuracy  40.0 %
+2024-12-28 02:22:56 - fl67Client6 Test Accuracy  39.6 %
+2024-12-28 02:23:04 - get all clients models ready
+2024-12-28 02:23:05 - model prunning done
+2024-12-28 02:23:09 - -----fl67merged_model Test Accuracy  40.88 %-----
+2024-12-28 02:23:20 - Before train, fl68Client4 gNB_test Accuracy  39.2 %
+2024-12-28 02:23:21 - Before train, fl68Client4 client_test Accuracy  40.8 %
+2024-12-28 02:26:41 - fl68Client4 Test Accuracy  38.4 %
+2024-12-28 02:26:48 - Before train, fl68Client3 gNB_test Accuracy  40.44 %
+2024-12-28 02:26:51 - Before train, fl68Client3 client_test Accuracy  42.0 %
+2024-12-28 02:30:11 - fl68Client3 Test Accuracy  45.6 %
+2024-12-28 02:30:19 - Before train, fl68Client0 gNB_test Accuracy  40.2 %
+2024-12-28 02:30:21 - Before train, fl68Client0 client_test Accuracy  40.0 %
+2024-12-28 02:33:42 - fl68Client0 Test Accuracy  37.6 %
+2024-12-28 02:33:54 - get all clients models ready
+2024-12-28 02:33:54 - model prunning done
+2024-12-28 02:33:58 - -----fl68merged_model Test Accuracy  39.36 %-----
+2024-12-28 02:34:06 - Before train, fl69Client1 gNB_test Accuracy  39.879999999999995 %
+2024-12-28 02:34:08 - Before train, fl69Client1 client_test Accuracy  46.400000000000006 %
+2024-12-28 02:37:27 - fl69Client1 Test Accuracy  40.0 %
+2024-12-28 02:37:37 - Before train, fl69Client3 gNB_test Accuracy  40.0 %
+2024-12-28 02:37:39 - Before train, fl69Client3 client_test Accuracy  39.2 %
+2024-12-28 02:41:00 - fl69Client3 Test Accuracy  41.6 %
+2024-12-28 02:41:09 - Before train, fl69Client2 gNB_test Accuracy  40.08 %
+2024-12-28 02:41:11 - Before train, fl69Client2 client_test Accuracy  37.2 %
+2024-12-28 02:44:32 - fl69Client2 Test Accuracy  39.2 %
+2024-12-28 02:44:40 - get all clients models ready
+2024-12-28 02:44:41 - model prunning done
+2024-12-28 02:44:49 - -----fl69merged_model Test Accuracy  40.400000000000006 %-----
+2024-12-28 02:44:57 - Before train, fl70Client3 gNB_test Accuracy  41.24 %
+2024-12-28 02:44:59 - Before train, fl70Client3 client_test Accuracy  43.2 %
+2024-12-28 02:48:20 - fl70Client3 Test Accuracy  39.6 %
+2024-12-28 02:48:32 - Before train, fl70Client0 gNB_test Accuracy  39.48 %
+2024-12-28 02:48:33 - Before train, fl70Client0 client_test Accuracy  40.8 %
+2024-12-28 02:52:02 - fl70Client0 Test Accuracy  39.2 %
+2024-12-28 02:52:10 - Before train, fl70Client5 gNB_test Accuracy  40.56 %
+2024-12-28 02:52:12 - Before train, fl70Client5 client_test Accuracy  42.4 %
+2024-12-28 02:55:42 - fl70Client5 Test Accuracy  42.0 %
+2024-12-28 02:55:51 - get all clients models ready
+2024-12-28 02:55:51 - model prunning done
+2024-12-28 02:55:57 - -----fl70merged_model Test Accuracy  40.28 %-----
+2024-12-28 02:56:05 - Before train, fl71Client3 gNB_test Accuracy  39.68 %
+2024-12-28 02:56:07 - Before train, fl71Client3 client_test Accuracy  41.199999999999996 %
+2024-12-28 02:59:37 - fl71Client3 Test Accuracy  39.2 %
+2024-12-28 02:59:46 - Before train, fl71Client2 gNB_test Accuracy  41.0 %
+2024-12-28 02:59:48 - Before train, fl71Client2 client_test Accuracy  37.2 %
+2024-12-28 03:03:13 - fl71Client2 Test Accuracy  38.4 %
+2024-12-28 03:03:23 - Before train, fl71Client1 gNB_test Accuracy  39.56 %
+2024-12-28 03:03:27 - Before train, fl71Client1 client_test Accuracy  42.4 %
+2024-12-28 03:06:53 - fl71Client1 Test Accuracy  40.0 %
+2024-12-28 03:07:03 - get all clients models ready
+2024-12-28 03:07:04 - model prunning done
+2024-12-28 03:07:08 - -----fl71merged_model Test Accuracy  40.239999999999995 %-----
+2024-12-28 03:07:18 - Before train, fl72Client4 gNB_test Accuracy  41.48 %
+2024-12-28 03:07:19 - Before train, fl72Client4 client_test Accuracy  39.2 %
+2024-12-28 03:10:49 - fl72Client4 Test Accuracy  39.2 %
+2024-12-28 03:11:03 - Before train, fl72Client6 gNB_test Accuracy  40.72 %
+2024-12-28 03:11:05 - Before train, fl72Client6 client_test Accuracy  38.0 %
+2024-12-28 03:14:27 - fl72Client6 Test Accuracy  38.800000000000004 %
+2024-12-28 03:14:35 - Before train, fl72Client2 gNB_test Accuracy  38.96 %
+2024-12-28 03:14:37 - Before train, fl72Client2 client_test Accuracy  37.2 %
+2024-12-28 03:18:04 - fl72Client2 Test Accuracy  37.2 %
+2024-12-28 03:18:12 - get all clients models ready
+2024-12-28 03:18:13 - model prunning done
+2024-12-28 03:18:18 - -----fl72merged_model Test Accuracy  39.519999999999996 %-----
+2024-12-28 03:18:26 - Before train, fl73Client3 gNB_test Accuracy  39.56 %
+2024-12-28 03:18:28 - Before train, fl73Client3 client_test Accuracy  42.4 %
+2024-12-28 03:21:52 - fl73Client3 Test Accuracy  42.4 %
+2024-12-28 03:22:00 - Before train, fl73Client8 gNB_test Accuracy  39.48 %
+2024-12-28 03:22:02 - Before train, fl73Client8 client_test Accuracy  36.8 %
+2024-12-28 03:25:28 - fl73Client8 Test Accuracy  36.8 %
+2024-12-28 03:25:40 - Before train, fl73Client5 gNB_test Accuracy  39.4 %
+2024-12-28 03:25:42 - Before train, fl73Client5 client_test Accuracy  42.8 %
+2024-12-28 03:29:03 - fl73Client5 Test Accuracy  46.800000000000004 %
+2024-12-28 03:29:12 - get all clients models ready
+2024-12-28 03:29:12 - model prunning done
+2024-12-28 03:29:18 - -----fl73merged_model Test Accuracy  40.12 %-----
+2024-12-28 03:29:28 - Before train, fl74Client1 gNB_test Accuracy  39.12 %
+2024-12-28 03:29:31 - Before train, fl74Client1 client_test Accuracy  42.4 %
+2024-12-28 03:32:55 - fl74Client1 Test Accuracy  42.0 %
+2024-12-28 03:33:07 - Before train, fl74Client6 gNB_test Accuracy  39.160000000000004 %
+2024-12-28 03:33:09 - Before train, fl74Client6 client_test Accuracy  40.8 %
+2024-12-28 03:36:33 - fl74Client6 Test Accuracy  41.6 %
+2024-12-28 03:36:45 - Before train, fl74Client2 gNB_test Accuracy  41.68 %
+2024-12-28 03:36:50 - Before train, fl74Client2 client_test Accuracy  34.8 %
+2024-12-28 03:40:12 - fl74Client2 Test Accuracy  36.0 %
+2024-12-28 03:40:26 - get all clients models ready
+2024-12-28 03:40:27 - model prunning done
+2024-12-28 03:40:32 - -----fl74merged_model Test Accuracy  40.839999999999996 %-----
+2024-12-28 03:40:43 - Before train, fl75Client6 gNB_test Accuracy  39.72 %
+2024-12-28 03:40:45 - Before train, fl75Client6 client_test Accuracy  38.800000000000004 %
+2024-12-28 03:44:05 - fl75Client6 Test Accuracy  38.800000000000004 %
+2024-12-28 03:44:13 - Before train, fl75Client5 gNB_test Accuracy  39.92 %
+2024-12-28 03:44:14 - Before train, fl75Client5 client_test Accuracy  45.2 %
+2024-12-28 03:47:33 - fl75Client5 Test Accuracy  40.8 %
+2024-12-28 03:47:43 - Before train, fl75Client4 gNB_test Accuracy  40.36 %
+2024-12-28 03:47:45 - Before train, fl75Client4 client_test Accuracy  40.0 %
+2024-12-28 03:51:05 - fl75Client4 Test Accuracy  39.6 %
+2024-12-28 03:51:13 - get all clients models ready
+2024-12-28 03:51:14 - model prunning done
+2024-12-28 03:51:18 - -----fl75merged_model Test Accuracy  40.160000000000004 %-----
+2024-12-28 03:51:30 - Before train, fl76Client6 gNB_test Accuracy  40.08 %
+2024-12-28 03:51:32 - Before train, fl76Client6 client_test Accuracy  36.8 %
+2024-12-28 03:54:58 - fl76Client6 Test Accuracy  40.8 %
+2024-12-28 03:55:08 - Before train, fl76Client2 gNB_test Accuracy  41.160000000000004 %
+2024-12-28 03:55:09 - Before train, fl76Client2 client_test Accuracy  37.6 %
+2024-12-28 03:58:31 - fl76Client2 Test Accuracy  37.2 %
+2024-12-28 03:58:39 - Before train, fl76Client3 gNB_test Accuracy  41.160000000000004 %
+2024-12-28 03:58:43 - Before train, fl76Client3 client_test Accuracy  39.6 %
+2024-12-28 04:02:05 - fl76Client3 Test Accuracy  44.0 %
+2024-12-28 04:02:16 - get all clients models ready
+2024-12-28 04:02:16 - model prunning done
+2024-12-28 04:02:23 - -----fl76merged_model Test Accuracy  40.400000000000006 %-----
+2024-12-28 04:02:34 - Before train, fl77Client4 gNB_test Accuracy  39.519999999999996 %
+2024-12-28 04:02:36 - Before train, fl77Client4 client_test Accuracy  38.4 %
+2024-12-28 04:05:58 - fl77Client4 Test Accuracy  36.4 %
+2024-12-28 04:06:08 - Before train, fl77Client0 gNB_test Accuracy  39.48 %
+2024-12-28 04:06:09 - Before train, fl77Client0 client_test Accuracy  38.0 %
+2024-12-28 04:09:33 - fl77Client0 Test Accuracy  39.6 %
+2024-12-28 04:09:42 - Before train, fl77Client3 gNB_test Accuracy  40.760000000000005 %
+2024-12-28 04:09:43 - Before train, fl77Client3 client_test Accuracy  41.199999999999996 %
+2024-12-28 04:13:04 - fl77Client3 Test Accuracy  42.4 %
+2024-12-28 04:13:16 - get all clients models ready
+2024-12-28 04:13:16 - model prunning done
+2024-12-28 04:13:22 - -----fl77merged_model Test Accuracy  39.4 %-----
+2024-12-28 04:13:33 - Before train, fl78Client6 gNB_test Accuracy  41.04 %
+2024-12-28 04:13:35 - Before train, fl78Client6 client_test Accuracy  40.8 %
+2024-12-28 04:17:19 - fl78Client6 Test Accuracy  36.0 %
+2024-12-28 04:17:28 - Before train, fl78Client7 gNB_test Accuracy  40.0 %
+2024-12-28 04:17:30 - Before train, fl78Client7 client_test Accuracy  41.6 %
+2024-12-28 04:21:00 - fl78Client7 Test Accuracy  40.400000000000006 %
+2024-12-28 04:21:11 - Before train, fl78Client9 gNB_test Accuracy  40.0 %
+2024-12-28 04:21:13 - Before train, fl78Client9 client_test Accuracy  46.0 %
+2024-12-28 04:24:36 - fl78Client9 Test Accuracy  44.4 %
+2024-12-28 04:24:48 - get all clients models ready
+2024-12-28 04:24:49 - model prunning done
+2024-12-28 04:24:53 - -----fl78merged_model Test Accuracy  41.44 %-----
+2024-12-28 04:25:05 - Before train, fl79Client7 gNB_test Accuracy  39.04 %
+2024-12-28 04:25:07 - Before train, fl79Client7 client_test Accuracy  39.2 %
+2024-12-28 04:28:32 - fl79Client7 Test Accuracy  37.2 %
+2024-12-28 04:28:42 - Before train, fl79Client2 gNB_test Accuracy  39.08 %
+2024-12-28 04:28:44 - Before train, fl79Client2 client_test Accuracy  36.0 %
+2024-12-28 04:32:09 - fl79Client2 Test Accuracy  38.0 %
+2024-12-28 04:32:18 - Before train, fl79Client0 gNB_test Accuracy  41.44 %
+2024-12-28 04:32:20 - Before train, fl79Client0 client_test Accuracy  43.2 %
+2024-12-28 04:35:43 - fl79Client0 Test Accuracy  40.8 %
+2024-12-28 04:35:51 - get all clients models ready
+2024-12-28 04:35:52 - model prunning done
+2024-12-28 04:36:00 - -----fl79merged_model Test Accuracy  41.28 %-----
+2024-12-28 04:36:10 - Before train, fl80Client1 gNB_test Accuracy  39.800000000000004 %
+2024-12-28 04:36:11 - Before train, fl80Client1 client_test Accuracy  44.4 %
+2024-12-28 04:39:32 - fl80Client1 Test Accuracy  46.0 %
+2024-12-28 04:39:44 - Before train, fl80Client8 gNB_test Accuracy  40.839999999999996 %
+2024-12-28 04:39:46 - Before train, fl80Client8 client_test Accuracy  38.0 %
+2024-12-28 04:43:06 - fl80Client8 Test Accuracy  34.8 %
+2024-12-28 04:43:15 - Before train, fl80Client3 gNB_test Accuracy  41.04 %
+2024-12-28 04:43:16 - Before train, fl80Client3 client_test Accuracy  40.0 %
+2024-12-28 04:46:38 - fl80Client3 Test Accuracy  40.400000000000006 %
+2024-12-28 04:46:47 - get all clients models ready
+2024-12-28 04:46:48 - model prunning done
+2024-12-28 04:46:55 - -----fl80merged_model Test Accuracy  40.8 %-----
+2024-12-28 04:47:03 - Before train, fl81Client8 gNB_test Accuracy  39.879999999999995 %
+2024-12-28 04:47:06 - Before train, fl81Client8 client_test Accuracy  38.4 %
+2024-12-28 04:50:25 - fl81Client8 Test Accuracy  39.2 %
+2024-12-28 04:50:33 - Before train, fl81Client0 gNB_test Accuracy  40.239999999999995 %
+2024-12-28 04:50:35 - Before train, fl81Client0 client_test Accuracy  39.2 %
+2024-12-28 04:53:53 - fl81Client0 Test Accuracy  40.0 %
+2024-12-28 04:54:01 - Before train, fl81Client1 gNB_test Accuracy  41.24 %
+2024-12-28 04:54:03 - Before train, fl81Client1 client_test Accuracy  46.0 %
+2024-12-28 04:57:23 - fl81Client1 Test Accuracy  44.800000000000004 %
+2024-12-28 04:57:32 - get all clients models ready
+2024-12-28 04:57:32 - model prunning done
+2024-12-28 04:57:37 - -----fl81merged_model Test Accuracy  39.44 %-----
+2024-12-28 04:57:45 - Before train, fl82Client0 gNB_test Accuracy  39.0 %
+2024-12-28 04:57:47 - Before train, fl82Client0 client_test Accuracy  40.0 %
+2024-12-28 05:01:06 - fl82Client0 Test Accuracy  40.0 %
+2024-12-28 05:01:14 - Before train, fl82Client5 gNB_test Accuracy  40.400000000000006 %
+2024-12-28 05:01:16 - Before train, fl82Client5 client_test Accuracy  46.0 %
+2024-12-28 05:04:39 - fl82Client5 Test Accuracy  44.4 %
+2024-12-28 05:04:47 - Before train, fl82Client2 gNB_test Accuracy  39.32 %
+2024-12-28 05:04:49 - Before train, fl82Client2 client_test Accuracy  38.0 %
+2024-12-28 05:08:10 - fl82Client2 Test Accuracy  39.6 %
+2024-12-28 05:08:20 - get all clients models ready
+2024-12-28 05:08:20 - model prunning done
+2024-12-28 05:08:27 - -----fl82merged_model Test Accuracy  39.92 %-----
+2024-12-28 05:08:38 - Before train, fl83Client4 gNB_test Accuracy  40.48 %
+2024-12-28 05:08:39 - Before train, fl83Client4 client_test Accuracy  38.800000000000004 %
+2024-12-28 05:12:00 - fl83Client4 Test Accuracy  39.6 %
+2024-12-28 05:12:08 - Before train, fl83Client9 gNB_test Accuracy  40.6 %
+2024-12-28 05:12:10 - Before train, fl83Client9 client_test Accuracy  46.0 %
+2024-12-28 05:15:33 - fl83Client9 Test Accuracy  48.8 %
+2024-12-28 05:15:44 - Before train, fl83Client0 gNB_test Accuracy  39.28 %
+2024-12-28 05:15:46 - Before train, fl83Client0 client_test Accuracy  39.6 %
+2024-12-28 05:19:08 - fl83Client0 Test Accuracy  36.8 %
+2024-12-28 05:19:16 - get all clients models ready
+2024-12-28 05:19:17 - model prunning done
+2024-12-28 05:19:21 - -----fl83merged_model Test Accuracy  40.04 %-----
+2024-12-28 05:19:28 - Before train, fl84Client4 gNB_test Accuracy  40.08 %
+2024-12-28 05:19:30 - Before train, fl84Client4 client_test Accuracy  36.4 %
+2024-12-28 05:23:00 - fl84Client4 Test Accuracy  38.4 %
+2024-12-28 05:23:15 - Before train, fl84Client5 gNB_test Accuracy  39.04 %
+2024-12-28 05:23:17 - Before train, fl84Client5 client_test Accuracy  43.6 %
+2024-12-28 05:26:44 - fl84Client5 Test Accuracy  44.0 %
+2024-12-28 05:26:52 - Before train, fl84Client9 gNB_test Accuracy  39.64 %
+2024-12-28 05:26:54 - Before train, fl84Client9 client_test Accuracy  44.800000000000004 %
+2024-12-28 05:30:18 - fl84Client9 Test Accuracy  41.199999999999996 %
+2024-12-28 05:30:27 - get all clients models ready
+2024-12-28 05:30:28 - model prunning done
+2024-12-28 05:30:35 - -----fl84merged_model Test Accuracy  38.6 %-----
+2024-12-28 05:30:43 - Before train, fl85Client5 gNB_test Accuracy  41.48 %
+2024-12-28 05:30:44 - Before train, fl85Client5 client_test Accuracy  38.800000000000004 %
+2024-12-28 05:34:08 - fl85Client5 Test Accuracy  44.4 %
+2024-12-28 05:34:19 - Before train, fl85Client1 gNB_test Accuracy  40.160000000000004 %
+2024-12-28 05:34:21 - Before train, fl85Client1 client_test Accuracy  41.6 %
+2024-12-28 05:37:43 - fl85Client1 Test Accuracy  40.8 %
+2024-12-28 05:37:51 - Before train, fl85Client7 gNB_test Accuracy  40.08 %
+2024-12-28 05:37:53 - Before train, fl85Client7 client_test Accuracy  38.800000000000004 %
+2024-12-28 05:41:22 - fl85Client7 Test Accuracy  38.4 %
+2024-12-28 05:41:32 - get all clients models ready
+2024-12-28 05:41:33 - model prunning done
+2024-12-28 05:41:39 - -----fl85merged_model Test Accuracy  40.92 %-----
+2024-12-28 05:41:50 - Before train, fl86Client4 gNB_test Accuracy  40.08 %
+2024-12-28 05:41:52 - Before train, fl86Client4 client_test Accuracy  38.0 %
+2024-12-28 05:45:14 - fl86Client4 Test Accuracy  34.4 %
+2024-12-28 05:45:22 - Before train, fl86Client5 gNB_test Accuracy  40.96 %
+2024-12-28 05:45:24 - Before train, fl86Client5 client_test Accuracy  43.2 %
+2024-12-28 05:48:46 - fl86Client5 Test Accuracy  40.400000000000006 %
+2024-12-28 05:48:54 - Before train, fl86Client9 gNB_test Accuracy  40.28 %
+2024-12-28 05:48:56 - Before train, fl86Client9 client_test Accuracy  41.6 %
+2024-12-28 05:52:30 - fl86Client9 Test Accuracy  46.400000000000006 %
+2024-12-28 05:52:44 - get all clients models ready
+2024-12-28 05:52:45 - model prunning done
+2024-12-28 05:52:49 - -----fl86merged_model Test Accuracy  39.879999999999995 %-----
+2024-12-28 05:52:57 - Before train, fl87Client9 gNB_test Accuracy  39.839999999999996 %
+2024-12-28 05:52:58 - Before train, fl87Client9 client_test Accuracy  44.800000000000004 %
+2024-12-28 05:56:24 - fl87Client9 Test Accuracy  42.4 %
+2024-12-28 05:56:32 - Before train, fl87Client5 gNB_test Accuracy  38.92 %
+2024-12-28 05:56:34 - Before train, fl87Client5 client_test Accuracy  44.800000000000004 %
+2024-12-28 05:59:59 - fl87Client5 Test Accuracy  44.800000000000004 %
+2024-12-28 06:00:10 - Before train, fl87Client0 gNB_test Accuracy  39.04 %
+2024-12-28 06:00:12 - Before train, fl87Client0 client_test Accuracy  38.800000000000004 %
+2024-12-28 06:03:48 - fl87Client0 Test Accuracy  40.8 %
+2024-12-28 06:03:57 - get all clients models ready
+2024-12-28 06:03:58 - model prunning done
+2024-12-28 06:04:07 - -----fl87merged_model Test Accuracy  40.28 %-----
+2024-12-28 06:04:15 - Before train, fl88Client9 gNB_test Accuracy  40.760000000000005 %
+2024-12-28 06:04:17 - Before train, fl88Client9 client_test Accuracy  44.0 %
+2024-12-28 06:07:50 - fl88Client9 Test Accuracy  49.2 %
+2024-12-28 06:07:59 - Before train, fl88Client5 gNB_test Accuracy  40.44 %
+2024-12-28 06:08:01 - Before train, fl88Client5 client_test Accuracy  42.4 %
+2024-12-28 06:11:23 - fl88Client5 Test Accuracy  44.0 %
+2024-12-28 06:11:33 - Before train, fl88Client1 gNB_test Accuracy  39.36 %
+2024-12-28 06:11:35 - Before train, fl88Client1 client_test Accuracy  43.2 %
+2024-12-28 06:14:59 - fl88Client1 Test Accuracy  39.2 %
+2024-12-28 06:15:07 - get all clients models ready
+2024-12-28 06:15:08 - model prunning done
+2024-12-28 06:15:13 - -----fl88merged_model Test Accuracy  40.760000000000005 %-----
+2024-12-28 06:15:23 - Before train, fl89Client1 gNB_test Accuracy  39.12 %
+2024-12-28 06:15:25 - Before train, fl89Client1 client_test Accuracy  40.0 %
+2024-12-28 06:18:49 - fl89Client1 Test Accuracy  39.2 %
+2024-12-28 06:18:57 - Before train, fl89Client4 gNB_test Accuracy  40.239999999999995 %
+2024-12-28 06:18:59 - Before train, fl89Client4 client_test Accuracy  37.6 %
+2024-12-28 06:22:27 - fl89Client4 Test Accuracy  40.8 %
+2024-12-28 06:22:35 - Before train, fl89Client2 gNB_test Accuracy  39.96 %
+2024-12-28 06:22:37 - Before train, fl89Client2 client_test Accuracy  38.0 %
+2024-12-28 06:25:59 - fl89Client2 Test Accuracy  40.400000000000006 %
+2024-12-28 06:26:07 - get all clients models ready
+2024-12-28 06:26:08 - model prunning done
+2024-12-28 06:26:16 - -----fl89merged_model Test Accuracy  39.92 %-----
+2024-12-28 06:26:24 - Before train, fl90Client0 gNB_test Accuracy  38.36 %
+2024-12-28 06:26:26 - Before train, fl90Client0 client_test Accuracy  39.6 %
+2024-12-28 06:29:51 - fl90Client0 Test Accuracy  38.800000000000004 %
+2024-12-28 06:29:59 - Before train, fl90Client2 gNB_test Accuracy  40.72 %
+2024-12-28 06:30:01 - Before train, fl90Client2 client_test Accuracy  37.2 %
+2024-12-28 06:33:21 - fl90Client2 Test Accuracy  36.8 %
+2024-12-28 06:33:28 - Before train, fl90Client6 gNB_test Accuracy  40.52 %
+2024-12-28 06:33:31 - Before train, fl90Client6 client_test Accuracy  42.0 %
+2024-12-28 06:36:52 - fl90Client6 Test Accuracy  39.6 %
+2024-12-28 06:37:00 - get all clients models ready
+2024-12-28 06:37:01 - model prunning done
+2024-12-28 06:37:06 - -----fl90merged_model Test Accuracy  39.44 %-----
+2024-12-28 06:37:17 - Before train, fl91Client6 gNB_test Accuracy  39.96 %
+2024-12-28 06:37:19 - Before train, fl91Client6 client_test Accuracy  40.0 %
+2024-12-28 06:40:48 - fl91Client6 Test Accuracy  40.400000000000006 %
+2024-12-28 06:40:56 - Before train, fl91Client0 gNB_test Accuracy  39.76 %
+2024-12-28 06:40:59 - Before train, fl91Client0 client_test Accuracy  41.6 %
+2024-12-28 06:44:20 - fl91Client0 Test Accuracy  35.6 %
+2024-12-28 06:44:29 - Before train, fl91Client4 gNB_test Accuracy  40.04 %
+2024-12-28 06:44:33 - Before train, fl91Client4 client_test Accuracy  36.4 %
+2024-12-28 06:47:53 - fl91Client4 Test Accuracy  35.6 %
+2024-12-28 06:48:02 - get all clients models ready
+2024-12-28 06:48:02 - model prunning done
+2024-12-28 06:48:06 - -----fl91merged_model Test Accuracy  40.160000000000004 %-----
+2024-12-28 06:48:17 - Before train, fl92Client8 gNB_test Accuracy  40.8 %
+2024-12-28 06:48:22 - Before train, fl92Client8 client_test Accuracy  36.4 %
+2024-12-28 06:51:44 - fl92Client8 Test Accuracy  37.6 %
+2024-12-28 06:51:53 - Before train, fl92Client9 gNB_test Accuracy  40.44 %
+2024-12-28 06:51:54 - Before train, fl92Client9 client_test Accuracy  44.0 %
+2024-12-28 06:55:22 - fl92Client9 Test Accuracy  48.8 %
+2024-12-28 06:55:30 - Before train, fl92Client5 gNB_test Accuracy  39.2 %
+2024-12-28 06:55:32 - Before train, fl92Client5 client_test Accuracy  44.800000000000004 %
+2024-12-28 06:58:53 - fl92Client5 Test Accuracy  46.0 %
+2024-12-28 06:59:01 - get all clients models ready
+2024-12-28 06:59:02 - model prunning done
+2024-12-28 06:59:07 - -----fl92merged_model Test Accuracy  40.04 %-----
+2024-12-28 06:59:15 - Before train, fl93Client4 gNB_test Accuracy  41.0 %
+2024-12-28 06:59:17 - Before train, fl93Client4 client_test Accuracy  38.0 %
+2024-12-28 07:02:40 - fl93Client4 Test Accuracy  38.800000000000004 %
+2024-12-28 07:02:48 - Before train, fl93Client0 gNB_test Accuracy  40.239999999999995 %
+2024-12-28 07:02:50 - Before train, fl93Client0 client_test Accuracy  40.0 %
+2024-12-28 07:06:10 - fl93Client0 Test Accuracy  40.8 %
+2024-12-28 07:06:19 - Before train, fl93Client2 gNB_test Accuracy  42.28 %
+2024-12-28 07:06:21 - Before train, fl93Client2 client_test Accuracy  39.2 %
+2024-12-28 07:09:40 - fl93Client2 Test Accuracy  38.0 %
+2024-12-28 07:09:51 - get all clients models ready
+2024-12-28 07:09:51 - model prunning done
+2024-12-28 07:09:56 - -----fl93merged_model Test Accuracy  38.519999999999996 %-----
+2024-12-28 07:10:04 - Before train, fl94Client4 gNB_test Accuracy  40.44 %
+2024-12-28 07:10:07 - Before train, fl94Client4 client_test Accuracy  39.2 %
+2024-12-28 07:13:37 - fl94Client4 Test Accuracy  36.4 %
+2024-12-28 07:13:45 - Before train, fl94Client8 gNB_test Accuracy  40.36 %
+2024-12-28 07:13:47 - Before train, fl94Client8 client_test Accuracy  38.0 %
+2024-12-28 07:17:11 - fl94Client8 Test Accuracy  39.2 %
+2024-12-28 07:17:22 - Before train, fl94Client5 gNB_test Accuracy  40.72 %
+2024-12-28 07:17:23 - Before train, fl94Client5 client_test Accuracy  45.2 %
+2024-12-28 07:20:42 - fl94Client5 Test Accuracy  44.0 %
+2024-12-28 07:20:53 - get all clients models ready
+2024-12-28 07:20:53 - model prunning done
+2024-12-28 07:20:58 - -----fl94merged_model Test Accuracy  39.64 %-----
+2024-12-28 07:21:09 - Before train, fl95Client3 gNB_test Accuracy  40.160000000000004 %
+2024-12-28 07:21:11 - Before train, fl95Client3 client_test Accuracy  38.4 %
+2024-12-28 07:24:32 - fl95Client3 Test Accuracy  39.2 %
+2024-12-28 07:24:40 - Before train, fl95Client6 gNB_test Accuracy  39.519999999999996 %
+2024-12-28 07:24:42 - Before train, fl95Client6 client_test Accuracy  36.0 %
+2024-12-28 07:28:13 - fl95Client6 Test Accuracy  40.8 %
+2024-12-28 07:28:21 - Before train, fl95Client8 gNB_test Accuracy  40.56 %
+2024-12-28 07:28:23 - Before train, fl95Client8 client_test Accuracy  37.6 %
+2024-12-28 07:31:50 - fl95Client8 Test Accuracy  35.6 %
+2024-12-28 07:31:58 - get all clients models ready
+2024-12-28 07:31:59 - model prunning done
+2024-12-28 07:32:03 - -----fl95merged_model Test Accuracy  39.04 %-----
+2024-12-28 07:32:15 - Before train, fl96Client2 gNB_test Accuracy  39.0 %
+2024-12-28 07:32:17 - Before train, fl96Client2 client_test Accuracy  38.0 %
+2024-12-28 07:35:42 - fl96Client2 Test Accuracy  34.0 %
+2024-12-28 07:35:51 - Before train, fl96Client0 gNB_test Accuracy  40.64 %
+2024-12-28 07:35:54 - Before train, fl96Client0 client_test Accuracy  40.400000000000006 %
+2024-12-28 07:39:17 - fl96Client0 Test Accuracy  37.6 %
+2024-12-28 07:39:25 - Before train, fl96Client8 gNB_test Accuracy  39.160000000000004 %
+2024-12-28 07:39:27 - Before train, fl96Client8 client_test Accuracy  38.800000000000004 %
+2024-12-28 07:42:48 - fl96Client8 Test Accuracy  38.0 %
+2024-12-28 07:43:00 - get all clients models ready
+2024-12-28 07:43:01 - model prunning done
+2024-12-28 07:43:05 - -----fl96merged_model Test Accuracy  39.6 %-----
+2024-12-28 07:43:18 - Before train, fl97Client5 gNB_test Accuracy  40.760000000000005 %
+2024-12-28 07:43:20 - Before train, fl97Client5 client_test Accuracy  43.2 %
+2024-12-28 07:46:46 - fl97Client5 Test Accuracy  43.6 %
+2024-12-28 07:46:57 - Before train, fl97Client4 gNB_test Accuracy  39.519999999999996 %
+2024-12-28 07:46:59 - Before train, fl97Client4 client_test Accuracy  34.0 %
+2024-12-28 07:50:29 - fl97Client4 Test Accuracy  38.4 %
+2024-12-28 07:50:40 - Before train, fl97Client6 gNB_test Accuracy  40.48 %
+2024-12-28 07:50:42 - Before train, fl97Client6 client_test Accuracy  40.8 %
+2024-12-28 07:54:02 - fl97Client6 Test Accuracy  40.0 %
+2024-12-28 07:54:11 - get all clients models ready
+2024-12-28 07:54:12 - model prunning done
+2024-12-28 07:54:17 - -----fl97merged_model Test Accuracy  39.48 %-----
+2024-12-28 07:54:27 - Before train, fl98Client4 gNB_test Accuracy  39.160000000000004 %
+2024-12-28 07:54:28 - Before train, fl98Client4 client_test Accuracy  40.0 %
+2024-12-28 07:57:49 - fl98Client4 Test Accuracy  39.2 %
+2024-12-28 07:57:59 - Before train, fl98Client8 gNB_test Accuracy  39.6 %
+2024-12-28 07:58:04 - Before train, fl98Client8 client_test Accuracy  38.4 %
+2024-12-28 08:01:35 - fl98Client8 Test Accuracy  36.4 %
+2024-12-28 08:01:45 - Before train, fl98Client9 gNB_test Accuracy  40.12 %
+2024-12-28 08:01:46 - Before train, fl98Client9 client_test Accuracy  45.6 %
+2024-12-28 08:05:17 - fl98Client9 Test Accuracy  41.6 %
+2024-12-28 08:05:26 - get all clients models ready
+2024-12-28 08:05:26 - model prunning done
+2024-12-28 08:05:30 - -----fl98merged_model Test Accuracy  39.72 %-----
+2024-12-28 08:05:45 - Before train, fl99Client9 gNB_test Accuracy  40.239999999999995 %
+2024-12-28 08:05:46 - Before train, fl99Client9 client_test Accuracy  45.6 %
+2024-12-28 08:09:09 - fl99Client9 Test Accuracy  44.0 %
+2024-12-28 08:09:19 - Before train, fl99Client6 gNB_test Accuracy  39.76 %
+2024-12-28 08:09:21 - Before train, fl99Client6 client_test Accuracy  37.6 %
+2024-12-28 08:12:44 - fl99Client6 Test Accuracy  40.400000000000006 %
+2024-12-28 08:12:52 - Before train, fl99Client3 gNB_test Accuracy  40.32 %
+2024-12-28 08:12:54 - Before train, fl99Client3 client_test Accuracy  42.4 %
+2024-12-28 08:16:21 - fl99Client3 Test Accuracy  38.800000000000004 %
+2024-12-28 08:16:31 - get all clients models ready
+2024-12-28 08:16:32 - model prunning done
+2024-12-28 08:16:39 - -----fl99merged_model Test Accuracy  39.96 %-----
