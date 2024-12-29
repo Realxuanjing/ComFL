@@ -1,0 +1,7 @@
+2024-12-29 19:11:07 - Model: SimpleCNN_1229_UE
+2024-12-29 19:11:07 - Learning rate: 0.001
+2024-12-29 19:11:07 - Number of epochs: 64
+2024-12-29 19:11:07 - Train batch size: 64
+2024-12-29 19:11:07 - Test batch size: 64
+2024-12-29 19:11:07 - Federated learning epochs: 100
+2024-12-29 19:11:07 - Number of clients: 10

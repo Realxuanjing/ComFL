@@ -16,7 +16,7 @@ import copy
 import logging
 from tqdm import tqdm
 from pathlib import Path
-from GetDataSet import GetData,DatasetSplit,LocalUpdate
+from GetDataSet import GetData,DatasetSplit,LocalUpdate,CRF_10
 from utils import seed_everything, set_parameter_requires_grad, self_iid
 from Pruning import layer_pruning
 from model_merge import update_gNB_model, FedAvg
@@ -25,13 +25,13 @@ import matplotlib.pyplot as plt
 
 
 # ---------------------设置自定义文件---------------------
-model_name = 'SimpleCNN_1228_UE'
+model_name = 'SimpleCNN_1229_UE'
 logging.basicConfig(filename=f'UETrain_{model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
 save_path = Path('/home/data1/xxx/dataset/COMFL')
 models_dir= save_path / 'models_{}'.format(model_name)
 dataset_path = save_path / 'datasets'/'PetImages'
 device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
-model=SimpleCNN(num_classes=2)
+model=SimpleCNN(num_classes=10)
 
 
 learning_rate=0.001 #设置学习率
@@ -45,7 +45,6 @@ clients_num=10
 
 seed_everything()
 # "/home/data1/xxx/dataset/COMFL/datasets/PetImages/"
-loss_fn=nn.CrossEntropyLoss()
 
 # model=VGGnet().to(device)
 logging.info(f"Model: {model_name}")
@@ -65,6 +64,28 @@ logging.info(f"Number of clients: {clients_num}")
 # clients_num=20
 
 
+#加载数据集和Dataloader
+# train_data=GetData(dataset_path,224,'train')
+# test_data=GetData(dataset_path,224,'test')
+# client_train_dataloader={}
+# client_test_dataloader={}
+# user_train_idx={}
+# user_test_idx={}
+# user_train_idx=self_iid(train_data,clients_num)
+# user_test_idx=self_iid(test_data,clients_num)
+# for i in range(clients_num):
+#     client_train_dataloader[i]=LocalUpdate(train_data,user_train_idx[i],train_batch_size).return_data(shuffle=True)
+#     client_test_dataloader[i]=LocalUpdate(test_data,user_test_idx[i],test_batch_size).return_data(shuffle=False)
+# gNB_test_dataloader=DataLoader(test_data,batch_size=test_batch_size, shuffle=False,pin_memory=True,num_workers=24)
+
+CRF_10 = CRF_10(batch_size=train_batch_size,logger=logging ,data_root='/home/data1/xxx/dataset/COMFL/datasets/CRF_10')
+client_train_dataloader, client_test_dataloader = CRF_10.split_data(clients_num)
+gNB_test_dataloader = CRF_10.getdata()[1]  #trainloader, testloader, classes
+#选择不同的随机用户进行训练
+#client_each_epoch=random.sample(1,clients_num/10)
+gNB_model=model
+
+
 #在这里设置德是用户存储模型德文件夹，每个用户一个文件夹，用来存储模型
 #大家最开始模型都是一样的VggNet.py
 for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
@@ -77,27 +98,7 @@ for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
     torch.save(model.state_dict(), model_path / f'model_before_training_client{i}.pth')
     # tqdm.write(f"client{i} model initialize complete")
 
-#设置优化器，使用CrossEntropyLoss函数
 
-
-#加载数据集和Dataloader
-train_data=GetData(dataset_path,224,'train')
-test_data=GetData(dataset_path,224,'test')
-client_train_dataloader={}
-client_test_dataloader={}
-user_train_idx={}
-user_test_idx={}
-user_train_idx=self_iid(train_data,clients_num)
-user_test_idx=self_iid(test_data,clients_num)
-for i in range(clients_num):
-    client_train_dataloader[i]=LocalUpdate(train_data,user_train_idx[i],train_batch_size).return_data(shuffle=True)
-    client_test_dataloader[i]=LocalUpdate(test_data,user_test_idx[i],test_batch_size).return_data(shuffle=False)
-    
-#选择不同的随机用户进行训练
-#client_each_epoch=random.sample(1,clients_num/10)
-gNB_model=model
-
-gNB_test_dataloader=DataLoader(test_data,batch_size=test_batch_size, shuffle=False,pin_memory=True,num_workers=24)
 # pruned_arr = list()
 every_client_loss=[]
 client_ids = []
@@ -164,6 +165,8 @@ for fl in range(fl_epochs):
 
         optimizer=torch.optim.Adam(model_to_train.parameters(),lr=learning_rate)
         lr_schdeule = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs//8, eta_min=0)
+        loss_fn=nn.CrossEntropyLoss()
+
         temp_loss = []
         # for epoch in range(num_epochs):# 每个用户训练num_epochs次
         for epoch in tqdm(range(num_epochs), desc=f"Training client {client}", unit="epoch"):
