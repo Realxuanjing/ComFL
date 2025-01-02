@@ -1,4 +1,7 @@
 from collections import defaultdict
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -24,9 +27,12 @@ from model import VGGnet,SimpleCNN,ComplexCNN
 import matplotlib.pyplot as plt
 
 
+
 # ---------------------设置自定义文件---------------------
-model_name = 'VGG_12_UE'
-logging.basicConfig(filename=f'UETrain_{model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
+model_name = 'VGG_12_FL'
+if not os.path.exists(f'output/{model_name}'):
+    os.makedirs(f'output/{model_name}')
+logging.basicConfig(filename=f'output/{model_name}/{model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
 save_path = Path('/home/data1/xxx/dataset/COMFL')
 models_dir= save_path / 'models_{}'.format(model_name)
 dataset_path = save_path / 'datasets'/'PetImages'
@@ -36,10 +42,12 @@ model=VGGnet(num_classes=10)
 
 learning_rate=0.001 #设置学习率
 num_epochs=64   #本地训练次数
+Tweak_time = 20
+
 train_batch_size=64
 test_batch_size=64
-fl_epochs=3 #联邦学习次数
-clients_num=5
+fl_epochs=50 #联邦学习次数
+clients_num=10
 
 # -----------------------------------------------------
 
@@ -50,6 +58,7 @@ seed_everything()
 logging.info(f"Model: {model_name}")
 logging.info(f"Learning rate: {learning_rate}")
 logging.info(f"Number of epochs: {num_epochs}")
+logging.info(f"Tweak time: {Tweak_time}")
 logging.info(f"Train batch size: {train_batch_size}")
 logging.info(f"Test batch size: {test_batch_size}")
 logging.info(f"Federated learning epochs: {fl_epochs}")
@@ -107,7 +116,7 @@ client_ids = []
 for fl in range(fl_epochs):
     # pruned_arr = []
     #设置联邦学习次数：
-    selected_clients=random.sample(range(0,clients_num),min(3, clients_num))
+    selected_clients=random.sample(range(0,clients_num),min(5, clients_num))
     for client in selected_clients: #每轮设置随机5个用户进行训练
         #每次最多设置10个用户进行训练
         # if fl==0:
@@ -126,7 +135,7 @@ for fl in range(fl_epochs):
         else:
             model_path=models_dir / f'fl{fl-1}gNB.pth'
             model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
-            print("加载GNB下发模型",model_path)
+            # print("加载GNB下发模型",model_path)
             #r如果需要剪枝，可以放在这里
         print(f"Client {client} model loaded successfully,prepare to train.")
         # pruned_model=gNB_model
@@ -164,7 +173,6 @@ for fl in range(fl_epochs):
 
 
         # ------------------------------------------
-        Tweak_time = 20
         for param in model_to_train.parameters():
             param.requires_grad = False
         for name, param in model_to_train.named_parameters():
@@ -185,7 +193,7 @@ for fl in range(fl_epochs):
                 loss.backward()
                 optimizer.step()
                 loss_sum += loss.item()
-            logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch, i, client, loss_sum / total_step))
+            # logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch, i, client, loss_sum / total_step))
         # ------------------------------------------
         logging.info("Tweak done")
         # logging.info(model_to_train.state_dict())
@@ -203,7 +211,7 @@ for fl in range(fl_epochs):
         # optimizer_state = optimizer.state_dict()  # 保存优化器状态
         # optimizer = torch.optim.Adam(model_to_train.parameters(), lr=learning_rate)
         # optimizer.load_state_dict(optimizer_state)  # 恢复优化器状态
-        lr_schdeule = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs//8, eta_min=0)
+        # lr_schdeule = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs//8, eta_min=0)
         loss_fn=nn.CrossEntropyLoss()
 
         temp_loss = []
@@ -227,13 +235,13 @@ for fl in range(fl_epochs):
                 #进行优化
                 loss.backward()
                 optimizer.step()
-                lr_schdeule.step()
+                # lr_schdeule.step()
                 loss_sum+=loss.item()
 
                 #print("running Epoch:{}, client_idx:{}, client_round:{},loss is {}".format(epoch,client,i,loss.item()))
                 # print("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
                 # logging.info("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
-            logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch+Tweak_time,i,client,loss_sum/total_step))
+            # logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch+Tweak_time,i,client,loss_sum/total_step))
             # logging.info(model_to_train.state_dict())
 
         every_client_loss.append(temp_loss)
@@ -284,7 +292,7 @@ for fl in range(fl_epochs):
         # print('test update_gNB_model',temp_model==updated_gNB_model_state_dict)
         client_models.append(updated_gNB_model_state_dict)
     print("get all clients models ready")
-    logging.info("get all clients models ready")
+    # logging.info("get all clients models ready")
 
     merged_model=copy.deepcopy(gNB_model)
     sum_module=FedAvg(client_models)
@@ -335,7 +343,7 @@ for fl in range(fl_epochs):
     # print("Fl Module prunning")
 
 
-picture_dir = 'picture'
+picture_dir = f'output/{model_name}'
 if not os.path.exists(picture_dir):
     os.makedirs(picture_dir)
 
@@ -355,3 +363,5 @@ for i, (client_id, losses) in enumerate(client_loss_dict.items()):
     plt.legend()
     plt.savefig(os.path.join(picture_dir, f'client_{client_id}_loss.png'))
     plt.close()
+
+logging.info("Training loss is %s", client_loss_dict)

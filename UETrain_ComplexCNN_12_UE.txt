@@ -1,0 +1,124 @@
+2025-01-02 15:55:52 - Model: ComplexCNN_12_UE
+2025-01-02 15:55:52 - Learning rate: 0.001
+2025-01-02 15:55:52 - Number of epochs: 8
+2025-01-02 15:55:52 - Train batch size: 64
+2025-01-02 15:55:52 - Test batch size: 64
+2025-01-02 15:55:52 - Federated learning epochs: 3
+2025-01-02 15:55:52 - Number of clients: 5
+2025-01-02 15:55:56 - Before train, fl0Client2 gNB_test Accuracy  10.0 %
+2025-01-02 15:55:57 - Before train, fl0Client2 client_test Accuracy  9.8 %
+2025-01-02 15:55:59 - running Epoch:0, fl156Client2,avg_loss is 1.7076957719341206
+2025-01-02 15:56:01 - running Epoch:1, fl156Client2,avg_loss is 1.317084947968744
+2025-01-02 15:56:03 - running Epoch:2, fl156Client2,avg_loss is 1.0762844423579563
+2025-01-02 15:56:05 - running Epoch:3, fl156Client2,avg_loss is 0.9108408203550206
+2025-01-02 15:56:07 - running Epoch:4, fl156Client2,avg_loss is 0.7811812025726221
+2025-01-02 15:56:09 - running Epoch:5, fl156Client2,avg_loss is 0.6282441921674522
+2025-01-02 15:56:12 - running Epoch:6, fl156Client2,avg_loss is 0.5152112110784859
+2025-01-02 15:56:14 - running Epoch:7, fl156Client2,avg_loss is 0.40602295432880425
+2025-01-02 15:56:15 - After train, fl0Client2 gNB_test Accuracy  68.32000000000001 %
+2025-01-02 15:56:16 - After train, fl0Client2 Test Accuracy  67.75 %
+2025-01-02 15:56:17 - Before train, fl0Client0 gNB_test Accuracy  10.0 %
+2025-01-02 15:56:17 - Before train, fl0Client0 client_test Accuracy  9.0 %
+2025-01-02 15:56:20 - running Epoch:0, fl156Client0,avg_loss is 1.6743397682335726
+2025-01-02 15:56:22 - running Epoch:1, fl156Client0,avg_loss is 1.2886181568643849
+2025-01-02 15:56:24 - running Epoch:2, fl156Client0,avg_loss is 1.0938569641417
+2025-01-02 15:56:26 - running Epoch:3, fl156Client0,avg_loss is 0.9167454527441863
+2025-01-02 15:56:29 - running Epoch:4, fl156Client0,avg_loss is 0.774264137836019
+2025-01-02 15:56:30 - running Epoch:5, fl156Client0,avg_loss is 0.6546799410015914
+2025-01-02 15:56:32 - running Epoch:6, fl156Client0,avg_loss is 0.5247452521969558
+2025-01-02 15:56:35 - running Epoch:7, fl156Client0,avg_loss is 0.4419190429957809
+2025-01-02 15:56:36 - After train, fl0Client0 gNB_test Accuracy  66.9 %
+2025-01-02 15:56:36 - After train, fl0Client0 Test Accuracy  66.95 %
+2025-01-02 15:56:38 - Before train, fl0Client4 gNB_test Accuracy  10.0 %
+2025-01-02 15:56:38 - Before train, fl0Client4 client_test Accuracy  10.549999999999999 %
+2025-01-02 15:56:41 - running Epoch:0, fl156Client4,avg_loss is 1.6735189409013007
+2025-01-02 15:56:43 - running Epoch:1, fl156Client4,avg_loss is 1.2988371184677074
+2025-01-02 15:56:45 - running Epoch:2, fl156Client4,avg_loss is 1.0784735189881294
+2025-01-02 15:56:47 - running Epoch:3, fl156Client4,avg_loss is 0.9345098175820271
+2025-01-02 15:56:50 - running Epoch:4, fl156Client4,avg_loss is 0.7625644087411796
+2025-01-02 15:56:52 - running Epoch:5, fl156Client4,avg_loss is 0.654091820405547
+2025-01-02 15:56:54 - running Epoch:6, fl156Client4,avg_loss is 0.5295816591590833
+2025-01-02 15:56:56 - running Epoch:7, fl156Client4,avg_loss is 0.4303838231476249
+2025-01-02 15:56:57 - After train, fl0Client4 gNB_test Accuracy  65.45 %
+2025-01-02 15:56:58 - After train, fl0Client4 Test Accuracy  65.55 %
+2025-01-02 15:56:59 - get all clients models ready
+2025-01-02 15:56:59 - model prunning done
+2025-01-02 15:57:00 - -----fl0merged_model Test Accuracy  13.73 %-----
+2025-01-02 15:57:01 - Before train, fl1Client3 gNB_test Accuracy  13.73 %
+2025-01-02 15:57:02 - Before train, fl1Client3 client_test Accuracy  13.8 %
+2025-01-02 15:57:04 - running Epoch:0, fl156Client3,avg_loss is 1.0393608451648881
+2025-01-02 15:57:06 - running Epoch:1, fl156Client3,avg_loss is 0.7836828856331528
+2025-01-02 15:57:08 - running Epoch:2, fl156Client3,avg_loss is 0.623131756000458
+2025-01-02 15:57:11 - running Epoch:3, fl156Client3,avg_loss is 0.4833357149058846
+2025-01-02 15:57:13 - running Epoch:4, fl156Client3,avg_loss is 0.36704090455914756
+2025-01-02 15:57:15 - running Epoch:5, fl156Client3,avg_loss is 0.300197052063456
+2025-01-02 15:57:18 - running Epoch:6, fl156Client3,avg_loss is 0.21954220476423858
+2025-01-02 15:57:20 - running Epoch:7, fl156Client3,avg_loss is 0.18881603834592992
+2025-01-02 15:57:21 - After train, fl1Client3 gNB_test Accuracy  68.78999999999999 %
+2025-01-02 15:57:22 - After train, fl1Client3 Test Accuracy  68.95 %
+2025-01-02 15:57:23 - Before train, fl1Client1 gNB_test Accuracy  13.73 %
+2025-01-02 15:57:24 - Before train, fl1Client1 client_test Accuracy  13.700000000000001 %
+2025-01-02 15:57:26 - running Epoch:0, fl156Client1,avg_loss is 1.0425962513419473
+2025-01-02 15:57:28 - running Epoch:1, fl156Client1,avg_loss is 0.7687913653956857
+2025-01-02 15:57:31 - running Epoch:2, fl156Client1,avg_loss is 0.602763439629488
+2025-01-02 15:57:33 - running Epoch:3, fl156Client1,avg_loss is 0.46123447141070273
+2025-01-02 15:57:35 - running Epoch:4, fl156Client1,avg_loss is 0.3547394200684918
+2025-01-02 15:57:37 - running Epoch:5, fl156Client1,avg_loss is 0.3085557029695268
+2025-01-02 15:57:40 - running Epoch:6, fl156Client1,avg_loss is 0.2218646196185783
+2025-01-02 15:57:42 - running Epoch:7, fl156Client1,avg_loss is 0.16746372969192305
+2025-01-02 15:57:43 - After train, fl1Client1 gNB_test Accuracy  65.0 %
+2025-01-02 15:57:43 - After train, fl1Client1 Test Accuracy  63.7 %
+2025-01-02 15:57:45 - Before train, fl1Client4 gNB_test Accuracy  13.73 %
+2025-01-02 15:57:46 - Before train, fl1Client4 client_test Accuracy  13.100000000000001 %
+2025-01-02 15:57:48 - running Epoch:0, fl156Client4,avg_loss is 0.9369867525662586
+2025-01-02 15:57:50 - running Epoch:1, fl156Client4,avg_loss is 0.6563629215689981
+2025-01-02 15:57:52 - running Epoch:2, fl156Client4,avg_loss is 0.4934900958257116
+2025-01-02 15:57:55 - running Epoch:3, fl156Client4,avg_loss is 0.37271574357892295
+2025-01-02 15:57:57 - running Epoch:4, fl156Client4,avg_loss is 0.28284302109460924
+2025-01-02 15:57:59 - running Epoch:5, fl156Client4,avg_loss is 0.21850913573222555
+2025-01-02 15:58:01 - running Epoch:6, fl156Client4,avg_loss is 0.18433641768090284
+2025-01-02 15:58:04 - running Epoch:7, fl156Client4,avg_loss is 0.1306540334632822
+2025-01-02 15:58:05 - After train, fl1Client4 gNB_test Accuracy  67.64 %
+2025-01-02 15:58:05 - After train, fl1Client4 Test Accuracy  67.85 %
+2025-01-02 15:58:06 - get all clients models ready
+2025-01-02 15:58:06 - model prunning done
+2025-01-02 15:58:07 - -----fl1merged_model Test Accuracy  75.62 %-----
+2025-01-02 15:58:08 - Before train, fl2Client2 gNB_test Accuracy  75.62 %
+2025-01-02 15:58:09 - Before train, fl2Client2 client_test Accuracy  75.55 %
+2025-01-02 15:58:11 - running Epoch:0, fl156Client2,avg_loss is 0.7372943178103988
+2025-01-02 15:58:13 - running Epoch:1, fl156Client2,avg_loss is 0.4942922413728799
+2025-01-02 15:58:15 - running Epoch:2, fl156Client2,avg_loss is 0.3498234661995985
+2025-01-02 15:58:18 - running Epoch:3, fl156Client2,avg_loss is 0.2675177422678395
+2025-01-02 15:58:20 - running Epoch:4, fl156Client2,avg_loss is 0.18788928671437463
+2025-01-02 15:58:22 - running Epoch:5, fl156Client2,avg_loss is 0.15269005435050292
+2025-01-02 15:58:25 - running Epoch:6, fl156Client2,avg_loss is 0.14770326475096737
+2025-01-02 15:58:27 - running Epoch:7, fl156Client2,avg_loss is 0.10406914346252277
+2025-01-02 15:58:28 - After train, fl2Client2 gNB_test Accuracy  75.2 %
+2025-01-02 15:58:29 - After train, fl2Client2 Test Accuracy  75.14999999999999 %
+2025-01-02 15:58:30 - Before train, fl2Client0 gNB_test Accuracy  75.62 %
+2025-01-02 15:58:31 - Before train, fl2Client0 client_test Accuracy  75.25 %
+2025-01-02 15:58:33 - running Epoch:0, fl156Client0,avg_loss is 0.7635621587941601
+2025-01-02 15:58:35 - running Epoch:1, fl156Client0,avg_loss is 0.5219971930525106
+2025-01-02 15:58:38 - running Epoch:2, fl156Client0,avg_loss is 0.38780424245603523
+2025-01-02 15:58:40 - running Epoch:3, fl156Client0,avg_loss is 0.2806997571591359
+2025-01-02 15:58:42 - running Epoch:4, fl156Client0,avg_loss is 0.20031317107521804
+2025-01-02 15:58:44 - running Epoch:5, fl156Client0,avg_loss is 0.1588825713368548
+2025-01-02 15:58:47 - running Epoch:6, fl156Client0,avg_loss is 0.10251022068558226
+2025-01-02 15:58:49 - running Epoch:7, fl156Client0,avg_loss is 0.10783977156421941
+2025-01-02 15:58:50 - After train, fl2Client0 gNB_test Accuracy  74.55000000000001 %
+2025-01-02 15:58:51 - After train, fl2Client0 Test Accuracy  75.4 %
+2025-01-02 15:58:52 - Before train, fl2Client1 gNB_test Accuracy  75.62 %
+2025-01-02 15:58:53 - Before train, fl2Client1 client_test Accuracy  75.7 %
+2025-01-02 15:58:55 - running Epoch:0, fl156Client1,avg_loss is 0.5387094178397185
+2025-01-02 15:58:57 - running Epoch:1, fl156Client1,avg_loss is 0.3159716832599822
+2025-01-02 15:59:00 - running Epoch:2, fl156Client1,avg_loss is 0.23396026774956163
+2025-01-02 15:59:02 - running Epoch:3, fl156Client1,avg_loss is 0.16854122900374377
+2025-01-02 15:59:04 - running Epoch:4, fl156Client1,avg_loss is 0.14540451374735422
+2025-01-02 15:59:06 - running Epoch:5, fl156Client1,avg_loss is 0.1291204228000656
+2025-01-02 15:59:08 - running Epoch:6, fl156Client1,avg_loss is 0.09864380949764115
+2025-01-02 15:59:10 - running Epoch:7, fl156Client1,avg_loss is 0.09238674895019289
+2025-01-02 15:59:12 - After train, fl2Client1 gNB_test Accuracy  68.57 %
+2025-01-02 15:59:12 - After train, fl2Client1 Test Accuracy  69.85 %
+2025-01-02 15:59:12 - get all clients models ready
+2025-01-02 15:59:12 - model prunning done
+2025-01-02 15:59:14 - -----fl2merged_model Test Accuracy  79.66 %-----

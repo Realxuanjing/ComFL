@@ -42,3 +42,17 @@ def FedAvg(w):
             w_avg[k] += w[i][k]
         w_avg[k] = torch.div(w_avg[k], len(w))
     return w_avg
+
+
+
+def FedPer_merge_models(gnb_model_dict, local_model_dict):
+    gnb_state_dict = copy.deepcopy(gnb_model_dict)
+    local_state_dict = copy.deepcopy(local_model_dict)
+    result = copy.deepcopy(gnb_state_dict)
+    for param_name, param_value in gnb_state_dict.items():
+        if "classifier" in param_name:  
+            result[param_name] = local_state_dict[param_name] 
+        else:
+            result[param_name] = param_value  
+    
+    return result

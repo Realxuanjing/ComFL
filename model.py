@@ -11,19 +11,19 @@ class VGGnet(nn.Module):
         self.features = model.features
         set_parameter_requires_grad(self.features, feature_extract)#固定特征提取层参数
         #自适应输出宽高尺寸为7×7
-        self.avgpool=model.avgpool
+        self.avgpool=nn.AdaptiveAvgPool2d((2, 2))
         self.classifier = nn.Sequential(
-            nn.Linear(512*7*7 , 1024),
+            nn.Linear(512*2*2 , 1024),
             nn.ReLU(),
-            nn.Linear(1024, 1024),
+            nn.Linear(1024, 512),
             nn.ReLU(),
-            nn.Linear(1024, num_classes)
+            nn.Linear(512, num_classes)
         )
         
     def forward(self, x):
         x = self.features(x)
         x = self.avgpool(x)
-        x = x.view(x.size(0), 512*7*7)
+        x = x.view(x.size(0), -1)
         out=self.classifier(x)
         return out
     
@@ -37,7 +37,8 @@ class SimpleCNN(nn.Module):
 
         self.pool = nn.MaxPool2d(kernel_size=2, stride=2, padding=0)
 
-        self.fc1 = nn.Linear(256 * 28 * 28, 1024)  
+        # self.fc1 = nn.Linear(256 * 28 * 28, 1024) 
+        self.fc1 = nn.Linear(256 * 4 * 4, 1024) 
         self.fc2 = nn.Linear(1024, num_classes)     
         
     def forward(self, x):
@@ -45,7 +46,8 @@ class SimpleCNN(nn.Module):
         x = self.pool(F.relu(self.conv2(x)))  
         x = self.pool(F.relu(self.conv3(x)))  
         
-        x = x.view(-1, 256 * 28 * 28)
+        # x = x.view(-1, 256 * 28 * 28)
+        x = x.view(-1, 256 * 4 * 4)
         
         x = F.relu(self.fc1(x))
         x = self.fc2(x)  
@@ -76,9 +78,13 @@ class ComplexCNN(nn.Module):
         self.dropout = nn.Dropout(p=0.2)  
         
         
-        self.fc1 = nn.Linear(512 * 7 * 7, 4096)  
-        self.fc2 = nn.Linear(4096, 1024)         
-        self.fc3 = nn.Linear(1024, num_classes)  
+        # self.fc1 = nn.Linear(512 * 7 * 7, 4096)  
+        # self.fc2 = nn.Linear(4096, 1024)         
+        # self.fc3 = nn.Linear(1024, num_classes)  
+
+        self.fc1 = nn.Linear(512 * 1 * 1, 1024)
+        self.fc2 = nn.Linear(1024, 512)
+        self.fc3 = nn.Linear(512, num_classes)
         
     def forward(self, x):
         x = self.pool(F.relu(self.bn1(self.conv1(x))))  
@@ -87,7 +93,8 @@ class ComplexCNN(nn.Module):
         x = self.pool(F.relu(self.bn4(self.conv4(x))))  
         x = self.pool(F.relu(self.bn5(self.conv5(x))))  
         
-        x = x.view(-1, 512 * 7 * 7)  
+        # x = x.view(-1, 512 * 7 * 7)  
+        x = x.view(-1, 512 * 1 * 1)
         
         x = F.relu(self.fc1(x))
         x = self.dropout(x)  

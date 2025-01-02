@@ -72,8 +72,94 @@
 # # 打印合并后的全局模型参数
 # # print("\nUpdated gNB_model:")
 # print(gNB_model.state_dict())
-import random
-clients_num = 10
-print(range(0,clients_num))
-print(min(3, clients_num))
-print(random.sample(range(0,clients_num),min(3, clients_num)))
+# import random
+# clients_num = 10
+# print(range(0,clients_num))
+# print(min(3, clients_num))
+# print(random.sample(range(0,clients_num),min(3, clients_num)))
+
+# 安装Flower库: pip install flwr
+import flwr as fl
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, random_split, Dataset
+from torchvision import datasets, transforms
+device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+
+class SimpleNet(nn.Module):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.layer = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(28*28, 128),
+            nn.ReLU(),
+            nn.Linear(128, 10)
+        )
+
+    def forward(self, x):
+        return self.layer(x)
+
+class Client:
+    def __init__(self, train_data, test_data):
+        self.train_data = train_data
+        self.test_data = test_data
+        self.model = SimpleNet()
+
+    def train(self, epochs=1):
+        self.model.train()
+        criterion = nn.CrossEntropyLoss()
+        optimizer = optim.SGD(self.model.parameters(), lr=0.01)
+        train_loader = DataLoader(self.train_data, batch_size=32, shuffle=True)
+
+        for epoch in range(epochs):
+            for data, target in train_loader:
+                data, target = data.to(device), target.to(device)
+                optimizer.zero_grad()
+                output = self.model(data)
+                loss = criterion(output, target)
+                loss.backward()
+                optimizer.step()
+
+    def evaluate(self):
+        self.model.eval()
+        correct = 0
+        test_loader = DataLoader(self.test_data, batch_size=32)
+        with torch.no_grad():
+            for data, target in test_loader:
+                data, target = data.to(device), target.to(device)
+                output = self.model(data)
+                pred = output.argmax(dim=1, keepdim=True)
+                correct += pred.eq(target.view_as(pred)).sum().item()
+
+        accuracy = correct / len(self.test_data)
+        return accuracy
+
+def create_noniid_data(trainset, num_clients):
+    data_per_client = len(trainset) // num_clients
+    clients_data = []
+    idxs = list(range(len(trainset)))
+    for i in range(num_clients):
+        data_idxs = idxs[i * data_per_client:(i + 1) * data_per_client]
+        clients_data.append(torch.utils.data.Subset(trainset, data_idxs))
+    return clients_data
+
+transform = transforms.Compose([transforms.ToTensor()])
+trainset = datasets.CIFAR10('/home/data1/xxx/dataset/COMFL/datasets/CRF_10', train=True, download=True, transform=transform)
+testset = datasets.CIFAR10('/home/data1/xxx/dataset/COMFL/datasets/CRF_10', train=False, download=True, transform=transform)
+
+clients_data = create_noniid_data(trainset, num_clients=3)
+
+clients = [Client(clients_data[i], testset) for i in range(3)]
+
+def client_fn(cid: str):
+    return clients[int(cid)]
+
+strategy = fl.server.strategy.FedAvg()
+
+fl.server.start_server(config={"num_rounds": 5}, strategy=strategy, client_manager=fl.server.SimpleClientManager())
+
+for i in range(3):
+    fl.client.start_numpy_client(client_fn=str(i))
+
+print("Done!")

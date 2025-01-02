@@ -25,17 +25,17 @@ import matplotlib.pyplot as plt
 
 
 # ---------------------设置自定义文件---------------------
-model_name = 'VGG_12_UE'
+model_name = 'VGG_12_UE_copy'
 logging.basicConfig(filename=f'UETrain_{model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
 save_path = Path('/home/data1/xxx/dataset/COMFL')
 models_dir= save_path / 'models_{}'.format(model_name)
 dataset_path = save_path / 'datasets'/'PetImages'
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model=VGGnet(num_classes=10)
 
 
 learning_rate=0.001 #设置学习率
-num_epochs=64   #本地训练次数
+num_epochs=8   #本地训练次数
 train_batch_size=64
 test_batch_size=64
 fl_epochs=3 #联邦学习次数
@@ -163,52 +163,13 @@ for fl in range(fl_epochs):
         logging.info('Before train, fl{}Client{} client_test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
 
 
-        # ------------------------------------------
-        Tweak_time = 20
-        for param in model_to_train.parameters():
-            param.requires_grad = False
-        for name, param in model_to_train.named_parameters():
-            if 'classifier' in name:
-                param.requires_grad = True
-        optimizer=torch.optim.Adam(model_to_train.parameters(),lr=1e-4)
-        loss_fn = nn.CrossEntropyLoss()
-        for epoch in tqdm(range(Tweak_time), desc=f"Tweak client {client}", unit="epoch"):
-            total_step = len(client_train_dataloader[client])
-            loss_sum = 0
-            model_to_train.train()
-            for i, (img, label) in enumerate(client_train_dataloader[client]):
-                optimizer.zero_grad()
-                img = img.to(device)
-                label = label.to(device)
-                output = model_to_train(img)
-                loss = loss_fn(output, label)
-                loss.backward()
-                optimizer.step()
-                loss_sum += loss.item()
-            logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch, i, client, loss_sum / total_step))
-        # ------------------------------------------
-        logging.info("Tweak done")
-        # logging.info(model_to_train.state_dict())
-        # print(model_to_train.state_dict())
-        model_temp_dict = copy.deepcopy(model_to_train.state_dict())
-
-        # model_to_train.load_state_dict(model_temp_dict)
-        for param in model_to_train.parameters():
-            param.requires_grad = True
-        # for name, param in model_to_train.named_parameters():
-        #     if 'fc' in name:
-        #         param.requires_grad = False
-
         optimizer=torch.optim.Adam(model_to_train.parameters(),lr=learning_rate)
-        # optimizer_state = optimizer.state_dict()  # 保存优化器状态
-        # optimizer = torch.optim.Adam(model_to_train.parameters(), lr=learning_rate)
-        # optimizer.load_state_dict(optimizer_state)  # 恢复优化器状态
         lr_schdeule = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs//8, eta_min=0)
         loss_fn=nn.CrossEntropyLoss()
 
         temp_loss = []
         # for epoch in range(num_epochs):# 每个用户训练num_epochs次
-        for epoch in tqdm(range(num_epochs-Tweak_time), desc=f"Training client {client}", unit="epoch"):
+        for epoch in tqdm(range(num_epochs), desc=f"Training client {client}", unit="epoch"):
             total_step=len(client_train_dataloader[client])
             loss_sum=0
             model_to_train.train()
@@ -233,9 +194,7 @@ for fl in range(fl_epochs):
                 #print("running Epoch:{}, client_idx:{}, client_round:{},loss is {}".format(epoch,client,i,loss.item()))
                 # print("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
                 # logging.info("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
-            logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch+Tweak_time,i,client,loss_sum/total_step))
-            # logging.info(model_to_train.state_dict())
-
+            logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch,i,client,loss_sum/total_step))
         every_client_loss.append(temp_loss)
         client_ids.append(client)
         

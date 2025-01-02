@@ -178,88 +178,76 @@ class CRF_10():
         user_test_subset = torch.utils.data.random_split(testset, [total_test_size // n_users] * n_users)
 
         for i in range(n_users):
-            user_trainloaders.append(DataLoader(user_train_subset[i], batch_size=self.batch_size, shuffle=True, num_workers=24))
-            user_testloaders.append(DataLoader(user_test_subset[i], batch_size=self.batch_size, shuffle=False, num_workers=24))
-
-        return user_trainloaders, user_testloaders
-
-    def split_quality_data(self, n_users, quality_split=0.5):
-        """
-        将训练集和测试集划分为质量较高和质量较差的子集，并为每个用户创建 DataLoader。
-
-        参数：
-        - n_users: 用户数
-        - quality_split: 质量划分的比例，默认为 0.5，表示50%的数据质量较差
-
-        返回：
-        - user_trainloaders: 包含 n 个训练集子数据集的 DataLoader 列表
-        - user_testloaders: 包含 n 个测试集子数据集的 DataLoader 列表
-        """
-        total_train_size = len(self.trainset)
-        total_test_size = len(self.testset)
-
-        # 使用 random_split 划分训练集和测试集
-        train_subset, _ = random_split(self.trainset, [total_train_size, 0])
-        test_subset, _ = random_split(self.testset, [total_test_size, 0])
-
-        # 低质量变换
-        low_quality_transform = LowQualityTransform(noise_prob=0.5, blur_prob=0.5)
-        low_quality_trainset = [(low_quality_transform(img), label) for img, label in train_subset]
-        low_quality_testset = [(low_quality_transform(img), label) for img, label in test_subset]
-
-        # 高质量变换
-        high_quality_transform = HighQualityTransform()
-        high_quality_trainset = [(high_quality_transform(img), label) for img, label in train_subset]
-        high_quality_testset = [(high_quality_transform(img), label) for img, label in test_subset]
-
-        # 根据 quality_split 划分数据
-        quality_threshold_train = int(quality_split * len(train_subset))
-        quality_threshold_test = int(quality_split * len(test_subset))
-
-        low_quality_trainset = low_quality_trainset[:quality_threshold_train]
-        high_quality_trainset = high_quality_trainset[quality_threshold_train:]
+            user_trainloaders.append(DataLoader(user_train_subset[i], batch_size=self.batch_size, shuffle=True, num_workers=24,pin_memory=True))
+            user_testloaders.append(DataLoader(user_test_subset[i], batch_size=self.batch_size, shuffle=False, num_workers=24,pin_memory=True))
         
-        low_quality_testset = low_quality_testset[:quality_threshold_test]
-        high_quality_testset = high_quality_testset[quality_threshold_test:]
+        return user_trainloaders, user_testloaders
 
-        # 划分为 n_users 个子数据集
-        user_trainloaders = []
-        user_testloaders = []
+    def split_quality_data(self, n_users, percent_low_quality=0.5):
+        m_per_user = n_users * percent_low_quality
+        user_trainloaders, user_testloaders = self.split_data(n_users)
+        # 前 m_per_user 个loader为低质量数据，后面的为高质量数据
+        # 使用之前定义的 split_data 函数获取训练和测试的 DataLoader
+        user_trainloaders, user_testloaders = self.split_data(n_users)
 
-        # 将低质量和高质量数据转换为 TensorDataset
-        low_quality_train_images = [transforms.ToTensor()(img) for img, _ in low_quality_trainset]
-        low_quality_train_labels = [label for _, label in low_quality_trainset]
-        high_quality_train_images = [transforms.ToTensor()(img) for img, _ in high_quality_trainset]
-        high_quality_train_labels = [label for _, label in high_quality_trainset]
+        # 计算每个用户低质量数据的数量
+        m_per_user = int(n_users * percent_low_quality)
+        print(f"Number of users with low-quality data: {m_per_user}")
+        # 创建低质量数据转换（假设已有 LowQualityTransform 定义）
+        low_quality_transform = LowQualityTransform(noise_factor=25, blur_radius=2)
+        high_quality_transform = HighQualityTransform()  # 高质量数据转换（原样）
 
-        low_quality_trainset_tensor = TensorDataset(torch.stack(low_quality_train_images), torch.tensor(low_quality_train_labels))
-        high_quality_trainset_tensor = TensorDataset(torch.stack(high_quality_train_images), torch.tensor(high_quality_train_labels))
-
-        # 为低质量和高质量数据创建 DataLoader
-        user_trainloaders.append(DataLoader(low_quality_trainset_tensor, batch_size=self.batch_size, shuffle=True, num_workers=24))
-        user_trainloaders.append(DataLoader(high_quality_trainset_tensor, batch_size=self.batch_size, shuffle=True, num_workers=24))
-
-        low_quality_test_images = [transforms.ToTensor()(img) for img, _ in low_quality_testset]
-        low_quality_test_labels = [label for _, label in low_quality_testset]
-        high_quality_test_images = [transforms.ToTensor()(img) for img, _ in high_quality_testset]
-        high_quality_test_labels = [label for _, label in high_quality_testset]
-
-        low_quality_testset_tensor = TensorDataset(torch.stack(low_quality_test_images), torch.tensor(low_quality_test_labels))
-        high_quality_testset_tensor = TensorDataset(torch.stack(high_quality_test_images), torch.tensor(high_quality_test_labels))
-
-        # 为低质量和高质量测试数据创建 DataLoader
-        user_testloaders.append(DataLoader(low_quality_testset_tensor, batch_size=self.batch_size, shuffle=False, num_workers=24))
-        user_testloaders.append(DataLoader(high_quality_testset_tensor, batch_size=self.batch_size, shuffle=False, num_workers=24))
-
+        # 处理每个用户的训练数据
+        # 处理每个用户的训练数据
         for i in range(n_users):
-            print(f"User {i + 1}: Low Quality Data: {len(low_quality_trainset) // n_users} samples, High Quality Data: {len(high_quality_trainset) // n_users} samples")
-            self.logger.info(f"User {i + 1}: Low Quality Data: {len(low_quality_trainset) // n_users} samples, High Quality Data: {len(high_quality_trainset) // n_users} samples")
+            # 获取每个用户的训练集
+            train_loader = user_trainloaders[i]
+            processed_train_images = []
+            processed_train_labels = []
 
-        # 打印用户拥有的类别
-        user_labels_train = set([label for _, label in low_quality_trainset[i]] + [label for _, label in high_quality_trainset[i]])
-        print(f"  - Categories: {sorted(user_labels_train)}")
+            # 遍历每个batch的数据
+            for batch_images, batch_labels in train_loader:
+                # 对batch中的每个图像逐个应用转换
+                for img, label in zip(batch_images, batch_labels):
+                    # 如果是低质量数据，应用低质量转换
+                    if i < m_per_user:
+                        img = low_quality_transform(img)
+                    else:
+                        img = high_quality_transform(img)
+                    
+                    processed_train_images.append(img)
+                    processed_train_labels.append(label)
+
+            # 创建新的 DataLoader
+            processed_train_data = list(zip(processed_train_images, processed_train_labels))
+            user_trainloaders[i] = DataLoader(processed_train_data, batch_size=self.batch_size, shuffle=True, num_workers=24)
+
+        # 处理每个用户的测试数据
+        for i in range(n_users):
+            # 获取每个用户的测试集
+            test_loader = user_testloaders[i]
+            processed_test_images = []
+            processed_test_labels = []
+
+            # 遍历每个batch的数据
+            for batch_images, batch_labels in test_loader:
+                # 对batch中的每个图像逐个应用转换
+                for img, label in zip(batch_images, batch_labels):
+                    # 如果是低质量数据，应用低质量转换
+                    if i < m_per_user:
+                        img = low_quality_transform(img)
+                    else:
+                        img = high_quality_transform(img)
+                    
+                    processed_test_images.append(img)
+                    processed_test_labels.append(label)
+
+            # 创建新的 DataLoader
+            processed_test_data = list(zip(processed_test_images, processed_test_labels))
+            user_testloaders[i] = DataLoader(processed_test_data, batch_size=self.batch_size, shuffle=False, num_workers=24)
 
         return user_trainloaders, user_testloaders
+
 
     def non_iid_partition(self, dataset, n_users, n_classes=10):
         """
@@ -314,5 +302,16 @@ class CRF_10():
         user_testloaders = [DataLoader(Subset(testset, user_test_data[i]), batch_size=32, shuffle=False) for i in range(n_users)]
         
         return user_trainloaders, user_testloaders
+    
+
+    def img_to_tensor(self, img):
+        # 如果 img 已经是 Tensor，则直接返回
+        if isinstance(img, torch.Tensor):
+            return img
+        # 如果 img 是 PIL 图像或 ndarray，则转换为 Tensor
+        elif isinstance(img, (np.ndarray, Image.Image)):
+            return transforms.ToTensor()(img)
+        else:
+            raise TypeError(f"Unsupported image type: {type(img)}")
 
     
