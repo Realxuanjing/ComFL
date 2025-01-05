@@ -32,14 +32,14 @@ import matplotlib.pyplot as plt
 
 
 # ---------------------设置自定义文件---------------------
-model_name = 'VGG_12_FedPer'
-if not os.path.exists(f'output/{model_name}'):
-    os.makedirs(f'output/{model_name}')
-logging.basicConfig(filename=f'output/{model_name}/{model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
+top_model_name = 'VGG_12_FedPer'
+if not os.path.exists(f'output/{top_model_name}'):
+    os.makedirs(f'output/{top_model_name}')
+logging.basicConfig(filename=f'output/{top_model_name}/{top_model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
 save_path = Path('/home/data1/xxx/dataset/COMFL')
-models_dir= save_path / 'models_{}'.format(model_name)
+models_dir= save_path / 'models_{}'.format(top_model_name)
 dataset_path = save_path / 'datasets'/'PetImages'
-device = torch.device('cuda:1' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 model=VGGnet(num_classes=10)
 
 
@@ -52,12 +52,14 @@ fl_epochs=50 #联邦学习次数
 clients_num=10
 
 # -----------------------------------------------------
-
+gnb_acc = []
+average_acc = []
+temp_average_acc = 0
 seed_everything()
 # "/home/data1/xxx/dataset/COMFL/datasets/PetImages/"
 
 # model=VGGnet().to(device)
-logging.info(f"Model: {model_name}")
+logging.info(f"Model: {top_model_name}")
 logging.info(f"Learning rate: {learning_rate}")
 logging.info(f"Number of epochs: {num_epochs}")
 # logging.info(f"Tweak time: {Tweak_time}")
@@ -121,6 +123,7 @@ for fl in range(fl_epochs):
     # pruned_arr = []
     #设置联邦学习次数：
     selected_clients=random.sample(range(0,clients_num),min(5, clients_num))
+    temp_average_acc = 0
     for client in selected_clients: #每轮设置随机5个用户进行训练
         #每次最多设置10个用户进行训练
         # if fl==0:
@@ -285,6 +288,8 @@ for fl in range(fl_epochs):
         logging.info('After train, fl{}Client{} Test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
         model_name="fl{}client{}.pth".format(fl,client)
         torch.save(obj = model_to_train.state_dict(), f=models_dir / f'model{client}' / model_name)
+        temp_average_acc += 100 * (correct / total)
+    average_acc.append(temp_average_acc / len(selected_clients))
     
     last_model_path=models_dir / f'fl{fl-1}gNB.pth'
     client_models=[]
@@ -329,6 +334,7 @@ for fl in range(fl_epochs):
             gNB_correct+=(predicted==labels).sum().item()
     print('-----fl{}merged_model Test Accuracy  {} %-----'.format(fl,100*(gNB_correct/gNB_total)))
     logging.info('-----fl{}merged_model Test Accuracy  {} %-----'.format(fl, 100 * (gNB_correct / gNB_total)))
+    gnb_acc.append(100*(gNB_correct/gNB_total))
     # print("gnb correct and total",gNB_correct,gNB_total,100 * (gNB_correct / gNB_total),gNB_correct / gNB_total)
     # correct = 0
     # total = 0
@@ -350,7 +356,7 @@ for fl in range(fl_epochs):
     # print("Fl Module prunning")
 
 
-picture_dir = f'output/{model_name}'
+picture_dir = f'output/{top_model_name}'
 if not os.path.exists(picture_dir):
     os.makedirs(picture_dir)
 
@@ -371,4 +377,25 @@ for i, (client_id, losses) in enumerate(client_loss_dict.items()):
     plt.savefig(os.path.join(picture_dir, f'client_{client_id}_loss.png'))
     plt.close()
 
-logging.info("Training loss is %s", client_loss_dict)
+plt.figure()
+plt.plot(average_acc, label='Training Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.title('Training Average Accuracy per Epoch')  
+plt.legend()
+plt.savefig(os.path.join(picture_dir, 'average_loss.png'))
+plt.close()
+    
+plt.figure()
+plt.plot(gnb_acc, label='Test Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.title('Test gnb Accuracy per Epoch')
+plt.legend()
+plt.savefig(os.path.join(picture_dir, 'gnb_acc.png'))
+plt.close()
+
+logging.info('--------------------------')
+# logging.info("Training loss is %s", client_loss_dict)
+logging.info("Average accuracy is %s", average_acc)
+logging.info("Test accuracy is %s", gnb_acc)

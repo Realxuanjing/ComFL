@@ -116,7 +116,7 @@ for fl in range(fl_epochs):
     # pruned_arr = []
     #设置联邦学习次数：
     selected_clients=random.sample(range(0,clients_num),min(5, clients_num))
-    average_acc = 0
+    temp_average_acc = 0
     for client in selected_clients: #每轮设置随机5个用户进行训练
         #每次最多设置10个用户进行训练
         # if fl==0:
