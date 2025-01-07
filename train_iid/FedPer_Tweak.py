@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 
 
 # ---------------------设置自定义文件---------------------
-top_model_name = 'VGG_12_FedPer_Tweak'
+top_model_name = 'ComplexCNN_12_FedPer_Tweak'
 if not os.path.exists(f'output/{top_model_name}'):
     os.makedirs(f'output/{top_model_name}')
 logging.basicConfig(filename=f'output/{top_model_name}/{top_model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
@@ -40,15 +40,15 @@ save_path = Path('/home/data1/xxx/dataset/COMFL')
 models_dir= save_path / 'models_{}'.format(top_model_name)
 dataset_path = save_path / 'datasets'/'PetImages'
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-model=VGGnet(num_classes=10)
+model=ComplexCNN(num_classes=10)
 
 
 learning_rate=0.001 #设置学习率
-num_epochs=128   #本地训练次数
-Tweak_time = 32
+num_epochs=64   #本地训练次数
+Tweak_time = 16
 train_batch_size=64
 test_batch_size=64
-fl_epochs=50 #联邦学习次数
+fl_epochs=30 #联邦学习次数
 clients_num=10
 
 # -----------------------------------------------------

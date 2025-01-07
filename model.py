@@ -39,7 +39,12 @@ class SimpleCNN(nn.Module):
 
         # self.fc1 = nn.Linear(256 * 28 * 28, 1024) 
         self.fc1 = nn.Linear(256 * 4 * 4, 1024) 
-        self.fc2 = nn.Linear(1024, num_classes)     
+        self.fc2 = nn.Linear(1024, num_classes) 
+        self.classifier = nn.Sequential(
+            nn.Linear(256*4*4 , 1024),
+            nn.ReLU(),
+            nn.Linear(1024, num_classes)
+        )    
         
     def forward(self, x):
         x = self.pool(F.relu(self.conv1(x)))  
@@ -49,9 +54,9 @@ class SimpleCNN(nn.Module):
         # x = x.view(-1, 256 * 28 * 28)
         x = x.view(-1, 256 * 4 * 4)
         
-        x = F.relu(self.fc1(x))
-        x = self.fc2(x)  
-        
+        # x = F.relu(self.fc1(x))
+        # x = self.fc2(x)  
+        x = self.classifier(x)
         return x
 
 
@@ -81,10 +86,16 @@ class ComplexCNN(nn.Module):
         # self.fc1 = nn.Linear(512 * 7 * 7, 4096)  
         # self.fc2 = nn.Linear(4096, 1024)         
         # self.fc3 = nn.Linear(1024, num_classes)  
-
-        self.fc1 = nn.Linear(512 * 1 * 1, 1024)
-        self.fc2 = nn.Linear(1024, 512)
-        self.fc3 = nn.Linear(512, num_classes)
+        self.classifier = nn.Sequential(
+            nn.Linear(512*1*1 , 1024),
+            nn.ReLU(),
+            nn.Linear(1024, 512),
+            nn.ReLU(),
+            nn.Linear(512, num_classes)
+        )
+        # self.fc1 = nn.Linear(512 * 1 * 1, 1024)
+        # self.fc2 = nn.Linear(1024, 512)
+        # self.fc3 = nn.Linear(512, num_classes)
         
     def forward(self, x):
         x = self.pool(F.relu(self.bn1(self.conv1(x))))  
@@ -96,9 +107,10 @@ class ComplexCNN(nn.Module):
         # x = x.view(-1, 512 * 7 * 7)  
         x = x.view(-1, 512 * 1 * 1)
         
-        x = F.relu(self.fc1(x))
-        x = self.dropout(x)  
-        x = F.relu(self.fc2(x))
-        x = self.fc3(x)      
+        # x = F.relu(self.fc1(x))
+        # x = self.dropout(x)  
+        # x = F.relu(self.fc2(x))
+        # x = self.fc3(x)   
+        x=self.classifier(x)   
         
         return x
