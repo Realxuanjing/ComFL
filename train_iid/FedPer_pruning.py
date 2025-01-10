@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 
 
 # ---------------------设置自定义文件---------------------
-top_model_name = 'ComplexCNN_12_FedPer'
+top_model_name = 'ComplexCNN_19_FedPer_p'
 if not os.path.exists(f'output/{top_model_name}'):
     os.makedirs(f'output/{top_model_name}')
 logging.basicConfig(filename=f'output/{top_model_name}/{top_model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
@@ -136,6 +136,7 @@ for fl in range(fl_epochs):
         #只有第一轮联邦学习需要用户本地模型训练，其他时候都是训的聚合模型
         model_to_train=copy.deepcopy(gNB_model)
         model_to_train.to(device)
+        pruned_layers = []
         if fl==0:
             model_path = models_dir / f'model{client}' / f'model_before_training_client{client}.pth'
             model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
@@ -146,7 +147,9 @@ for fl in range(fl_epochs):
             # model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
             # print("加载GNB下发模型",model_path)
             # 如果需要剪枝，可以放在这里
-        print(f"Client {client} model loaded successfully,prepare to train.")
+            model_to_train,pruned_layers = layer_pruning(model_to_train,random.choice([0, 0.25, 0.3]))
+            model_to_train.to(device)
+        print(f"Client {client} model loaded successfully,pruned_layers is {pruned_layers}.")
         # pruned_model=gNB_model
         # torch.save(pruned_model.state_dict(),f'model/fl{fl}gNB_Prun.pth')
         # logging.info("model_to_train state_dict: %s", model_to_train.state_dict())

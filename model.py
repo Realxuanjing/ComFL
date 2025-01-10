@@ -103,9 +103,10 @@ class ComplexCNN(nn.Module):
         x = self.pool(F.relu(self.bn3(self.conv3(x))))  
         x = self.pool(F.relu(self.bn4(self.conv4(x))))  
         x = self.pool(F.relu(self.bn5(self.conv5(x))))  
-        
+        # print('x',x.shape)
         # x = x.view(-1, 512 * 7 * 7)  
-        x = x.view(-1, 512 * 1 * 1)
+        # x = x.view(-1, 512 * 1 * 1)
+        x = x.view(x.size(0), -1)
         
         # x = F.relu(self.fc1(x))
         # x = self.dropout(x)  

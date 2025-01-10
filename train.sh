@@ -1,4 +1,3 @@
 cd train_iid
-python Flavg.py
-python FedPer.py
-python FedPer_Tweak.py
+python FedPer_pruning.py
+python FedPer_Tweak_pruning.py

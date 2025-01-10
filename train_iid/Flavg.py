@@ -328,7 +328,7 @@ for i, (client_id, losses) in enumerate(client_loss_dict.items()):
     plt.close()
 
 plt.figure()
-plt.plot(average_acc, label='Training Loss')
+plt.plot(average_acc, label='Training Accuracy')
 plt.xlabel('Epoch')
 plt.ylabel('Accuracy')
 plt.title('Training Average Accuracy per Epoch')  
