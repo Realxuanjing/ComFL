@@ -82,8 +82,16 @@ def FedPer_merge_models(gnb_model_dict, local_model_dict):
     local_state_dict = copy.deepcopy(local_model_dict)
     result = copy.deepcopy(gnb_state_dict)
     for param_name, param_value in gnb_state_dict.items():
-        if "classifier" in param_name:  
-            result[param_name] = local_state_dict[param_name] 
+        if "classifier" in param_name:
+            if result[param_name].shape == local_state_dict[param_name].shape:
+                result[param_name] = local_state_dict[param_name]  
+            else:
+                temp_shape_0 = local_state_dict[param_name].shape[0]
+                temp_shape_1 = local_state_dict[param_name].shape[1]
+                # print("temp_shape", temp_shape_0,type(temp_shape_0))
+                result[param_name][:temp_shape_0,:temp_shape_1] = local_state_dict[param_name][:temp_shape_0,:temp_shape_1]
+                # result[param_name] = local_state_dict[param_name] 
+                print(f"Warning: Unexpected size for {param_name}, updating.")
         else:
             result[param_name] = param_value  
     
