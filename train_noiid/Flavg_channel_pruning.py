@@ -1,6 +1,3 @@
-# this is the implementation of the FedPer algorithm
-# the code is based on the picture provided by the authors of the paper
-# https://arxiv.org/pdf/2108.06098from collections import defaultdict
 from collections import defaultdict
 import sys
 import os
@@ -22,17 +19,16 @@ import copy
 import logging
 from tqdm import tqdm
 from pathlib import Path
-from GetDataSet import GetData,DatasetSplit,LocalUpdate,CRF_10
+from GetDataSet import GetData, DatasetSplit, LocalUpdate, CRF_10
 from utils import seed_everything, set_parameter_requires_grad, self_iid
-from Pruning import layer_pruning
-from model_merge import update_gNB_model, FedAvg, FedPer_merge_models
+from Pruning import layer_pruning,channel_pruning
+from model_merge import update_gNB_model, FedAvg
 from model import VGGnet,SimpleCNN,ComplexCNN
 import matplotlib.pyplot as plt
 
 
-
 # ---------------------设置自定义文件---------------------
-top_model_name = 'ComplexCNN_114_FedPer_p'
+top_model_name = 'ComplexCNN_114_Flavg_CP'
 if not os.path.exists(f'output/{top_model_name}'):
     os.makedirs(f'output/{top_model_name}')
 logging.basicConfig(filename=f'output/{top_model_name}/{top_model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
@@ -50,6 +46,7 @@ train_batch_size=64
 test_batch_size=64
 fl_epochs=30 #联邦学习次数
 clients_num=10
+###现在是每一个层都重新排序，需要对比一下不排序效果
 
 # -----------------------------------------------------
 gnb_acc = []
@@ -62,7 +59,6 @@ seed_everything()
 logging.info(f"Model: {top_model_name}")
 logging.info(f"Learning rate: {learning_rate}")
 logging.info(f"Number of epochs: {num_epochs}")
-# logging.info(f"Tweak time: {Tweak_time}")
 logging.info(f"Train batch size: {train_batch_size}")
 logging.info(f"Test batch size: {test_batch_size}")
 logging.info(f"Federated learning epochs: {fl_epochs}")
@@ -92,12 +88,11 @@ logging.info(f"Number of clients: {clients_num}")
 # gNB_test_dataloader=DataLoader(test_data,batch_size=test_batch_size, shuffle=False,pin_memory=True,num_workers=24)
 
 CRF_10 = CRF_10(batch_size=train_batch_size,logger=logging ,data_root='/home/data1/xxx/dataset/COMFL/datasets/CRF_10')
-client_train_dataloader, client_test_dataloader = CRF_10.split_data(clients_num)
+client_train_dataloader, client_test_dataloader = CRF_10.non_iid_partition_with_auto_ratios(clients_num)
 gNB_test_dataloader = CRF_10.getdata()[1]  #trainloader, testloader, classes
 #选择不同的随机用户进行训练
 #client_each_epoch=random.sample(1,clients_num/10)
 gNB_model=model
-
 
 #在这里设置德是用户存储模型德文件夹，每个用户一个文件夹，用来存储模型
 #大家最开始模型都是一样的VggNet.py
@@ -118,9 +113,6 @@ client_ids = []
 client_pruned_ratio = [0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3]
 client_acc = [[] for _ in range(clients_num)]
 assert len(client_pruned_ratio) == clients_num
-Per_model_new_dict = {}
-for i in range(clients_num):
-    Per_model_new_dict[i] = copy.deepcopy(gNB_model.state_dict())
 #进行模型聚合
 for fl in range(fl_epochs):
     # pruned_arr = []
@@ -140,20 +132,24 @@ for fl in range(fl_epochs):
         model_to_train=copy.deepcopy(gNB_model)
         model_to_train.to(device)
         pruned_layers = []
+        pruned_ratio = 0
         if fl==0:
             model_path = models_dir / f'model{client}' / f'model_before_training_client{client}.pth'
             model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
+            model_to_train.to(device)
         else:
             model_path=models_dir / f'fl{fl-1}gNB.pth'
-            temp_dict = FedPer_merge_models(torch.load(model_path,weights_only=True), Per_model_new_dict[client])
-            model_to_train.load_state_dict(temp_dict)
-            # model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
-            # print("加载GNB下发模型",model_path)
-            # 如果需要剪枝，可以放在这里
+            model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
             model_to_train.to(device)
-        model_to_train,pruned_layers = layer_pruning(model_to_train,client_pruned_ratio[client])
+            # print("加载GNB下发模型",model_path)
+            #r如果需要剪枝，可以放在这里
+            # model_to_train,pruned_layers = layer_pruning(model_to_train,random.uniform(0.1,0.5))
+            # model_to_train,pruned_layers = layer_pruning(model_to_train,random.choice([0, 0.25, 0.3]))
+        # pruned_ratio = random.choice([0, 0.1, 0.2])
+        pruned_ratio = client_pruned_ratio[client]
+        model_to_train = channel_pruning(model_to_train, pruned_ratio)
         model_to_train.to(device)
-        print(f"Client {client} model loaded successfully,pruned_layers is {client_pruned_ratio[client]}.")
+        print(f"Client {client} model loaded successfully,pruned_ratio is {pruned_ratio}.")
         # pruned_model=gNB_model
         # torch.save(pruned_model.state_dict(),f'model/fl{fl}gNB_Prun.pth')
         # logging.info("model_to_train state_dict: %s", model_to_train.state_dict())
@@ -188,45 +184,7 @@ for fl in range(fl_epochs):
         logging.info('Before train, fl{}Client{} client_test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
 
 
-        # ------------------------------------------
-        # for param in model_to_train.parameters():
-        #     param.requires_grad = False
-        # for name, param in model_to_train.named_parameters():
-        #     if 'classifier' in name:
-        #         param.requires_grad = True
-        # optimizer=torch.optim.Adam(model_to_train.parameters(),lr=1e-4)
-        # loss_fn = nn.CrossEntropyLoss()
-        # for epoch in tqdm(range(Tweak_time), desc=f"Tweak client {client}", unit="epoch"):
-        #     total_step = len(client_train_dataloader[client])
-        #     loss_sum = 0
-        #     model_to_train.train()
-        #     for i, (img, label) in enumerate(client_train_dataloader[client]):
-        #         optimizer.zero_grad()
-        #         img = img.to(device)
-        #         label = label.to(device)
-        #         output = model_to_train(img)
-        #         loss = loss_fn(output, label)
-        #         loss.backward()
-        #         optimizer.step()
-        #         loss_sum += loss.item()
-            # logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch, i, client, loss_sum / total_step))
-        # ------------------------------------------
-        # logging.info("Tweak done")
-        # logging.info(model_to_train.state_dict())
-        # print(model_to_train.state_dict())
-        # model_temp_dict = copy.deepcopy(model_to_train.state_dict())
-
-        # model_to_train.load_state_dict(model_temp_dict)
-        # for param in model_to_train.parameters():
-        #     param.requires_grad = True
-        # for name, param in model_to_train.named_parameters():
-        #     if 'fc' in name:
-        #         param.requires_grad = False
-
         optimizer=torch.optim.Adam(model_to_train.parameters(),lr=learning_rate)
-        # optimizer_state = optimizer.state_dict()  # 保存优化器状态
-        # optimizer = torch.optim.Adam(model_to_train.parameters(), lr=learning_rate)
-        # optimizer.load_state_dict(optimizer_state)  # 恢复优化器状态
         # lr_schdeule = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=num_epochs//8, eta_min=0)
         loss_fn=nn.CrossEntropyLoss()
 
@@ -257,13 +215,11 @@ for fl in range(fl_epochs):
                 #print("running Epoch:{}, client_idx:{}, client_round:{},loss is {}".format(epoch,client,i,loss.item()))
                 # print("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
                 # logging.info("running Epoch:{}, round:{},avg_loss is {}".format(epoch,i,loss_sum/total_step))
-            # logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch+Tweak_time,i,client,loss_sum/total_step))
-            # logging.info(model_to_train.state_dict())
+            # logging.info("running Epoch:{}, fl{}Client{},avg_loss is {}".format(epoch,i,client,loss_sum/total_step))
             temp_loss.append(loss_sum/total_step)
-
         every_client_loss.append(temp_loss)
         client_ids.append(client)
-        Per_model_new_dict[client] = copy.deepcopy(model_to_train.state_dict())
+        
 
         correct = 0
         total = 0
@@ -298,7 +254,6 @@ for fl in range(fl_epochs):
         torch.save(obj = model_to_train.state_dict(), f=models_dir / f'model{client}' / model_name)
         temp_average_acc += 100 * (correct / total)
     average_acc.append(temp_average_acc / len(selected_clients))
-    
     last_model_path=models_dir / f'fl{fl-1}gNB.pth'
     client_models=[]
     for client in selected_clients:
@@ -306,9 +261,9 @@ for fl in range(fl_epochs):
         temp_model = torch.load(model_path,weights_only=True)       
         #对于这个方法，gNB_model的状态信息都变成了temp_model的信息，因为temp_model很可能是剪枝的模型，所以这样为了给gB模型大小保持不变
         if fl==0:
-            updated_gNB_model_state_dict = update_gNB_model(copy.deepcopy(gNB_model).state_dict(), temp_model)
+            updated_gNB_model_state_dict = update_gNB_model(copy.deepcopy(gNB_model).state_dict(), temp_model,channel_pruning=True)
         else:
-            updated_gNB_model_state_dict = update_gNB_model(torch.load(last_model_path,weights_only=True), temp_model)
+            updated_gNB_model_state_dict = update_gNB_model(torch.load(last_model_path,weights_only=True), temp_model,channel_pruning=True)
         # print('test update_gNB_model',temp_model==updated_gNB_model_state_dict)
         client_models.append(updated_gNB_model_state_dict)
     print("get all clients models ready")

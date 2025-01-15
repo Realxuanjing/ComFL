@@ -28,7 +28,7 @@ import matplotlib.pyplot as plt
 
 
 # ---------------------设置自定义文件---------------------
-top_model_name = 'ComplexCNN_19_Flavg_CP'
+top_model_name = 'ComplexCNN_1143_Flavg_CP'
 if not os.path.exists(f'output/{top_model_name}'):
     os.makedirs(f'output/{top_model_name}')
 logging.basicConfig(filename=f'output/{top_model_name}/{top_model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
@@ -40,11 +40,11 @@ model=ComplexCNN(num_classes=10)
 
 
 learning_rate=0.001 #设置学习率
-num_epochs=64   #本地训练次数
+num_epochs=8   #本地训练次数
 # Tweak_time = 32
 train_batch_size=64
 test_batch_size=64
-fl_epochs=30 #联邦学习次数
+fl_epochs=50 #联邦学习次数
 clients_num=10
 ###现在是每一个层都重新排序，需要对比一下不排序效果
 
@@ -110,7 +110,9 @@ for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
 # pruned_arr = list()
 every_client_loss=[]
 client_ids = []
-
+client_pruned_ratio = [0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3]
+client_acc = [[] for _ in range(clients_num)]
+assert len(client_pruned_ratio) == clients_num
 #进行模型聚合
 for fl in range(fl_epochs):
     # pruned_arr = []
@@ -134,16 +136,19 @@ for fl in range(fl_epochs):
         if fl==0:
             model_path = models_dir / f'model{client}' / f'model_before_training_client{client}.pth'
             model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
+            model_to_train.to(device)
         else:
             model_path=models_dir / f'fl{fl-1}gNB.pth'
             model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
+            model_to_train.to(device)
             # print("加载GNB下发模型",model_path)
             #r如果需要剪枝，可以放在这里
             # model_to_train,pruned_layers = layer_pruning(model_to_train,random.uniform(0.1,0.5))
             # model_to_train,pruned_layers = layer_pruning(model_to_train,random.choice([0, 0.25, 0.3]))
-            pruned_ratio = random.choice([0, 0.1, 0.2])
-            model_to_train = channel_pruning(model_to_train, pruned_ratio)
-            model_to_train.to(device)
+        # pruned_ratio = random.choice([0, 0.1, 0.2])
+        pruned_ratio = client_pruned_ratio[client]
+        model_to_train = channel_pruning(model_to_train, pruned_ratio)
+        model_to_train.to(device)
         print(f"Client {client} model loaded successfully,pruned_ratio is {pruned_ratio}.")
         # pruned_model=gNB_model
         # torch.save(pruned_model.state_dict(),f'model/fl{fl}gNB_Prun.pth')
@@ -244,6 +249,7 @@ for fl in range(fl_epochs):
                 correct += (predicted == labels).sum().item()
         print('After train, fl{}Client{} Test Accuracy  {} %'.format(fl,client,100*(correct/total)))
         logging.info('After train, fl{}Client{} Test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
+        client_acc[client].append(100 * (correct / total))
         model_name="fl{}client{}.pth".format(fl,client)
         torch.save(obj = model_to_train.state_dict(), f=models_dir / f'model{client}' / model_name)
         temp_average_acc += 100 * (correct / total)
@@ -262,6 +268,7 @@ for fl in range(fl_epochs):
         client_models.append(updated_gNB_model_state_dict)
     print("get all clients models ready")
     # logging.info("get all clients models ready")
+    client_models = [{k: v.to(device) for k, v in state_dict.items()} for state_dict in client_models]
 
     merged_model=copy.deepcopy(gNB_model)
     sum_module=FedAvg(client_models)
@@ -356,3 +363,14 @@ logging.info('--------------------------')
 # logging.info("Training loss is %s", client_loss_dict)
 logging.info("Average accuracy is %s", average_acc)
 logging.info("Test accuracy is %s", gnb_acc)
+logging.info('client_acc is %s', client_acc)
+
+plt.figure()
+for i, acc in enumerate(client_acc):
+    plt.plot(acc, label=f'Client {i}')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.title('Test Accuracy per Epoch')
+plt.legend()
+plt.savefig(os.path.join(picture_dir, 'client_acc.png'))
+plt.close()

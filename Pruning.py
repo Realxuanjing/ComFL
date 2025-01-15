@@ -52,7 +52,7 @@ def layer_pruning(model, prune_ratio):
     # 返回剪枝后的模型和剪掉的层名称
     return pruned_model, pruned_layers
 
-def channel_pruning(model, prune_ratio=0.1):
+def channel_pruning(model, prune_ratio=0.1,conv_sort =False ,classifer_in_sort = False):
     pruned_model = copy.deepcopy(model)
     conv_layers = []
     bn_layers = []
@@ -65,7 +65,11 @@ def channel_pruning(model, prune_ratio=0.1):
     temp_feature = 0
     # for name, module in conv_layers:
     end_indices = []
+    last_conv_out_channels = 0
+    last_conv_in_channels = 0
     for i, (name, module) in enumerate(conv_layers):
+        last_conv_in_channels = module.in_channels
+        last_conv_out_channels = module.out_channels
         # 计算每个卷积层的通道重要性（L1范数或者其他指标）
         abs_weights = torch.abs(module.weight.data)
         channel_importance = abs_weights.sum(dim=(1, 2, 3))  # 对每个通道计算L1范数
@@ -76,8 +80,9 @@ def channel_pruning(model, prune_ratio=0.1):
         prune_indices = indices[-num_channels_to_prune:]  # 选取最不重要的通道
         
         new_weight = module.weight.data.clone()
-        new_weight = new_weight[indices]  
-        module.weight.data = new_weight
+        if conv_sort:
+            new_weight = new_weight[indices]  
+            module.weight.data = new_weight
         if module.bias is not None:
             new_bias = module.bias.data.clone()
             new_bias = new_bias[indices] 
@@ -96,19 +101,25 @@ def channel_pruning(model, prune_ratio=0.1):
         setattr(pruned_model, name, new_conv_layer)
         setattr(pruned_model, bn_layer[0], new_bn_layer)
         end_indices = indices
-    new_in_features = math.ceil(pruned_model.classifier[0].in_features*(1-prune_ratio) )
+        
+    # new_in_features = math.ceil(pruned_model.classifier[0].in_features*(1-prune_ratio) )
+    wh = pruned_model.classifier[0].in_features/last_conv_out_channels
+    new_in_features = int(math.ceil(last_conv_out_channels*(1-prune_ratio))*wh)
+    # print('new_in_features,wh',new_in_features,wh,last_conv_in_channels)
     # print(new_in_features)
     # new_linear = nn.Linear(new_in_features, 1024)  
     # setattr(pruned_model.classifier, '0', new_linear)  
     # print(pruned_model.classifier[0].weight.data.shape,len(end_indices))
     # pruned_model.classifier[0].weight.data = pruned_model.classifier[0].weight.data[:,end_indices]
-    pruned_model.classifier[0].weight.data = pruned_model.classifier[0].weight.data[:, end_indices]
+    # end_indices = pruned_model.classifier[0].weight.data.shape[1]*(1-prune_ratio)
+    if classifer_in_sort:
+        pruned_model.classifier[0].weight.data[:,0:len(end_indices)] = pruned_model.classifier[0].weight.data[:, end_indices]
     # if pruned_model.classifier[0].bias is not None:
     #     pruned_model.classifier[0].bias.data = pruned_model.classifier[0].bias.data[end_indices]
     # if pruned_model.classifier[0].bias is not None:
     #     pruned_model.classifier[0].bias.data = pruned_model.classifier[0].bias.data[end_indices]
     # print(pruned_model.classifier[0].weight.data.shape)
-    new_classifier_in_layer = replace_layer(pruned_model.classifier[0],'Linear',new_in_features,1024)
+    new_classifier_in_layer = replace_layer(pruned_model.classifier[0],'Linear',new_in_features,pruned_model.classifier[0].out_features)
     
     # new_classifier = nn.Sequential(
     #     new_classifier_in_layer,

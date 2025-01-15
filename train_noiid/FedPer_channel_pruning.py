@@ -24,7 +24,7 @@ from tqdm import tqdm
 from pathlib import Path
 from GetDataSet import GetData,DatasetSplit,LocalUpdate,CRF_10
 from utils import seed_everything, set_parameter_requires_grad, self_iid
-from Pruning import layer_pruning
+from Pruning import layer_pruning,channel_pruning
 from model_merge import update_gNB_model, FedAvg, FedPer_merge_models
 from model import VGGnet,SimpleCNN,ComplexCNN
 import matplotlib.pyplot as plt
@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 
 
 # ---------------------设置自定义文件---------------------
-top_model_name = 'ComplexCNN_114_FedPer_p'
+top_model_name = 'ComplexCNN_114_FedPer_CP'
 if not os.path.exists(f'output/{top_model_name}'):
     os.makedirs(f'output/{top_model_name}')
 logging.basicConfig(filename=f'output/{top_model_name}/{top_model_name}.txt', level=logging.INFO,datefmt='%Y-%m-%d %H:%M:%S', format='%(asctime)s - %(message)s', filemode='w')
@@ -54,7 +54,9 @@ clients_num=10
 # -----------------------------------------------------
 gnb_acc = []
 average_acc = []
+average_acc_plus = []
 temp_average_acc = 0
+temp_average_acc_plus = 0
 seed_everything()
 # "/home/data1/xxx/dataset/COMFL/datasets/PetImages/"
 
@@ -92,7 +94,7 @@ logging.info(f"Number of clients: {clients_num}")
 # gNB_test_dataloader=DataLoader(test_data,batch_size=test_batch_size, shuffle=False,pin_memory=True,num_workers=24)
 
 CRF_10 = CRF_10(batch_size=train_batch_size,logger=logging ,data_root='/home/data1/xxx/dataset/COMFL/datasets/CRF_10')
-client_train_dataloader, client_test_dataloader = CRF_10.split_data(clients_num)
+client_train_dataloader, client_test_dataloader = CRF_10.non_iid_partition_with_auto_ratios(clients_num)
 gNB_test_dataloader = CRF_10.getdata()[1]  #trainloader, testloader, classes
 #选择不同的随机用户进行训练
 #client_each_epoch=random.sample(1,clients_num/10)
@@ -115,10 +117,11 @@ for i in tqdm(range(clients_num), desc="Saving models", unit="client"):
 # pruned_arr = list()
 every_client_loss=[]
 client_ids = []
+Per_model_new_dict = {}
 client_pruned_ratio = [0,0,0,0.1,0.1,0.1,0.2,0.2,0.2,0.3]
 client_acc = [[] for _ in range(clients_num)]
 assert len(client_pruned_ratio) == clients_num
-Per_model_new_dict = {}
+
 for i in range(clients_num):
     Per_model_new_dict[i] = copy.deepcopy(gNB_model.state_dict())
 #进行模型聚合
@@ -127,6 +130,7 @@ for fl in range(fl_epochs):
     #设置联邦学习次数：
     selected_clients=random.sample(range(0,clients_num),min(5, clients_num))
     temp_average_acc = 0
+    temp_average_acc_plus = 0
     for client in selected_clients: #每轮设置随机5个用户进行训练
         #每次最多设置10个用户进行训练
         # if fl==0:
@@ -140,9 +144,12 @@ for fl in range(fl_epochs):
         model_to_train=copy.deepcopy(gNB_model)
         model_to_train.to(device)
         pruned_layers = []
+        pruned_ratio = client_pruned_ratio[client]
+
         if fl==0:
             model_path = models_dir / f'model{client}' / f'model_before_training_client{client}.pth'
             model_to_train.load_state_dict(torch.load(model_path,weights_only=True))
+            model_to_train.to(device)
         else:
             model_path=models_dir / f'fl{fl-1}gNB.pth'
             temp_dict = FedPer_merge_models(torch.load(model_path,weights_only=True), Per_model_new_dict[client])
@@ -151,9 +158,9 @@ for fl in range(fl_epochs):
             # print("加载GNB下发模型",model_path)
             # 如果需要剪枝，可以放在这里
             model_to_train.to(device)
-        model_to_train,pruned_layers = layer_pruning(model_to_train,client_pruned_ratio[client])
+        model_to_train = channel_pruning(model_to_train, pruned_ratio)
         model_to_train.to(device)
-        print(f"Client {client} model loaded successfully,pruned_layers is {client_pruned_ratio[client]}.")
+        print(f"Client {client} model loaded successfully,pruned_ratio is {pruned_ratio}.")
         # pruned_model=gNB_model
         # torch.save(pruned_model.state_dict(),f'model/fl{fl}gNB_Prun.pth')
         # logging.info("model_to_train state_dict: %s", model_to_train.state_dict())
@@ -293,11 +300,13 @@ for fl in range(fl_epochs):
                 correct += (predicted == labels).sum().item()
         print('After train, fl{}Client{} Test Accuracy  {} %'.format(fl,client,100*(correct/total)))
         logging.info('After train, fl{}Client{} Test Accuracy  {} %'.format(fl, client, 100 * (correct / total)))
-        client_acc[client].append(100 * (correct / total))
+        client_acc[client].append(100 * (correct / total))  
         model_name="fl{}client{}.pth".format(fl,client)
         torch.save(obj = model_to_train.state_dict(), f=models_dir / f'model{client}' / model_name)
         temp_average_acc += 100 * (correct / total)
+        temp_average_acc_plus += 100 * (correct / total)*(1+pruned_ratio)
     average_acc.append(temp_average_acc / len(selected_clients))
+    average_acc_plus.append(temp_average_acc_plus)
     
     last_model_path=models_dir / f'fl{fl-1}gNB.pth'
     client_models=[]
@@ -306,9 +315,9 @@ for fl in range(fl_epochs):
         temp_model = torch.load(model_path,weights_only=True)       
         #对于这个方法，gNB_model的状态信息都变成了temp_model的信息，因为temp_model很可能是剪枝的模型，所以这样为了给gB模型大小保持不变
         if fl==0:
-            updated_gNB_model_state_dict = update_gNB_model(copy.deepcopy(gNB_model).state_dict(), temp_model)
+            updated_gNB_model_state_dict = update_gNB_model(copy.deepcopy(gNB_model).state_dict(), temp_model,channel_pruning=True)
         else:
-            updated_gNB_model_state_dict = update_gNB_model(torch.load(last_model_path,weights_only=True), temp_model)
+            updated_gNB_model_state_dict = update_gNB_model(torch.load(last_model_path,weights_only=True), temp_model,channel_pruning=True)
         # print('test update_gNB_model',temp_model==updated_gNB_model_state_dict)
         client_models.append(updated_gNB_model_state_dict)
     print("get all clients models ready")
@@ -408,6 +417,16 @@ logging.info('--------------------------')
 # logging.info("Training loss is %s", client_loss_dict)
 logging.info("Average accuracy is %s", average_acc)
 logging.info("Test accuracy is %s", gnb_acc)
+
+plt.figure()
+plt.plot(average_acc_plus, label='Test Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.title('Training Average Plus Accuracy per Epoch')  
+plt.legend()
+plt.savefig(os.path.join(picture_dir, 'average_loss_plus.png'))
+plt.close()
+
 logging.info('client_acc is %s', client_acc)
 
 plt.figure()

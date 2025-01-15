@@ -186,30 +186,20 @@ class CRF_10():
     def split_quality_data(self, n_users, percent_low_quality=0.5):
         m_per_user = n_users * percent_low_quality
         user_trainloaders, user_testloaders = self.split_data(n_users)
-        # 前 m_per_user 个loader为低质量数据，后面的为高质量数据
-        # 使用之前定义的 split_data 函数获取训练和测试的 DataLoader
         user_trainloaders, user_testloaders = self.split_data(n_users)
 
-        # 计算每个用户低质量数据的数量
         m_per_user = int(n_users * percent_low_quality)
         print(f"Number of users with low-quality data: {m_per_user}")
-        # 创建低质量数据转换（假设已有 LowQualityTransform 定义）
         low_quality_transform = LowQualityTransform(noise_factor=25, blur_radius=2)
-        high_quality_transform = HighQualityTransform()  # 高质量数据转换（原样）
+        high_quality_transform = HighQualityTransform()  
 
-        # 处理每个用户的训练数据
-        # 处理每个用户的训练数据
         for i in range(n_users):
-            # 获取每个用户的训练集
             train_loader = user_trainloaders[i]
             processed_train_images = []
             processed_train_labels = []
 
-            # 遍历每个batch的数据
             for batch_images, batch_labels in train_loader:
-                # 对batch中的每个图像逐个应用转换
                 for img, label in zip(batch_images, batch_labels):
-                    # 如果是低质量数据，应用低质量转换
                     if i < m_per_user:
                         img = low_quality_transform(img)
                     else:
@@ -218,22 +208,16 @@ class CRF_10():
                     processed_train_images.append(img)
                     processed_train_labels.append(label)
 
-            # 创建新的 DataLoader
             processed_train_data = list(zip(processed_train_images, processed_train_labels))
             user_trainloaders[i] = DataLoader(processed_train_data, batch_size=self.batch_size, shuffle=True, num_workers=24)
 
-        # 处理每个用户的测试数据
         for i in range(n_users):
-            # 获取每个用户的测试集
             test_loader = user_testloaders[i]
             processed_test_images = []
             processed_test_labels = []
 
-            # 遍历每个batch的数据
             for batch_images, batch_labels in test_loader:
-                # 对batch中的每个图像逐个应用转换
                 for img, label in zip(batch_images, batch_labels):
-                    # 如果是低质量数据，应用低质量转换
                     if i < m_per_user:
                         img = low_quality_transform(img)
                     else:
@@ -242,73 +226,113 @@ class CRF_10():
                     processed_test_images.append(img)
                     processed_test_labels.append(label)
 
-            # 创建新的 DataLoader
             processed_test_data = list(zip(processed_test_images, processed_test_labels))
             user_testloaders[i] = DataLoader(processed_test_data, batch_size=self.batch_size, shuffle=False, num_workers=24)
 
         return user_trainloaders, user_testloaders
 
 
-    def non_iid_partition(self, dataset, n_users, n_classes=10):
-        """
-        将数据集划分为 n_users 个 non-IID 子集。训练集和测试集都会被划分为 non-IID 数据。
-        
-        参数:
-        - dataset: 需要划分的数据集，应该是一个包含训练集和测试集的数据集。
-        - n_users: 子集的数量，即用户数量。
-        - n_classes: 数据集中的类别数，默认为 10。
-        
-        返回:
-        - user_trainloaders: 每个用户的训练集 DataLoader 列表。
-        - user_testloaders: 每个用户的测试集 DataLoader 列表。
-        """
-        # 假设 dataset 中包含 trainset 和 testset
-        trainset, testset = dataset['train'], dataset['test']
+    def non_iid_partition_with_auto_ratios(self, n_users, n_classes=10):
+       
+        trainset = self.trainset
+        testset = self.testset
 
-        # 对训练集进行类别划分
+        user_category_ratios = []
+        for _ in range(n_users):
+            ratios = np.random.dirichlet(alpha=[1] * n_classes)  # 生成随机比例
+            user_category_ratios.append(ratios)
+
         train_class_dict = defaultdict(list)
+        test_class_dict = defaultdict(list)
+        
         for idx, (_, label) in enumerate(trainset):
             train_class_dict[label].append(idx)
-
-        # 对测试集进行类别划分
-        test_class_dict = defaultdict(list)
         for idx, (_, label) in enumerate(testset):
             test_class_dict[label].append(idx)
-        
-        # 为每个用户分配数据
+
         user_train_data = [[] for _ in range(n_users)]
         user_test_data = [[] for _ in range(n_users)]
 
-        # 为每个类别分配训练集和测试集给用户
-        user_idx = 0
         for label in range(n_classes):
-            # 将每个类别的训练数据分配给用户
-            for i in range(len(train_class_dict[label])):
-                user_train_data[user_idx].append(train_class_dict[label][i])
-                user_idx = (user_idx + 1) % n_users  # 循环分配给不同的用户
-            
-            # 将每个类别的测试数据分配给用户
-            for i in range(len(test_class_dict[label])):
-                user_test_data[user_idx].append(test_class_dict[label][i])
-                user_idx = (user_idx + 1) % n_users  # 循环分配给不同的用户
-        
+            train_indices = train_class_dict[label]
+            test_indices = test_class_dict[label]
+
+            random.shuffle(train_indices)
+            random.shuffle(test_indices)
+
+            for user_idx in range(n_users):
+                ratio = user_category_ratios[user_idx][label]
+                num_train = int(len(train_indices) * ratio)
+                num_test = int(len(test_indices) * ratio)
+
+                start_train = sum(int(len(train_indices) * r) for r in user_category_ratios[user_idx][:label])
+                start_test = sum(int(len(test_indices) * r) for r in user_category_ratios[user_idx][:label])
+
+                user_train_data[user_idx].extend(train_indices[start_train:start_train + num_train])
+                user_test_data[user_idx].extend(test_indices[start_test:start_test + num_test])
+
         for i in range(n_users):
-            user_train_labels = set([trainset[idx][1] for idx in user_train_data[i]])
-            user_test_labels = set([testset[idx][1] for idx in user_test_data[i]])
-            print(f"User {i + 1}: Categories in Train: {sorted(user_train_labels)}, Categories in Test: {sorted(user_test_labels)}")
-            self.logger.info(f"User {i + 1}: Categories in Train: {sorted(user_train_labels)}, Categories in Test: {sorted(user_test_labels)}")
-        # 创建用户的训练集和测试集 DataLoader
+            user_train_labels = [trainset[idx][1] for idx in user_train_data[i]]
+            user_test_labels = [testset[idx][1] for idx in user_test_data[i]]
+
+            train_label_counts = {label: user_train_labels.count(label) for label in range(n_classes)}
+            test_label_counts = {label: user_test_labels.count(label) for label in range(n_classes)}
+
+            self.logger.info(f"User {i + 1}: Train Categories Distribution: {train_label_counts}")
+            self.logger.info(f"User {i + 1}: Test Categories Distribution: {test_label_counts}")
+
         user_trainloaders = [DataLoader(Subset(trainset, user_train_data[i]), batch_size=32, shuffle=True) for i in range(n_users)]
         user_testloaders = [DataLoader(Subset(testset, user_test_data[i]), batch_size=32, shuffle=False) for i in range(n_users)]
         
         return user_trainloaders, user_testloaders
     
+    def non_iid_partition(self, n_users, n_classes=10):
+        """
+        将数据集划分为 n_users 个 non-IID 子集，确保所有数据分配完毕。
+        
+        参数:
+        - dataset: 包含 'train' 和 'test' 的数据集。
+        - n_users: 子集数量。
+        - n_classes: 类别总数，默认为 10。
+        
+        返回:
+        - user_trainloaders: 每个用户的训练集 DataLoader 列表。
+        - user_testloaders: 每个用户的测试集 DataLoader 列表。
+        """
+        trainset = self.trainset
+        testset = self.testset
+
+        train_class_dict = defaultdict(list)
+        test_class_dict = defaultdict(list)
+        
+        for idx, (_, label) in enumerate(trainset):
+            train_class_dict[label].append(idx)
+        for idx, (_, label) in enumerate(testset):
+            test_class_dict[label].append(idx)
+
+        extended_categories = list(range(n_classes)) * ((n_users + n_classes - 1) // n_classes)  
+        random.shuffle(extended_categories)  
+
+        user_train_data = [[] for _ in range(n_users)]
+        user_test_data = [[] for _ in range(n_users)]
+
+        for user_idx, label in enumerate(extended_categories):
+            user_train_data[user_idx % n_users].extend(train_class_dict[label])
+            user_test_data[user_idx % n_users].extend(test_class_dict[label])
+
+        for i in range(n_users):
+            user_train_labels = set([trainset[idx][1] for idx in user_train_data[i]])
+            user_test_labels = set([testset[idx][1] for idx in user_test_data[i]])
+            self.logger.info(f"User {i + 1}: Train Categories: {sorted(user_train_labels)}, Test Categories: {sorted(user_test_labels)}")
+
+        user_trainloaders = [DataLoader(Subset(trainset, user_train_data[i]), batch_size=32, shuffle=True) for i in range(n_users)]
+        user_testloaders = [DataLoader(Subset(testset, user_test_data[i]), batch_size=32, shuffle=False) for i in range(n_users)]
+        
+        return user_trainloaders, user_testloaders
 
     def img_to_tensor(self, img):
-        # 如果 img 已经是 Tensor，则直接返回
         if isinstance(img, torch.Tensor):
             return img
-        # 如果 img 是 PIL 图像或 ndarray，则转换为 Tensor
         elif isinstance(img, (np.ndarray, Image.Image)):
             return transforms.ToTensor()(img)
         else:
